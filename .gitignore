@@ -1,0 +1,44 @@
+# Ignore backups.
+*~
+
+# Ignore select directories.
+__pycache__/
+.ipynb_checkpoints/
+docs/_build/
+docs/_autosummary/
+docs/pyxem-docs/
+input-files/
+output-files/
+# notebooks/
+
+# Ignore select files.
+# to-do.lyx
+scratch_param.txt
+_temp_scan_config_file.txt
+docs/quick-tex.lyx
+docs/quick-tex.tex
+
+# Ignore .pyc files.
+*.pyc
+
+# Ignore backup files.
+\#*#
+*.bak
+
+# Ignore pip install build files.
+build/
+*.egg-info/
+*/_version.py
+
+# Ignore .h5 data files.
+*.h5
+
+# Ignore temporary files.
+_requirements-doc.txt
+
+# Ignore most .ipynb files.
+*.ipynb
+!analysis.ipynb
+
+# Ignore .xyz files.
+*.xyz
