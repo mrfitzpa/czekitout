@@ -3,6 +3,9 @@
 Installation instructions
 =========================
 
+Install czekitout
+-----------------
+
 First, open up the appropriate command line interface. On Unix-based systems,
 you would open a terminal. On Windows systems you would open an Anaconda Prompt
 as an administrator.

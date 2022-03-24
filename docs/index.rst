@@ -11,7 +11,6 @@ Contents
    INSTALL
    Reference <_autosummary/czekitout>
    examples
-   literature
    todo
    changelog
    license
