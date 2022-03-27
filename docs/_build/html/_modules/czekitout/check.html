@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>czekitout.check &mdash; czekitout  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/readthedocs-custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> czekitout
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../INSTALL.html">1. Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/czekitout.html">2. Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">3. Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../todo.html">4. To-Do list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">5. CHANGELOG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">6. License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">czekitout</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+          <li><a href="../czekitout.html">czekitout</a> &raquo;</li>
+      <li>czekitout.check</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for czekitout.check</h1><div class="highlight"><pre>
+<span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Contains functions that facilitate validation with useful error messages </span>
+<span class="sd">when exceptions are thrown.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+
+<span class="c1">#####################################</span>
+<span class="c1">## Load libraries/packages/modules ##</span>
+<span class="c1">#####################################</span>
+
+<span class="c1"># To determine whether an object is path-like.</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+
+
+
+<span class="c1"># For general array handling.</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+
+<span class="c1"># For getting fully qualified class names.</span>
+<span class="kn">import</span> <span class="nn">czekitout.name</span>
+
+<span class="c1"># For type-checking objects.</span>
+<span class="kn">import</span> <span class="nn">czekitout.isa</span>
+
+
+
+<span class="c1">############################</span>
+<span class="c1">## Authorship information ##</span>
+<span class="c1">############################</span>
+
+<span class="n">__author__</span>     <span class="o">=</span> <span class="s2">&quot;Matthew Fitzpatrick&quot;</span>
+<span class="n">__copyright__</span>  <span class="o">=</span> <span class="s2">&quot;Copyright 2022&quot;</span>
+<span class="n">__credits__</span>    <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Matthew Fitzpatrick&quot;</span><span class="p">]</span>
+<span class="n">__maintainer__</span> <span class="o">=</span> <span class="s2">&quot;Matthew Fitzpatrick&quot;</span>
+<span class="n">__email__</span>      <span class="o">=</span> <span class="s2">&quot;mrfitzpa@uvic.ca&quot;</span>
+<span class="n">__status__</span>     <span class="o">=</span> <span class="s2">&quot;Development&quot;</span>
+
+
+
+<span class="c1">##################################</span>
+<span class="c1">## Define classes and functions ##</span>
+<span class="c1">##################################</span>
+
+<span class="c1"># List of public objects in objects.</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;if_instance_of_any_accepted_types&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_dict_like&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_str_like&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_path_like&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_int&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_int_seq&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_positive_int&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_nonnegative_int&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_multi_dim_slice_like&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_float&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_positive_float&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_pair_of_floats&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_pair_of_positive_ints&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_pair_of_nonnegative_ints&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_real_two_column_numpy_matrix&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_real_numpy_array_3d&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_bool&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_bool_matrix&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_bool_array_3d&quot;</span><span class="p">]</span>
+
+
+
+<div class="viewcode-block" id="if_instance_of_any_accepted_types"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_instance_of_any_accepted_types.html#czekitout.check.if_instance_of_any_accepted_types">[docs]</a><span class="k">def</span> <span class="nf">if_instance_of_any_accepted_types</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">,</span> <span class="n">accepted_types</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is one of any given accepted types.</span>
+
+<span class="sd">    If the input object is not one of any given accepted type, and </span>
+<span class="sd">    ``len(accepted_types)=1``, then a `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be instance of the class </span>
+<span class="sd">        `&lt;accepted_type&gt;`.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``, and</span>
+<span class="sd">    &lt;accepted_type&gt; by the fully qualified class name of ``accepted_types[0]``.</span>
+
+<span class="sd">    If the input object is not one of any given accepted type, and </span>
+<span class="sd">    ``len(accepted_types)&gt;1``, then a `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be instance of one of the following </span>
+<span class="sd">        classes: &lt;accepted_types&gt;.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``, and</span>
+<span class="sd">    &lt;accepted_types&gt;  by the list of the fully qualified class names of the</span>
+<span class="sd">    accepted types stored in ``accepted_types``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+<span class="sd">    accepted_types : `array_like` (`type`, ndim=1)</span>
+<span class="sd">        Accepted types.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">accepted_types</span><span class="p">):</span>
+        <span class="n">fully_qualified_class_name</span> <span class="o">=</span> \
+            <span class="n">czekitout</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">fully_qualified_class_name</span> <span class="c1"># Alias for readability.</span>
+        <span class="n">names_of_accepted_types</span> <span class="o">=</span> \
+            <span class="nb">tuple</span><span class="p">(</span><span class="n">fully_qualified_class_name</span><span class="p">(</span><span class="n">accepted_type</span><span class="p">)</span>
+                  <span class="k">for</span> <span class="n">accepted_type</span> <span class="ow">in</span> <span class="n">accepted_types</span><span class="p">)</span>
+                
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">names_of_accepted_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_instance_of_any_accepted_types_err_msg_1</span>
+            <span class="n">err_msg</span> <span class="o">=</span> <span class="n">err_msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">,</span> <span class="n">names_of_accepted_types</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">names_of_accepted_types</span> <span class="o">=</span> \
+                <span class="nb">str</span><span class="p">(</span><span class="n">names_of_accepted_types</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\&#39;</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;`&quot;</span><span class="p">)</span>
+            <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_instance_of_any_accepted_types_err_msg_2</span>
+            <span class="n">err_msg</span> <span class="o">=</span> <span class="n">err_msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">,</span> <span class="n">names_of_accepted_types</span><span class="p">)</span>
+            
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_dict_like"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_dict_like.html#czekitout.check.if_dict_like">[docs]</a><span class="k">def</span> <span class="nf">if_dict_like</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is dictionary-like</span>
+
+<span class="sd">    If the input object is not dictionary-like, then a `TypeError` is raised</span>
+<span class="sd">    with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be dictionary-like.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_dict_like_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_str_like"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_str_like.html#czekitout.check.if_str_like">[docs]</a><span class="k">def</span> <span class="nf">if_str_like</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is string-like</span>
+
+<span class="sd">    If the input object is not string-like, then a `TypeError` is raised with</span>
+<span class="sd">    the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be an instance of the class `str`.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">check_if_instance_of_any_accepted_types</span> <span class="o">=</span> \
+        <span class="n">if_instance_of_any_accepted_types</span>  <span class="c1"># Alias for readability.</span>
+
+    <span class="n">accepted_types</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">)</span>
+    <span class="n">check_if_instance_of_any_accepted_types</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">,</span> <span class="n">accepted_types</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_path_like"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_path_like.html#czekitout.check.if_path_like">[docs]</a><span class="k">def</span> <span class="nf">if_path_like</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is path-like</span>
+
+<span class="sd">    If the input object is not path-like, then a `TypeError` is raised with the</span>
+<span class="sd">    message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be an instance of the class `str`.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_instance_of_any_accepted_types_err_msg_1</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">err_msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">,</span> <span class="s2">&quot;str&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_int"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_int.html#czekitout.check.if_int">[docs]</a><span class="k">def</span> <span class="nf">if_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is an integer.</span>
+
+<span class="sd">    If the input object is not an integer, then a `TypeError` is raised with the</span>
+<span class="sd">    message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be an instance of the class `int`.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">-</span> <span class="n">obj</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.0e-14</span><span class="p">:</span>
+            <span class="k">raise</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_instance_of_any_accepted_types_err_msg_1</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">err_msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">,</span> <span class="s2">&quot;int&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_int_seq"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_int_seq.html#czekitout.check.if_int_seq">[docs]</a><span class="k">def</span> <span class="nf">if_int_seq</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a sequence of integers.</span>
+
+<span class="sd">    If the input object is not a sequence of integers, then a `TypeError` is</span>
+<span class="sd">    raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a sequence of integers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+            <span class="n">check_if_int</span> <span class="o">=</span> <span class="n">if_int</span>  <span class="c1"># Alias for readability.</span>
+            <span class="n">check_if_int</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;num&quot;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_int_seq_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_positive_int"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_positive_int.html#czekitout.check.if_positive_int">[docs]</a><span class="k">def</span> <span class="nf">if_positive_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a positive integer.</span>
+
+<span class="sd">    If the input object is not a positive integer, then a `TypeError` is raised</span>
+<span class="sd">    with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a positive `int`.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">check_if_int</span> <span class="o">=</span> <span class="n">if_int</span>  <span class="c1"># Alias for readability.</span>
+    <span class="n">check_if_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">&quot;obj&quot;</span><span class="p">)</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_positive_int_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_nonnegative_int"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_nonnegative_int.html#czekitout.check.if_nonnegative_int">[docs]</a><span class="k">def</span> <span class="nf">if_nonnegative_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a non-negative integer.</span>
+
+<span class="sd">    If the input object is not a non-negative integer, then a `TypeError` is</span>
+<span class="sd">    raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a non-negative `int`.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">check_if_int</span> <span class="o">=</span> <span class="n">if_int</span>  <span class="c1"># Alias for readability.</span>
+    <span class="n">check_if_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">&quot;obj&quot;</span><span class="p">)</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_nonnegative_int_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_multi_dim_slice_like"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_multi_dim_slice_like.html#czekitout.check.if_multi_dim_slice_like">[docs]</a><span class="k">def</span> <span class="nf">if_multi_dim_slice_like</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a multi-dimensional slice-like object.</span>
+
+<span class="sd">    We define a multi-dimensional slice-like object as a sequence of items which</span>
+<span class="sd">    contains at most one item being a sequence of integers, and the remaining</span>
+<span class="sd">    items being `slice` objects and/or integers.</span>
+
+<span class="sd">    If the input object is not multi-dimensional slice-like, then a `TypeError`</span>
+<span class="sd">    is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a sequence of items which contains at </span>
+<span class="sd">        most one item being a sequence of integers, and the remaining items </span>
+<span class="sd">        being `slice` objects and/or integers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_single_dim_slices_as_lists</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">single_dim_slice</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">single_dim_slice</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="n">check_if_int</span> <span class="o">=</span> <span class="n">if_int</span>  <span class="c1"># Alias for readability.</span>
+            
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">single_dim_slice</span><span class="p">:</span>
+                    <span class="n">check_if_int</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;num&quot;</span><span class="p">)</span>
+                <span class="n">num_single_dim_slices_as_lists</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">continue</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+            <span class="n">check_if_int</span><span class="p">(</span><span class="n">single_dim_slice</span><span class="p">,</span> <span class="s2">&quot;single_dim_slice&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">num_single_dim_slices_as_lists</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span>
+
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_multi_dim_slice_like_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_float"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_float.html#czekitout.check.if_float">[docs]</a><span class="k">def</span> <span class="nf">if_float</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a floating-point number.</span>
+
+<span class="sd">    If the input object is not a floating-point number, then a `TypeError` is</span>
+<span class="sd">    raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be an instance of the class `float`.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_instance_of_any_accepted_types_err_msg_1</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">err_msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">,</span> <span class="s2">&quot;float&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_positive_float"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_positive_float.html#czekitout.check.if_positive_float">[docs]</a><span class="k">def</span> <span class="nf">if_positive_float</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a positive floating-point number.</span>
+
+<span class="sd">    If the input object is not a positive floating-point number, then a</span>
+<span class="sd">    `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a positive `float`.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">check_if_float</span> <span class="o">=</span> <span class="n">if_float</span>  <span class="c1"># Alias for readability.</span>
+    <span class="n">check_if_float</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_positive_float_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_pair_of_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_pair_of_floats.html#czekitout.check.if_pair_of_floats">[docs]</a><span class="k">def</span> <span class="nf">if_pair_of_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a pair of floating-point numbers.</span>
+
+<span class="sd">    If the input object is not a pair of floating-point numbers, then a</span>
+<span class="sd">    `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a pair of real numbers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+            <span class="n">check_if_float</span> <span class="o">=</span> <span class="n">if_float</span>  <span class="c1"># Alias for readability.</span>
+            <span class="n">check_if_float</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;num&quot;</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_pair_of_floats_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_pair_of_positive_ints"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_pair_of_positive_ints.html#czekitout.check.if_pair_of_positive_ints">[docs]</a><span class="k">def</span> <span class="nf">if_pair_of_positive_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a pair of positive integers.</span>
+
+<span class="sd">    If the input object is not a pair of positive integers, then a `TypeError`</span>
+<span class="sd">    is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a pair of positive integers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+            <span class="n">check_if_positive_int</span> <span class="o">=</span> <span class="n">if_positive_int</span>  <span class="c1"># Alias for readability.</span>
+            <span class="n">check_if_positive_int</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;num&quot;</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_pair_of_positive_ints_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_pair_of_nonnegative_ints"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_pair_of_nonnegative_ints.html#czekitout.check.if_pair_of_nonnegative_ints">[docs]</a><span class="k">def</span> <span class="nf">if_pair_of_nonnegative_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a pair of non-negative integers.</span>
+
+<span class="sd">    If the input object is not a pair of non-negative integers, then a</span>
+<span class="sd">    `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a pair of non-negative integers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+            <span class="c1"># Alias for readability.</span>
+            <span class="n">check_if_nonnegative_int</span> <span class="o">=</span> <span class="n">if_nonnegative_int</span>
+            <span class="n">check_if_nonnegative_int</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;num&quot;</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_pair_of_nonnegative_ints_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_real_two_column_numpy_matrix"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_real_two_column_numpy_matrix.html#czekitout.check.if_real_two_column_numpy_matrix">[docs]</a><span class="k">def</span> <span class="nf">if_real_two_column_numpy_matrix</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a real-valued 2D two-column numpy array.</span>
+
+<span class="sd">    If the input object is not a real-valued 2D two-column numpy array, then a</span>
+<span class="sd">    `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a be a two-column matrix of real </span>
+<span class="sd">        numbers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">czekitout</span><span class="o">.</span><span class="n">isa</span><span class="o">.</span><span class="n">real_two_column_numpy_matrix</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_real_two_column_numpy_matrix_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_real_numpy_array_3d"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_real_numpy_array_3d.html#czekitout.check.if_real_numpy_array_3d">[docs]</a><span class="k">def</span> <span class="nf">if_real_numpy_array_3d</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a real-valued 3D numpy array.</span>
+
+<span class="sd">    If the input object is not a real-valued 3D numpy array, then a `TypeError`</span>
+<span class="sd">    is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a 3D numpy array of real numbers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">czekitout</span><span class="o">.</span><span class="n">isa</span><span class="o">.</span><span class="n">real_numpy_array_3d</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_real_numpy_array_3d_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_bool"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_bool.html#czekitout.check.if_bool">[docs]</a><span class="k">def</span> <span class="nf">if_bool</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is boolean.</span>
+
+<span class="sd">    If the input object is not boolean, then a `TypeError` is raised with the</span>
+<span class="sd">    message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be an instance of the class `bool`.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="n">check_if_int</span> <span class="o">=</span> <span class="n">if_int</span>  <span class="c1"># Alias for readability.</span>
+            <span class="n">check_if_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">raise</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_instance_of_any_accepted_types_err_msg_1</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">err_msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">,</span> <span class="s2">&quot;bool&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_bool_matrix"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_bool_matrix.html#czekitout.check.if_bool_matrix">[docs]</a><span class="k">def</span> <span class="nf">if_bool_matrix</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a 2D boolean array.</span>
+
+<span class="sd">    If the input object is not a 2D boolean array, then a `TypeError` is raised</span>
+<span class="sd">    with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a boolean matrix.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_bool_matrix_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+                <span class="n">check_if_bool</span> <span class="o">=</span> <span class="n">if_bool</span>  <span class="c1"># Alias for readability.</span>
+                <span class="n">check_if_bool</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="s2">&quot;elem&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">err</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="if_bool_array_3d"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_bool_array_3d.html#czekitout.check.if_bool_array_3d">[docs]</a><span class="k">def</span> <span class="nf">if_bool_array_3d</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a 3D boolean array.</span>
+
+<span class="sd">    If the input object is not a 3D boolean array, then a `TypeError` is raised</span>
+<span class="sd">    with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a 3D boolean array.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_bool_array_3d_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">matrix</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+            <span class="n">check_if_bool_matrix</span> <span class="o">=</span> <span class="n">if_bool_matrix</span>  <span class="c1"># Alias for readability.</span>
+            <span class="n">check_if_bool_matrix</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="s2">&quot;matrix&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">err</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<span class="c1">###########################</span>
+<span class="c1">## Define error messages ##</span>
+<span class="c1">###########################</span>
+
+<span class="n">_if_instance_of_any_accepted_types_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be an instance of the class `</span><span class="si">{}</span><span class="s2">`.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_instance_of_any_accepted_types_err_msg_2</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be an instance of one of the following classes: &quot;</span>
+     <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_dict_like_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be dictionary-like.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_int_seq_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a sequence of integers.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_positive_int_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a positive `int`.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_nonnegative_int_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a nonnegative `int`.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_multi_dim_slice_like_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a sequence of items which contains at most one &quot;</span>
+     <span class="s2">&quot;item being a sequence of integers, and the remaining items being `slice` &quot;</span>
+     <span class="s2">&quot;objects and/or integers.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_positive_float_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a positive `float`.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_pair_of_floats_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a pair of real numbers.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_pair_of_positive_ints_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a pair of positive integers.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_pair_of_nonnegative_ints_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a pair of non-negative integers.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_real_two_column_numpy_matrix_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a two-column matrix of real numbers.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_real_numpy_array_3d_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a 3D numpy array of real numbers.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_bool_matrix_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a boolean matrix.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_bool_array_3d_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a 3D boolean array.&quot;</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Matthew Fitzpatrick.
+      <span class="lastupdated">Last updated on Mar 27, 2022.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

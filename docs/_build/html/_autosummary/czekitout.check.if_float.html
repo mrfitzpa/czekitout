@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2.5. czekitout.check.if_float &mdash; czekitout  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/readthedocs-custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.2.6. czekitout.check.if_instance_of_any_accepted_types" href="czekitout.check.if_instance_of_any_accepted_types.html" />
+    <link rel="prev" title="2.2.4. czekitout.check.if_dict_like" href="czekitout.check.if_dict_like.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> czekitout
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">1. Installation instructions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="czekitout.html">2. Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="czekitout.show_config.html">2.1. czekitout.show_config</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="czekitout.check.html">2.2. czekitout.check</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_bool.html">2.2.1. czekitout.check.if_bool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_bool_array_3d.html">2.2.2. czekitout.check.if_bool_array_3d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_bool_matrix.html">2.2.3. czekitout.check.if_bool_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_dict_like.html">2.2.4. czekitout.check.if_dict_like</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.2.5. czekitout.check.if_float</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_instance_of_any_accepted_types.html">2.2.6. czekitout.check.if_instance_of_any_accepted_types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_int.html">2.2.7. czekitout.check.if_int</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_int_seq.html">2.2.8. czekitout.check.if_int_seq</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_multi_dim_slice_like.html">2.2.9. czekitout.check.if_multi_dim_slice_like</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_nonnegative_int.html">2.2.10. czekitout.check.if_nonnegative_int</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_pair_of_floats.html">2.2.11. czekitout.check.if_pair_of_floats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_pair_of_nonnegative_ints.html">2.2.12. czekitout.check.if_pair_of_nonnegative_ints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_pair_of_positive_ints.html">2.2.13. czekitout.check.if_pair_of_positive_ints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_path_like.html">2.2.14. czekitout.check.if_path_like</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_positive_float.html">2.2.15. czekitout.check.if_positive_float</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_positive_int.html">2.2.16. czekitout.check.if_positive_int</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_real_numpy_array_3d.html">2.2.17. czekitout.check.if_real_numpy_array_3d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_real_two_column_numpy_matrix.html">2.2.18. czekitout.check.if_real_two_column_numpy_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_str_like.html">2.2.19. czekitout.check.if_str_like</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="czekitout.convert.html">2.3. czekitout.convert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="czekitout.isa.html">2.4. czekitout.isa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="czekitout.name.html">2.5. czekitout.name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="czekitout.version.html">2.6. czekitout.version</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">3. Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">4. To-Do list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">5. CHANGELOG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">6. License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">czekitout</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="czekitout.html"><span class="section-number">2. </span>czekitout</a> &raquo;</li>
+          <li><a href="czekitout.check.html"><span class="section-number">2.2. </span>czekitout.check</a> &raquo;</li>
+      <li><span class="section-number">2.2.5. </span>czekitout.check.if_float</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="czekitout-check-if-float">
+<h1><span class="section-number">2.2.5. </span>czekitout.check.if_float<a class="headerlink" href="#czekitout-check-if-float" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="czekitout.check.if_float">
+<span class="sig-name descname"><span class="pre">if_float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/czekitout/check.html#if_float"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#czekitout.check.if_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether input object is a floating-point number.</p>
+<p>If the input object is not a floating-point number, then a <cite>TypeError</cite> is
+raised with the message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The object ``&lt;obj_name&gt;`` must be an instance of the class `float`.
+</pre></div>
+</div>
+<p>where &lt;obj_name&gt; is replaced by the contents of the string <code class="docutils literal notranslate"><span class="pre">obj_name</span></code>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>obj</strong><span class="classifier">any type</span></dt><dd><p>Input object.</p>
+</dd>
+<dt><strong>obj_name</strong><span class="classifier"><cite>str</cite></span></dt><dd><p>Name of the input object.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"></dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="czekitout.check.if_dict_like.html" class="btn btn-neutral float-left" title="2.2.4. czekitout.check.if_dict_like" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="czekitout.check.if_instance_of_any_accepted_types.html" class="btn btn-neutral float-right" title="2.2.6. czekitout.check.if_instance_of_any_accepted_types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Matthew Fitzpatrick.
+      <span class="lastupdated">Last updated on Mar 27, 2022.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
