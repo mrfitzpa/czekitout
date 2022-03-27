@@ -31,11 +31,35 @@ __status__     = "Development"
 ##################################
 
 # List of public objects in objects.
-__all__ = []
+__all__ = ["numpy_array",
+           "real_numpy_array",
+           "bool_numpy_array",
+           "numpy_matrix",
+           "two_column_numpy_matrix",
+           "real_numpy_matrix",
+           "numpy_array_3d",
+           "real_numpy_array_3d",
+           "real_two_column_numpy_matrix",
+           "bool_numpy_matrix",
+           "bool_numpy_array_3d"]
 
 
 
 def numpy_array(obj):
+    r"""Returns ``True`` if input object is a numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a numpy array, otherwise it
+        is set to ``False``.
+
+    """
     result = isinstance(obj, np.ndarray)
 
     return result
@@ -43,6 +67,20 @@ def numpy_array(obj):
 
 
 def real_numpy_array(obj):
+    r"""Returns ``True`` if input object is a real-valued numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a real-valued numpy array, 
+        otherwise it is set to ``False``.
+
+    """
     is_numpy_array = numpy_array  # Alias for readability.
     
     if is_numpy_array(obj):
@@ -55,6 +93,20 @@ def real_numpy_array(obj):
 
 
 def bool_numpy_array(obj):
+    r"""Returns ``True`` if input object is a boolean numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a boolean numpy array,
+        otherwise it is set to ``False``.
+
+    """
     is_numpy_array = numpy_array  # Alias for readability.
     
     if is_numpy_array(obj):
@@ -67,6 +119,20 @@ def bool_numpy_array(obj):
 
 
 def numpy_matrix(obj):
+    r"""Returns ``True`` if input object is a 2D numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a 2D numpy array, otherwise 
+        it is set to ``False``.
+
+    """
     is_numpy_array = numpy_array  # Alias for readability.
 
     if is_numpy_array(obj):
@@ -79,6 +145,20 @@ def numpy_matrix(obj):
 
 
 def two_column_numpy_matrix(obj):
+    r"""Returns ``True`` if input object is a 2D two-column numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a 2D two-column numpy array,
+        otherwise it is set to ``False``.
+
+    """
     is_numpy_matrix = numpy_matrix  # Alias for readability.
 
     if is_numpy_matrix(obj):
@@ -91,6 +171,20 @@ def two_column_numpy_matrix(obj):
 
 
 def real_numpy_matrix(obj):
+    r"""Returns ``True`` if input object is a real-valued 2D numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a real-valued 2D numpy 
+        array, otherwise it is set to ``False``.
+
+    """
     is_numpy_matrix = numpy_matrix  # Alias for readability.
     is_real_numpy_array = real_numpy_array  # Alias for readability.
 
@@ -101,6 +195,20 @@ def real_numpy_matrix(obj):
 
 
 def numpy_array_3d(obj):
+    r"""Returns ``True`` if input object is a 3D numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a 3D numpy array, otherwise 
+        it is set to ``False``.
+
+    """
     is_numpy_array = numpy_array  # Alias for readability.
 
     if is_numpy_array(obj):
@@ -113,6 +221,20 @@ def numpy_array_3d(obj):
 
 
 def real_numpy_array_3d(obj):
+    r"""Returns ``True`` if input object is a real-valued 3D numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a real-valued 3D numpy 
+        array, otherwise it is set to ``False``.
+
+    """
     is_numpy_array_3d = numpy_array_3d  # Alias for readability.
     is_real_numpy_array = real_numpy_array  # Alias for readability.
 
@@ -123,6 +245,21 @@ def real_numpy_array_3d(obj):
 
 
 def real_two_column_numpy_matrix(obj):
+    r"""Returns ``True`` if input object is a real-valued 2D two-column numpy 
+    array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a real-valued 2D two-column 
+        numpy array, otherwise it is set to ``False``.
+
+    """
     # Aliases for readability.
     is_two_column_numpy_matrix = two_column_numpy_matrix
     is_real_numpy_array = real_numpy_array
@@ -134,6 +271,20 @@ def real_two_column_numpy_matrix(obj):
 
 
 def bool_numpy_matrix(obj):
+    r"""Returns ``True`` if input object is a boolean 2D numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a bolean 2D numpy array, 
+        otherwise it is set to ``False``.
+
+    """
     is_numpy_matrix = numpy_matrix  # Alias for readability.
     is_bool_numpy_array = bool_numpy_array  # Alias for readability.
 
@@ -144,6 +295,20 @@ def bool_numpy_matrix(obj):
 
 
 def bool_numpy_array_3d(obj):
+    r"""Returns ``True`` if input object is a boolean 3D numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a boolean 3D numpy array, 
+        otherwise it is set to ``False``.
+
+    """
     is_numpy_array_3d = numpy_array_3d  # Alias for readability.
     is_bool_numpy_array = bool_numpy_array  # Alias for readability.
 

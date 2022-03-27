@@ -19,6 +19,9 @@ import numpy as np
 
 
 
+# For getting fully qualified class names.
+import czekitout.name
+
 # For type-checking objects.
 import czekitout.isa
 
@@ -42,27 +45,77 @@ __status__     = "Development"
 ##################################
 
 # List of public objects in objects.
-__all__ = []
+__all__ = ["if_instance_of_any_accepted_types",
+           "if_dict_like",
+           "if_str_like",
+           "if_path_like",
+           "if_int",
+           "if_int_seq",
+           "if_positive_int",
+           "if_nonnegative_int",
+           "if_multi_dim_slice_like",
+           "if_float",
+           "if_positive_float",
+           "if_pair_of_floats",
+           "if_pair_of_positive_ints",
+           "if_pair_of_nonnegative_ints",
+           "if_real_two_column_numpy_matrix",
+           "if_real_numpy_array_3d",
+           "if_bool",
+           "if_bool_matrix",
+           "if_bool_array_3d"]
 
 
 
-def if_instance_of_accepted_types(obj, obj_name, accepted_types):
+def if_instance_of_any_accepted_types(obj, obj_name, accepted_types):
+    r"""Check whether input object is one of any given accepted types.
+
+    If the input object is not one of any given accepted type, and 
+    ``len(accepted_types)=1``, then a `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be instance of the class 
+        `<accepted_type>`.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``, and
+    <accepted_type> by the fully qualified class name of ``accepted_types[0]``.
+
+    If the input object is not one of any given accepted type, and 
+    ``len(accepted_types)>1``, then a `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be instance of one of the following 
+        classes: <accepted_types>.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``, and
+    <accepted_types>  by the list of the fully qualified class names of the
+    accepted types stored in ``accepted_types``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+    accepted_types : `array_like` (`type`, ndim=1)
+        Accepted types.
+
+    Returns
+    -------
+
+    """
     if not isinstance(obj, accepted_types):
-        names_of_accepted_types = []
-        for accepted_type in accepted_types:
-            try:
-                names_of_accepted_types.append(accepted_type._child_class_name)
-            except:
-                names_of_accepted_types.append(accepted_type.__name__)
-        names_of_accepted_types = tuple(names_of_accepted_types)
+        fully_qualified_class_name = \
+            czekitout.name.fully_qualified_class_name # Alias for readability.
+        names_of_accepted_types = \
+            tuple(fully_qualified_class_name(accepted_type)
+                  for accepted_type in accepted_types)
                 
         if len(names_of_accepted_types) == 1:
-            err_msg = _if_instance_of_accepted_types_err_msg_1
+            err_msg = _if_instance_of_any_accepted_types_err_msg_1
             err_msg = err_msg.format(obj_name, names_of_accepted_types[0])
         else:
             names_of_accepted_types = \
                 str(names_of_accepted_types).replace("\'", "`")
-            err_msg = _if_instance_of_accepted_types_err_msg_2
+            err_msg = _if_instance_of_any_accepted_types_err_msg_2
             err_msg = err_msg.format(obj_name, names_of_accepted_types)
             
         raise TypeError(err_msg)
@@ -72,6 +125,26 @@ def if_instance_of_accepted_types(obj, obj_name, accepted_types):
 
 
 def if_dict_like(obj, obj_name):
+    r"""Check whether input object is dictionary-like
+
+    If the input object is not dictionary-like, then a `TypeError` is raised
+    with the message::
+
+        The object ``<obj_name>`` must be dictionary-like.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     try:
         dict(obj)
     except:
@@ -83,21 +156,61 @@ def if_dict_like(obj, obj_name):
 
 
 def if_str_like(obj, obj_name):
-    check_if_instance_of_accepted_types = \
-        if_instance_of_accepted_types  # Alias for readability.
+    r"""Check whether input object is string-like
+
+    If the input object is not string-like, then a `TypeError` is raised with
+    the message::
+
+        The object ``<obj_name>`` must be an instance of the class `str`.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
+    check_if_instance_of_any_accepted_types = \
+        if_instance_of_any_accepted_types  # Alias for readability.
 
     accepted_types = (str, bytes)
-    check_if_instance_of_accepted_types(obj, obj_name, accepted_types)
+    check_if_instance_of_any_accepted_types(obj, obj_name, accepted_types)
 
     return None
 
 
 
 def if_path_like(obj, obj_name):
+    r"""Check whether input object is path-like
+
+    If the input object is not path-like, then a `TypeError` is raised with the
+    message::
+
+        The object ``<obj_name>`` must be an instance of the class `str`.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     try:
         os.path.exists(obj)
     except:
-        err_msg = _if_instance_of_accepted_types_err_msg_1
+        err_msg = _if_instance_of_any_accepted_types_err_msg_1
         err_msg = err_msg.format(obj_name, "str")
         raise TypeError(err_msg)
 
@@ -106,11 +219,31 @@ def if_path_like(obj, obj_name):
 
 
 def if_int(obj, obj_name):
+    r"""Check whether input object is an integer.
+
+    If the input object is not an integer, then a `TypeError` is raised with the
+    message::
+
+        The object ``<obj_name>`` must be an instance of the class `int`.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     try:
         if abs(int(obj) - obj) > 1.0e-14:
             raise
     except:
-        err_msg = _if_instance_of_accepted_types_err_msg_1
+        err_msg = _if_instance_of_any_accepted_types_err_msg_1
         err_msg = err_msg.format(obj_name, "int")
         raise TypeError(err_msg)
 
@@ -119,6 +252,26 @@ def if_int(obj, obj_name):
 
 
 def if_int_seq(obj, obj_name):
+    r"""Check whether input object is a sequence of integers.
+
+    If the input object is not a sequence of integers, then a `TypeError` is
+    raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of integers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     try:
         for num in obj:
             check_if_int = if_int  # Alias for readability.
@@ -132,6 +285,26 @@ def if_int_seq(obj, obj_name):
 
 
 def if_positive_int(obj, obj_name):
+    r"""Check whether input object is a positive integer.
+
+    If the input object is not a positive integer, then a `TypeError` is raised
+    with the message::
+
+        The object ``<obj_name>`` must be a positive `int`.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     check_if_int = if_int  # Alias for readability.
     check_if_int(obj, "obj")
     
@@ -147,6 +320,26 @@ def if_positive_int(obj, obj_name):
 
 
 def if_nonnegative_int(obj, obj_name):
+    r"""Check whether input object is a non-negative integer.
+
+    If the input object is not a non-negative integer, then a `TypeError` is
+    raised with the message::
+
+        The object ``<obj_name>`` must be a non-negative `int`.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     check_if_int = if_int  # Alias for readability.
     check_if_int(obj, "obj")
     
@@ -161,7 +354,33 @@ def if_nonnegative_int(obj, obj_name):
 
 
 
-def if_multi_dim_slice(obj, obj_name):
+def if_multi_dim_slice_like(obj, obj_name):
+    r"""Check whether input object is a multi-dimensional slice-like object.
+
+    We define a multi-dimensional slice-like object as a sequence of items which
+    contains at most one item being a sequence of integers, and the remaining
+    items being `slice` objects and/or integers.
+
+    If the input object is not multi-dimensional slice-like, then a `TypeError`
+    is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of items which contains at 
+        most one item being a sequence of integers, and the remaining items 
+        being `slice` objects and/or integers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     num_single_dim_slices_as_lists = 0
     
     try:
@@ -185,7 +404,7 @@ def if_multi_dim_slice(obj, obj_name):
             raise
 
     except:
-        err_msg = _if_multi_dim_slice_err_msg_1.format(obj_name)
+        err_msg = _if_multi_dim_slice_like_err_msg_1.format(obj_name)
         raise TypeError(err_msg)
 
     return None
@@ -193,10 +412,30 @@ def if_multi_dim_slice(obj, obj_name):
 
 
 def if_float(obj, obj_name):
+    r"""Check whether input object is a floating-point number.
+
+    If the input object is not a floating-point number, then a `TypeError` is
+    raised with the message::
+
+        The object ``<obj_name>`` must be an instance of the class `float`.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     try:
         float(obj)
     except:
-        err_msg = _if_instance_of_accepted_types_err_msg_1
+        err_msg = _if_instance_of_any_accepted_types_err_msg_1
         err_msg = err_msg.format(obj_name, "float")
         raise TypeError(err_msg)
 
@@ -205,6 +444,26 @@ def if_float(obj, obj_name):
 
 
 def if_positive_float(obj, obj_name):
+    r"""Check whether input object is a positive floating-point number.
+
+    If the input object is not a positive floating-point number, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a positive `float`.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     check_if_float = if_float  # Alias for readability.
     check_if_float(obj, obj_name)
     
@@ -217,6 +476,26 @@ def if_positive_float(obj, obj_name):
 
 
 def if_pair_of_floats(obj, obj_name):
+    r"""Check whether input object is a pair of floating-point numbers.
+
+    If the input object is not a pair of floating-point numbers, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a pair of real numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     try:
         count = 0
         for num in obj:
@@ -234,6 +513,26 @@ def if_pair_of_floats(obj, obj_name):
 
 
 def if_pair_of_positive_ints(obj, obj_name):
+    r"""Check whether input object is a pair of positive integers.
+
+    If the input object is not a pair of positive integers, then a `TypeError`
+    is raised with the message::
+
+        The object ``<obj_name>`` must be a pair of positive integers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     try:
         count = 0
         for num in obj:
@@ -251,6 +550,26 @@ def if_pair_of_positive_ints(obj, obj_name):
 
 
 def if_pair_of_nonnegative_ints(obj, obj_name):
+    r"""Check whether input object is a pair of non-negative integers.
+
+    If the input object is not a pair of non-negative integers, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a pair of non-negative integers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     try:
         count = 0
         for num in obj:
@@ -269,6 +588,27 @@ def if_pair_of_nonnegative_ints(obj, obj_name):
 
 
 def if_real_two_column_numpy_matrix(obj, obj_name):
+    r"""Check whether input object is a real-valued 2D two-column numpy array.
+
+    If the input object is not a real-valued 2D two-column numpy array, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a be a two-column matrix of real 
+        numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     if not czekitout.isa.real_two_column_numpy_matrix(obj):
         err_msg = _if_real_two_column_numpy_matrix_err_msg_1.format(obj_name)
         raise TypeError(err_msg)
@@ -278,6 +618,26 @@ def if_real_two_column_numpy_matrix(obj, obj_name):
 
 
 def if_real_numpy_array_3d(obj, obj_name):
+    r"""Check whether input object is a real-valued 3D numpy array.
+
+    If the input object is not a real-valued 3D numpy array, then a `TypeError`
+    is raised with the message::
+
+        The object ``<obj_name>`` must be a 3D numpy array of real numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     if not czekitout.isa.real_numpy_array_3d(obj):
         err_msg = _if_real_numpy_array_3d_err_msg_1.format(obj_name)
         raise TypeError(err_msg)
@@ -287,6 +647,26 @@ def if_real_numpy_array_3d(obj, obj_name):
 
 
 def if_bool(obj, obj_name):
+    r"""Check whether input object is boolean.
+
+    If the input object is not boolean, then a `TypeError` is raised with the
+    message::
+
+        The object ``<obj_name>`` must be an instance of the class `bool`.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     try:
         if not isinstance(obj, bool):
             check_if_int = if_int  # Alias for readability.
@@ -294,7 +674,7 @@ def if_bool(obj, obj_name):
             if (int(obj) != 0) and (int(obj) != 1):
                 raise
     except:
-        err_msg = _if_instance_of_accepted_types_err_msg_1
+        err_msg = _if_instance_of_any_accepted_types_err_msg_1
         err_msg = err_msg.format(obj_name, "bool")
         raise TypeError(err_msg)
 
@@ -303,6 +683,26 @@ def if_bool(obj, obj_name):
 
 
 def if_bool_matrix(obj, obj_name):
+    r"""Check whether input object is a 2D boolean array.
+
+    If the input object is not a 2D boolean array, then a `TypeError` is raised
+    with the message::
+
+        The object ``<obj_name>`` must be a boolean matrix.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     err_msg = _if_bool_matrix_err_msg_1.format(obj_name)
 
     try:
@@ -324,6 +724,26 @@ def if_bool_matrix(obj, obj_name):
 
 
 def if_bool_array_3d(obj, obj_name):
+    r"""Check whether input object is a 3D boolean array.
+
+    If the input object is not a 3D boolean array, then a `TypeError` is raised
+    with the message::
+
+        The object ``<obj_name>`` must be a 3D boolean array.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+
+    """
     err_msg = _if_bool_array_3d_err_msg_1.format(obj_name)
 
     try:
@@ -343,69 +763,54 @@ def if_bool_array_3d(obj, obj_name):
 
 
 
-def if_serializable_rep(obj, obj_name, attr_names, child_class_name):
-    czekitout.check.if_dict_like(obj, obj_name)
-
-    for attr_name in attr_names:
-        if attr_name not in obj:
-            err_msg = _if_serializable_rep_err_msg_1
-            err_msg = err_msg.format(child_class_name, obj_name, attr_name)
-            raise KeyError(err_msg)
-
-    return None
-
-
-
 ###########################
 ## Define error messages ##
 ###########################
 
-_if_instance_of_accepted_types_err_msg_1 = \
-    ("The parameter ``{}`` must be an instance of the class `{}`.")
+_if_instance_of_any_accepted_types_err_msg_1 = \
+    ("The object ``{}`` must be an instance of the class `{}`.")
 
-_if_instance_of_accepted_types_err_msg_2 = \
-    ("The parameter ``{}`` must be an instance of one of the following "
-     "classes: {}.")
+_if_instance_of_any_accepted_types_err_msg_2 = \
+    ("The object ``{}`` must be an instance of one of the following classes: "
+     "{}.")
 
 _if_dict_like_err_msg_1 = \
-    ("The parameter ``{}`` must be dictionary-like.")
+    ("The object ``{}`` must be dictionary-like.")
 
 _if_int_seq_err_msg_1 = \
-    ("The parameter ``{}`` must be a sequence of integers.")
+    ("The object ``{}`` must be a sequence of integers.")
 
 _if_positive_int_err_msg_1 = \
-    ("The parameter ``{}`` must be a positive `int`.")
+    ("The object ``{}`` must be a positive `int`.")
 
 _if_nonnegative_int_err_msg_1 = \
-    ("The parameter ``{}`` must be a nonnegative `int`.")
+    ("The object ``{}`` must be a nonnegative `int`.")
 
-_if_multi_dim_slice_err_msg_1 = \
-    ("The parameter ``{}`` must be a sequence of items which contains at most "
-     "one item being an ascending sequence of integers, and the remaining "
-     "items being `slice` objects and/or integers.")
+_if_multi_dim_slice_like_err_msg_1 = \
+    ("The object ``{}`` must be a sequence of items which contains at most one "
+     "item being a sequence of integers, and the remaining items being `slice` "
+     "objects and/or integers.")
 
 _if_positive_float_err_msg_1 = \
-    ("The parameter ``{}`` must be a positive `float`.")
+    ("The object ``{}`` must be a positive `float`.")
 
 _if_pair_of_floats_err_msg_1 = \
-    ("The parameter ``{}`` must be a pair of real numbers.")
+    ("The object ``{}`` must be a pair of real numbers.")
 
 _if_pair_of_positive_ints_err_msg_1 = \
-    ("The parameter ``{}`` must be a pair of positive integers.")
+    ("The object ``{}`` must be a pair of positive integers.")
 
 _if_pair_of_nonnegative_ints_err_msg_1 = \
-    ("The parameter ``{}`` must be a pair of non-negative integers.")
+    ("The object ``{}`` must be a pair of non-negative integers.")
 
 _if_real_two_column_numpy_matrix_err_msg_1 = \
-    ("The parameter ``{}`` must be two-column matrix of real numbers.")
+    ("The object ``{}`` must be a two-column matrix of real numbers.")
+
+_if_real_numpy_array_3d_err_msg_1 = \
+    ("The object ``{}`` must be a 3D numpy array of real numbers.")
 
 _if_bool_matrix_err_msg_1 = \
-    ("The parameter ``{}`` must be a boolean matrix.")
+    ("The object ``{}`` must be a boolean matrix.")
 
-_if_bool_matrix_err_msg_1 = \
-    ("The parameter ``{}`` must be a boolean three-dimensional array.")
-
-_if_serializable_rep_err_msg_1 = \
-    ("Failed to construct an instance of the class `{}` from the parameter "
-     "``{}``, assumed to be a serializable object. The parameter ``data`` is "
-     "missing the specification for the attribute ``{}``.")
+_if_bool_array_3d_err_msg_1 = \
+    ("The object ``{}`` must be a 3D boolean array.")

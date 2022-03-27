@@ -11,6 +11,7 @@ error messages when exceptions are thrown.
 #####################################
 
 # Import child modules and packages of current package.
+import czekitout.name
 import czekitout.isa
 import czekitout.check
 import czekitout.convert
@@ -65,7 +66,6 @@ def show_config():
     print(version.version_summary)
 
     return None
-
 
 
 
