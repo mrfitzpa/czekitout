@@ -15,6 +15,7 @@ scratch_param.txt
 _temp_scan_config_file.txt
 docs/quick-tex.lyx
 docs/quick-tex.tex
+docs/_build/doctrees/environment.pickle
 
 # Ignore .pyc files.
 *.pyc
