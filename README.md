@@ -1,6 +1,6 @@
 # czekitout
 
-``czekitout`` is a Python library that contains a collection of functions that
+`czekitout` is a Python library that contains a collection of functions that
 facilitate type-checking, validation, and type-conversions, with useful error
 messages when exceptions are thrown.
 
