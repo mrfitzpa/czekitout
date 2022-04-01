@@ -4,7 +4,6 @@
 # Ignore select directories.
 __pycache__/
 .ipynb_checkpoints/
-docs/pyxem-docs/
 input-files/
 output-files/
 # notebooks/
