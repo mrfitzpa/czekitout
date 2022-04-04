@@ -23,6 +23,7 @@ czekitout.convert
       to_int
       to_list_of_ints
       to_multi_dim_slice
+      to_nonnegative_int
       to_numpy_array
       to_pair_of_floats
       to_pair_of_nonnegative_ints

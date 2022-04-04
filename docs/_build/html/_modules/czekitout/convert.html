@@ -605,6 +605,36 @@
 
 
 
+<div class="viewcode-block" id="to_nonnegative_int"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_nonnegative_int.html#czekitout.convert.to_nonnegative_int">[docs]</a><span class="k">def</span> <span class="nf">to_nonnegative_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a nonnegative `int`.</span>
+
+<span class="sd">    If the input object is not a nonnegative integer, then a `TypeError` is</span>
+<span class="sd">    raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a nonnegative `int`.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `dict`</span>
+<span class="sd">        The object resulting from the conversion.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_nonnegative_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
 <div class="viewcode-block" id="to_positive_int"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_positive_int.html#czekitout.convert.to_positive_int">[docs]</a><span class="k">def</span> <span class="nf">to_positive_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a positive `int`.</span>
 
