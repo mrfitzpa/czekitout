@@ -56,12 +56,6 @@ def show_config():
     """Print information about the version of ``czekitout`` and libraries it 
     uses.
 
-    Parameters
-    ----------
-
-    Returns
-    -------
-
     """
     print(version.version_summary)
 

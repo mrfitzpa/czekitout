@@ -98,9 +98,6 @@ def if_instance_of_any_accepted_types(obj, obj_name, accepted_types):
     accepted_types : `array_like` (`type`, ndim=1)
         Accepted types.
 
-    Returns
-    -------
-
     """
     if not isinstance(obj, accepted_types):
         fully_qualified_class_name = \
@@ -141,9 +138,6 @@ def if_dict_like(obj, obj_name):
     obj_name : `str`
         Name of the input object.
 
-    Returns
-    -------
-
     """
     try:
         dict(obj)
@@ -171,9 +165,6 @@ def if_str_like(obj, obj_name):
         Input object.
     obj_name : `str`
         Name of the input object.
-
-    Returns
-    -------
 
     """
     check_if_instance_of_any_accepted_types = \
@@ -203,9 +194,6 @@ def if_path_like(obj, obj_name):
     obj_name : `str`
         Name of the input object.
 
-    Returns
-    -------
-
     """
     try:
         os.path.exists(obj)
@@ -234,9 +222,6 @@ def if_int(obj, obj_name):
         Input object.
     obj_name : `str`
         Name of the input object.
-
-    Returns
-    -------
 
     """
     try:
@@ -268,9 +253,6 @@ def if_int_seq(obj, obj_name):
     obj_name : `str`
         Name of the input object.
 
-    Returns
-    -------
-
     """
     try:
         for num in obj:
@@ -300,9 +282,6 @@ def if_positive_int(obj, obj_name):
         Input object.
     obj_name : `str`
         Name of the input object.
-
-    Returns
-    -------
 
     """
     check_if_int = if_int  # Alias for readability.
@@ -335,9 +314,6 @@ def if_nonnegative_int(obj, obj_name):
         Input object.
     obj_name : `str`
         Name of the input object.
-
-    Returns
-    -------
 
     """
     check_if_int = if_int  # Alias for readability.
@@ -376,9 +352,6 @@ def if_multi_dim_slice_like(obj, obj_name):
         Input object.
     obj_name : `str`
         Name of the input object.
-
-    Returns
-    -------
 
     """
     num_single_dim_slices_as_lists = 0
@@ -428,9 +401,6 @@ def if_float(obj, obj_name):
     obj_name : `str`
         Name of the input object.
 
-    Returns
-    -------
-
     """
     try:
         float(obj)
@@ -460,9 +430,6 @@ def if_positive_float(obj, obj_name):
     obj_name : `str`
         Name of the input object.
 
-    Returns
-    -------
-
     """
     check_if_float = if_float  # Alias for readability.
     check_if_float(obj, obj_name)
@@ -491,9 +458,6 @@ def if_pair_of_floats(obj, obj_name):
         Input object.
     obj_name : `str`
         Name of the input object.
-
-    Returns
-    -------
 
     """
     try:
@@ -529,9 +493,6 @@ def if_pair_of_positive_ints(obj, obj_name):
     obj_name : `str`
         Name of the input object.
 
-    Returns
-    -------
-
     """
     try:
         count = 0
@@ -565,9 +526,6 @@ def if_pair_of_nonnegative_ints(obj, obj_name):
         Input object.
     obj_name : `str`
         Name of the input object.
-
-    Returns
-    -------
 
     """
     try:
@@ -605,9 +563,6 @@ def if_real_two_column_numpy_matrix(obj, obj_name):
     obj_name : `str`
         Name of the input object.
 
-    Returns
-    -------
-
     """
     if not czekitout.isa.real_two_column_numpy_matrix(obj):
         err_msg = _if_real_two_column_numpy_matrix_err_msg_1.format(obj_name)
@@ -634,9 +589,6 @@ def if_real_numpy_array_3d(obj, obj_name):
     obj_name : `str`
         Name of the input object.
 
-    Returns
-    -------
-
     """
     if not czekitout.isa.real_numpy_array_3d(obj):
         err_msg = _if_real_numpy_array_3d_err_msg_1.format(obj_name)
@@ -662,9 +614,6 @@ def if_bool(obj, obj_name):
         Input object.
     obj_name : `str`
         Name of the input object.
-
-    Returns
-    -------
 
     """
     try:
@@ -698,9 +647,6 @@ def if_bool_matrix(obj, obj_name):
         Input object.
     obj_name : `str`
         Name of the input object.
-
-    Returns
-    -------
 
     """
     err_msg = _if_bool_matrix_err_msg_1.format(obj_name)
@@ -739,9 +685,6 @@ def if_bool_array_3d(obj, obj_name):
         Input object.
     obj_name : `str`
         Name of the input object.
-
-    Returns
-    -------
 
     """
     err_msg = _if_bool_array_3d_err_msg_1.format(obj_name)
