@@ -532,6 +532,36 @@ def to_positive_float(obj, obj_name):
 
 
 
+def to_nonnegative_int(obj, obj_name):
+    r"""Convert input object to a nonnegative `int`.
+
+    If the input object is not a nonnegative integer, then a `TypeError` is
+    raised with the message::
+
+        The object ``<obj_name>`` must be a nonnegative `int`.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_nonnegative_int(obj, obj_name)
+    result = int(obj)
+
+    return result
+
+
+
 def to_positive_int(obj, obj_name):
     r"""Convert input object to a positive `int`.
 
