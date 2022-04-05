@@ -56,6 +56,7 @@ __all__ = ["if_instance_of_any_accepted_types",
            "if_multi_dim_slice_like",
            "if_float",
            "if_positive_float",
+           "if_nonnegative_float",
            "if_pair_of_floats",
            "if_pair_of_positive_ints",
            "if_pair_of_nonnegative_ints",
@@ -299,12 +300,12 @@ def if_positive_int(obj, obj_name):
 
 
 def if_nonnegative_int(obj, obj_name):
-    r"""Check whether input object is a non-negative integer.
+    r"""Check whether input object is a nonnegative integer.
 
-    If the input object is not a non-negative integer, then a `TypeError` is
+    If the input object is not a nonnegative integer, then a `TypeError` is
     raised with the message::
 
-        The object ``<obj_name>`` must be a non-negative `int`.
+        The object ``<obj_name>`` must be a nonnegative `int`.
 
     where <obj_name> is replaced by the contents of the string ``obj_name``.
 
@@ -442,6 +443,35 @@ def if_positive_float(obj, obj_name):
 
 
 
+def if_nonnegative_float(obj, obj_name):
+    r"""Check whether input object is a nonnegative floating-point number.
+
+    If the input object is not a nonnegative floating-point number, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a nonnegative `float`.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    check_if_float = if_float  # Alias for readability.
+    check_if_float(obj, obj_name)
+    
+    if float(obj) < 0:
+        err_msg = _if_nonnegative_float_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
+
+    return None
+
+
+
 def if_pair_of_floats(obj, obj_name):
     r"""Check whether input object is a pair of floating-point numbers.
 
@@ -511,12 +541,12 @@ def if_pair_of_positive_ints(obj, obj_name):
 
 
 def if_pair_of_nonnegative_ints(obj, obj_name):
-    r"""Check whether input object is a pair of non-negative integers.
+    r"""Check whether input object is a pair of nonnegative integers.
 
-    If the input object is not a pair of non-negative integers, then a
+    If the input object is not a pair of nonnegative integers, then a
     `TypeError` is raised with the message::
 
-        The object ``<obj_name>`` must be a pair of non-negative integers.
+        The object ``<obj_name>`` must be a pair of nonnegative integers.
 
     where <obj_name> is replaced by the contents of the string ``obj_name``.
 
@@ -737,6 +767,9 @@ _if_multi_dim_slice_like_err_msg_1 = \
 _if_positive_float_err_msg_1 = \
     ("The object ``{}`` must be a positive `float`.")
 
+_if_nonnegative_float_err_msg_1 = \
+    ("The object ``{}`` must be a nonnegative `float`.")
+
 _if_pair_of_floats_err_msg_1 = \
     ("The object ``{}`` must be a pair of real numbers.")
 
@@ -744,7 +777,7 @@ _if_pair_of_positive_ints_err_msg_1 = \
     ("The object ``{}`` must be a pair of positive integers.")
 
 _if_pair_of_nonnegative_ints_err_msg_1 = \
-    ("The object ``{}`` must be a pair of non-negative integers.")
+    ("The object ``{}`` must be a pair of nonnegative integers.")
 
 _if_real_two_column_numpy_matrix_err_msg_1 = \
     ("The object ``{}`` must be a two-column matrix of real numbers.")

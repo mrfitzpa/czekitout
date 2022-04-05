@@ -132,6 +132,7 @@
            <span class="s2">&quot;to_float&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_int&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_positive_float&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;to_nonnegative_float&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_positive_int&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_numpy_array&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_real_numpy_matrix&quot;</span><span class="p">,</span>
@@ -605,6 +606,36 @@
 
 
 
+<div class="viewcode-block" id="to_nonnegative_float"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_nonnegative_float.html#czekitout.convert.to_nonnegative_float">[docs]</a><span class="k">def</span> <span class="nf">to_nonnegative_float</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a nonnegative `float`.</span>
+
+<span class="sd">    If the input object is not a nonnegative floating-point number, then a</span>
+<span class="sd">    `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a nonnegative `float`.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `dict`</span>
+<span class="sd">        The object resulting from the conversion.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_nonnegative_float</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
 <div class="viewcode-block" id="to_nonnegative_int"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_nonnegative_int.html#czekitout.convert.to_nonnegative_int">[docs]</a><span class="k">def</span> <span class="nf">to_nonnegative_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a nonnegative `int`.</span>
 
@@ -866,7 +897,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Apr 03, 2022.
+      <span class="lastupdated">Last updated on Apr 04, 2022.
       </span></p>
   </div>
 

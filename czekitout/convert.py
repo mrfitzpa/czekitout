@@ -59,6 +59,7 @@ __all__ = ["to_dict",
            "to_float",
            "to_int",
            "to_positive_float",
+           "to_nonnegative_float",
            "to_positive_int",
            "to_numpy_array",
            "to_real_numpy_matrix",
@@ -526,6 +527,36 @@ def to_positive_float(obj, obj_name):
 
     """
     czekitout.check.if_positive_float(obj, obj_name)
+    result = float(obj)
+
+    return result
+
+
+
+def to_nonnegative_float(obj, obj_name):
+    r"""Convert input object to a nonnegative `float`.
+
+    If the input object is not a nonnegative floating-point number, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a nonnegative `float`.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_nonnegative_float(obj, obj_name)
     result = float(obj)
 
     return result

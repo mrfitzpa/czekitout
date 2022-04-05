@@ -24,6 +24,7 @@ czekitout.check
       if_int
       if_int_seq
       if_multi_dim_slice_like
+      if_nonnegative_float
       if_nonnegative_int
       if_pair_of_floats
       if_pair_of_nonnegative_ints

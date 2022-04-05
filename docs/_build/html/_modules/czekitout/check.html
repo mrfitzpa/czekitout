@@ -129,6 +129,7 @@
            <span class="s2">&quot;if_multi_dim_slice_like&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_float&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_positive_float&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_nonnegative_float&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_pair_of_floats&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_pair_of_positive_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_pair_of_nonnegative_ints&quot;</span><span class="p">,</span>
@@ -372,12 +373,12 @@
 
 
 <div class="viewcode-block" id="if_nonnegative_int"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_nonnegative_int.html#czekitout.check.if_nonnegative_int">[docs]</a><span class="k">def</span> <span class="nf">if_nonnegative_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a non-negative integer.</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a nonnegative integer.</span>
 
-<span class="sd">    If the input object is not a non-negative integer, then a `TypeError` is</span>
+<span class="sd">    If the input object is not a nonnegative integer, then a `TypeError` is</span>
 <span class="sd">    raised with the message::</span>
 
-<span class="sd">        The object ``&lt;obj_name&gt;`` must be a non-negative `int`.</span>
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a nonnegative `int`.</span>
 
 <span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
 
@@ -515,6 +516,35 @@
 
 
 
+<div class="viewcode-block" id="if_nonnegative_float"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_nonnegative_float.html#czekitout.check.if_nonnegative_float">[docs]</a><span class="k">def</span> <span class="nf">if_nonnegative_float</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a nonnegative floating-point number.</span>
+
+<span class="sd">    If the input object is not a nonnegative floating-point number, then a</span>
+<span class="sd">    `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a nonnegative `float`.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">check_if_float</span> <span class="o">=</span> <span class="n">if_float</span>  <span class="c1"># Alias for readability.</span>
+    <span class="n">check_if_float</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_nonnegative_float_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
 <div class="viewcode-block" id="if_pair_of_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_pair_of_floats.html#czekitout.check.if_pair_of_floats">[docs]</a><span class="k">def</span> <span class="nf">if_pair_of_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a pair of floating-point numbers.</span>
 
@@ -584,12 +614,12 @@
 
 
 <div class="viewcode-block" id="if_pair_of_nonnegative_ints"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_pair_of_nonnegative_ints.html#czekitout.check.if_pair_of_nonnegative_ints">[docs]</a><span class="k">def</span> <span class="nf">if_pair_of_nonnegative_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a pair of non-negative integers.</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a pair of nonnegative integers.</span>
 
-<span class="sd">    If the input object is not a pair of non-negative integers, then a</span>
+<span class="sd">    If the input object is not a pair of nonnegative integers, then a</span>
 <span class="sd">    `TypeError` is raised with the message::</span>
 
-<span class="sd">        The object ``&lt;obj_name&gt;`` must be a pair of non-negative integers.</span>
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a pair of nonnegative integers.</span>
 
 <span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
 
@@ -810,6 +840,9 @@
 <span class="n">_if_positive_float_err_msg_1</span> <span class="o">=</span> \
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a positive `float`.&quot;</span><span class="p">)</span>
 
+<span class="n">_if_nonnegative_float_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a nonnegative `float`.&quot;</span><span class="p">)</span>
+
 <span class="n">_if_pair_of_floats_err_msg_1</span> <span class="o">=</span> \
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a pair of real numbers.&quot;</span><span class="p">)</span>
 
@@ -817,7 +850,7 @@
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a pair of positive integers.&quot;</span><span class="p">)</span>
 
 <span class="n">_if_pair_of_nonnegative_ints_err_msg_1</span> <span class="o">=</span> \
-    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a pair of non-negative integers.&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a pair of nonnegative integers.&quot;</span><span class="p">)</span>
 
 <span class="n">_if_real_two_column_numpy_matrix_err_msg_1</span> <span class="o">=</span> \
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a two-column matrix of real numbers.&quot;</span><span class="p">)</span>
@@ -840,7 +873,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Apr 03, 2022.
+      <span class="lastupdated">Last updated on Apr 04, 2022.
       </span></p>
   </div>
 
