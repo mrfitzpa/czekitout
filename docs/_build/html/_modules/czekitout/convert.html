@@ -125,6 +125,7 @@
            <span class="s2">&quot;to_list_of_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_tuple_of_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_pair_of_floats&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;to_pair_of_positive_floats&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_pair_of_positive_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_pair_of_nonnegative_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_real_two_column_numpy_matrix&quot;</span><span class="p">,</span>
@@ -380,6 +381,36 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_pair_of_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
+<div class="viewcode-block" id="to_pair_of_positive_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_pair_of_positive_floats.html#czekitout.convert.to_pair_of_positive_floats">[docs]</a><span class="k">def</span> <span class="nf">to_pair_of_positive_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a two-element tuple of positive `float` objects.</span>
+
+<span class="sd">    If the input object is not a pair of positive real numbers, then a</span>
+<span class="sd">    `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a pair of positive real numbers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `dict`</span>
+<span class="sd">        The object resulting from the conversion.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_pair_of_positive_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">result</span></div>
@@ -897,7 +928,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Apr 04, 2022.
+      <span class="lastupdated">Last updated on Apr 07, 2022.
       </span></p>
   </div>
 

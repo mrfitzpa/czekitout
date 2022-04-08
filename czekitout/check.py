@@ -58,6 +58,7 @@ __all__ = ["if_instance_of_any_accepted_types",
            "if_positive_float",
            "if_nonnegative_float",
            "if_pair_of_floats",
+           "if_pair_of_positive_floats",
            "if_pair_of_positive_ints",
            "if_pair_of_nonnegative_ints",
            "if_real_two_column_numpy_matrix",
@@ -506,6 +507,41 @@ def if_pair_of_floats(obj, obj_name):
 
 
 
+def if_pair_of_positive_floats(obj, obj_name):
+    r"""Check whether input object is a pair of positive floating-point numbers.
+
+    If the input object is not a pair of positive floating-point numbers, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a pair of positive real numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    try:
+        count = 0
+        for num in obj:
+            check_if_positive_float = \
+                if_positive_float  # Alias for readability.
+            check_if_positive_float(num, "num")
+            count += 1
+        if count != 2:
+            raise
+    except:
+        err_msg = _if_pair_of_positive_floats_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
+
+    return None
+
+
+
 def if_pair_of_positive_ints(obj, obj_name):
     r"""Check whether input object is a pair of positive integers.
 
@@ -772,6 +808,9 @@ _if_nonnegative_float_err_msg_1 = \
 
 _if_pair_of_floats_err_msg_1 = \
     ("The object ``{}`` must be a pair of real numbers.")
+
+_if_pair_of_positive_floats_err_msg_1 = \
+    ("The object ``{}`` must be a pair of positive real numbers.")
 
 _if_pair_of_positive_ints_err_msg_1 = \
     ("The object ``{}`` must be a pair of positive integers.")

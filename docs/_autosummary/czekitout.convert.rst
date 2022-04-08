@@ -28,6 +28,7 @@ czekitout.convert
       to_numpy_array
       to_pair_of_floats
       to_pair_of_nonnegative_ints
+      to_pair_of_positive_floats
       to_pair_of_positive_ints
       to_positive_float
       to_positive_int

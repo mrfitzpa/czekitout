@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2.2.6. czekitout.check.if_instance_of_any_accepted_types &mdash; czekitout  documentation</title>
+  <title>2.2.14. czekitout.check.if_pair_of_positive_floats &mdash; czekitout  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/readthedocs-custom.css" type="text/css" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.2.7. czekitout.check.if_int" href="czekitout.check.if_int.html" />
-    <link rel="prev" title="2.2.5. czekitout.check.if_float" href="czekitout.check.if_float.html" /> 
+    <link rel="next" title="2.2.15. czekitout.check.if_pair_of_positive_ints" href="czekitout.check.if_pair_of_positive_ints.html" />
+    <link rel="prev" title="2.2.13. czekitout.check.if_pair_of_nonnegative_ints" href="czekitout.check.if_pair_of_nonnegative_ints.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,7 +49,7 @@
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_bool_matrix.html">2.2.3. czekitout.check.if_bool_matrix</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_dict_like.html">2.2.4. czekitout.check.if_dict_like</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_float.html">2.2.5. czekitout.check.if_float</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">2.2.6. czekitout.check.if_instance_of_any_accepted_types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_instance_of_any_accepted_types.html">2.2.6. czekitout.check.if_instance_of_any_accepted_types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_int.html">2.2.7. czekitout.check.if_int</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_int_seq.html">2.2.8. czekitout.check.if_int_seq</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_multi_dim_slice_like.html">2.2.9. czekitout.check.if_multi_dim_slice_like</a></li>
@@ -57,7 +57,7 @@
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_nonnegative_int.html">2.2.11. czekitout.check.if_nonnegative_int</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_pair_of_floats.html">2.2.12. czekitout.check.if_pair_of_floats</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_pair_of_nonnegative_ints.html">2.2.13. czekitout.check.if_pair_of_nonnegative_ints</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_pair_of_positive_floats.html">2.2.14. czekitout.check.if_pair_of_positive_floats</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.2.14. czekitout.check.if_pair_of_positive_floats</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_pair_of_positive_ints.html">2.2.15. czekitout.check.if_pair_of_positive_ints</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_path_like.html">2.2.16. czekitout.check.if_path_like</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_positive_float.html">2.2.17. czekitout.check.if_positive_float</a></li>
@@ -95,7 +95,7 @@
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="czekitout.html"><span class="section-number">2. </span>czekitout</a> &raquo;</li>
           <li><a href="czekitout.check.html"><span class="section-number">2.2. </span>czekitout.check</a> &raquo;</li>
-      <li><span class="section-number">2.2.6. </span>czekitout.check.if_instance_of_any_accepted_types</li>
+      <li><span class="section-number">2.2.14. </span>czekitout.check.if_pair_of_positive_floats</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -104,37 +104,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="czekitout-check-if-instance-of-any-accepted-types">
-<h1><span class="section-number">2.2.6. </span>czekitout.check.if_instance_of_any_accepted_types<a class="headerlink" href="#czekitout-check-if-instance-of-any-accepted-types" title="Permalink to this headline">¶</a></h1>
+  <section id="czekitout-check-if-pair-of-positive-floats">
+<h1><span class="section-number">2.2.14. </span>czekitout.check.if_pair_of_positive_floats<a class="headerlink" href="#czekitout-check-if-pair-of-positive-floats" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="czekitout.check.if_instance_of_any_accepted_types">
-<span class="sig-name descname"><span class="pre">if_instance_of_any_accepted_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accepted_types</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/czekitout/check.html#if_instance_of_any_accepted_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#czekitout.check.if_instance_of_any_accepted_types" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check whether input object is one of any given accepted types.</p>
-<p>If the input object is not one of any given accepted type, and 
-<code class="docutils literal notranslate"><span class="pre">len(accepted_types)=1</span></code>, then a <cite>TypeError</cite> is raised with the message:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The object ``&lt;obj_name&gt;`` must be instance of the class 
-`&lt;accepted_type&gt;`.
+<dt class="sig sig-object py" id="czekitout.check.if_pair_of_positive_floats">
+<span class="sig-name descname"><span class="pre">if_pair_of_positive_floats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/czekitout/check.html#if_pair_of_positive_floats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#czekitout.check.if_pair_of_positive_floats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether input object is a pair of positive floating-point numbers.</p>
+<p>If the input object is not a pair of positive floating-point numbers, then a
+<cite>TypeError</cite> is raised with the message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The object ``&lt;obj_name&gt;`` must be a pair of positive real numbers.
 </pre></div>
 </div>
-<p>where &lt;obj_name&gt; is replaced by the contents of the string <code class="docutils literal notranslate"><span class="pre">obj_name</span></code>, and
-&lt;accepted_type&gt; by the fully qualified class name of <code class="docutils literal notranslate"><span class="pre">accepted_types[0]</span></code>.</p>
-<p>If the input object is not one of any given accepted type, and 
-<code class="docutils literal notranslate"><span class="pre">len(accepted_types)&gt;1</span></code>, then a <cite>TypeError</cite> is raised with the message:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The object ``&lt;obj_name&gt;`` must be instance of one of the following 
-classes: &lt;accepted_types&gt;.
-</pre></div>
-</div>
-<p>where &lt;obj_name&gt; is replaced by the contents of the string <code class="docutils literal notranslate"><span class="pre">obj_name</span></code>, and
-&lt;accepted_types&gt;  by the list of the fully qualified class names of the
-accepted types stored in <code class="docutils literal notranslate"><span class="pre">accepted_types</span></code>.</p>
+<p>where &lt;obj_name&gt; is replaced by the contents of the string <code class="docutils literal notranslate"><span class="pre">obj_name</span></code>.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
 <dt><strong>obj</strong><span class="classifier">any type</span></dt><dd><p>Input object.</p>
 </dd>
 <dt><strong>obj_name</strong><span class="classifier"><cite>str</cite></span></dt><dd><p>Name of the input object.</p>
-</dd>
-<dt><strong>accepted_types</strong><span class="classifier"><cite>array_like</cite> (<cite>type</cite>, ndim=1)</span></dt><dd><p>Accepted types.</p>
 </dd>
 </dl>
 </dd>
@@ -147,8 +134,8 @@ accepted types stored in <code class="docutils literal notranslate"><span class=
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="czekitout.check.if_float.html" class="btn btn-neutral float-left" title="2.2.5. czekitout.check.if_float" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="czekitout.check.if_int.html" class="btn btn-neutral float-right" title="2.2.7. czekitout.check.if_int" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="czekitout.check.if_pair_of_nonnegative_ints.html" class="btn btn-neutral float-left" title="2.2.13. czekitout.check.if_pair_of_nonnegative_ints" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="czekitout.check.if_pair_of_positive_ints.html" class="btn btn-neutral float-right" title="2.2.15. czekitout.check.if_pair_of_positive_ints" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
