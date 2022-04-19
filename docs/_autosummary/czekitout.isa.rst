@@ -18,6 +18,8 @@ czekitout.isa
       bool_numpy_array
       bool_numpy_array_3d
       bool_numpy_matrix
+      complex_numpy_array
+      complex_numpy_matrix
       numpy_array
       numpy_array_3d
       numpy_matrix

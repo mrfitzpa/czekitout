@@ -92,6 +92,32 @@ def real_numpy_array(obj):
 
 
 
+def complex_numpy_array(obj):
+    r"""Returns ``True`` if input object is a complex-valued numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a complex-valued numpy 
+        array, otherwise it is set to ``False``.
+
+    """
+    is_numpy_array = numpy_array  # Alias for readability.
+    
+    if is_numpy_array(obj):
+        result = np.iscomplexobj(obj)
+    else:
+        result = False
+
+    return result
+
+
+
 def bool_numpy_array(obj):
     r"""Returns ``True`` if input object is a boolean numpy array.
 
@@ -189,6 +215,30 @@ def real_numpy_matrix(obj):
     is_real_numpy_array = real_numpy_array  # Alias for readability.
 
     result = (is_numpy_matrix(obj) and is_real_numpy_array(obj))
+
+    return result
+
+
+
+def complex_numpy_matrix(obj):
+    r"""Returns ``True`` if input object is a complex-valued 2D numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a complex-valued 2D numpy 
+        array, otherwise it is set to ``False``.
+
+    """
+    is_numpy_matrix = numpy_matrix  # Alias for readability.
+    is_complex_numpy_array = complex_numpy_array  # Alias for readability.
+
+    result = (is_numpy_matrix(obj) and is_complex_numpy_array(obj))
 
     return result
 
