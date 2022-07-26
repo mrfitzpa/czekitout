@@ -65,7 +65,8 @@ __all__ = ["if_instance_of_any_accepted_types",
            "if_real_numpy_array_3d",
            "if_bool",
            "if_bool_matrix",
-           "if_bool_array_3d"]
+           "if_bool_array_3d",
+           "if_callable"]
 
 
 
@@ -772,6 +773,32 @@ def if_bool_array_3d(obj, obj_name):
 
 
 
+def if_callable(obj, obj_name):
+    r"""Check whether input object is callable.
+
+    If the input object is not callable, then a `TypeError` is raised with the
+    message::
+
+        The object ``<obj_name>`` must be callable.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    if not callable(obj):
+        err_msg = _if_callable_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
+
+    return None
+
+
+
 ###########################
 ## Define error messages ##
 ###########################
@@ -829,3 +856,6 @@ _if_bool_matrix_err_msg_1 = \
 
 _if_bool_array_3d_err_msg_1 = \
     ("The object ``{}`` must be a 3D boolean array.")
+
+_if_callable_err_msg_1 = \
+    ("The object ``{}`` must be callable.")

@@ -138,7 +138,8 @@
            <span class="s2">&quot;if_real_numpy_array_3d&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_bool&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_bool_matrix&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;if_bool_array_3d&quot;</span><span class="p">]</span>
+           <span class="s2">&quot;if_bool_array_3d&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_callable&quot;</span><span class="p">]</span>
 
 
 
@@ -845,6 +846,32 @@
 
 
 
+<div class="viewcode-block" id="if_callable"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_callable.html#czekitout.check.if_callable">[docs]</a><span class="k">def</span> <span class="nf">if_callable</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is callable.</span>
+
+<span class="sd">    If the input object is not callable, then a `TypeError` is raised with the</span>
+<span class="sd">    message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be callable.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_callable_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
 <span class="c1">###########################</span>
 <span class="c1">## Define error messages ##</span>
 <span class="c1">###########################</span>
@@ -902,6 +929,9 @@
 
 <span class="n">_if_bool_array_3d_err_msg_1</span> <span class="o">=</span> \
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a 3D boolean array.&quot;</span><span class="p">)</span>
+
+<span class="n">_if_callable_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be callable.&quot;</span><span class="p">)</span>
 </pre></div>
 
            </div>
@@ -912,7 +942,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Apr 18, 2022.
+      <span class="lastupdated">Last updated on Jul 26, 2022.
       </span></p>
   </div>
 

@@ -18,6 +18,7 @@ czekitout.check
       if_bool
       if_bool_array_3d
       if_bool_matrix
+      if_callable
       if_dict_like
       if_float
       if_instance_of_any_accepted_types
