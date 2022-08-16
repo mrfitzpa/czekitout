@@ -55,12 +55,16 @@ __all__ = ["if_instance_of_any_accepted_types",
            "if_nonnegative_int",
            "if_multi_dim_slice_like",
            "if_float",
+           "if_float_seq",
            "if_positive_float",
+           "if_positive_float_seq",
            "if_nonnegative_float",
            "if_pair_of_floats",
            "if_pair_of_positive_floats",
            "if_pair_of_positive_ints",
            "if_pair_of_nonnegative_ints",
+           "if_real_numpy_array_1d",
+           "if_real_numpy_matrix",
            "if_real_two_column_numpy_matrix",
            "if_real_numpy_array_3d",
            "if_bool",
@@ -406,10 +410,41 @@ def if_float(obj, obj_name):
 
     """
     try:
-        float(obj)
+        if abs(float(obj) - obj) > 1.0e-14:
+            raise
     except:
         err_msg = _if_instance_of_any_accepted_types_err_msg_1
         err_msg = err_msg.format(obj_name, "float")
+        raise TypeError(err_msg)
+
+    return None
+
+
+
+def if_float_seq(obj, obj_name):
+    r"""Check whether input object is a sequence of floating-point numbers.
+
+    If the input object is not a sequence of floating-point numbers, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of floating-point numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    try:
+        for num in obj:
+            check_if_float = if_float  # Alias for readability.
+            check_if_float(num, "num")
+    except:
+        err_msg = _if_float_seq_err_msg_1.format(obj_name)
         raise TypeError(err_msg)
 
     return None
@@ -439,6 +474,39 @@ def if_positive_float(obj, obj_name):
     
     if float(obj) <= 0:
         err_msg = _if_positive_float_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
+
+    return None
+
+
+
+def if_positive_float_seq(obj, obj_name):
+    r"""Check whether input object is a sequence of positive floating-point 
+    numbers.
+
+    If the input object is not a sequence of positive floating-point numbers,
+    then a `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of positive floating-point
+        numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    try:
+        for num in obj:
+            check_if_positive_float = \
+                if_positive_float  # Alias for readability.
+            check_if_positive_float(num, "num")
+    except:
+        err_msg = _if_positive_float_seq_err_msg_1.format(obj_name)
         raise TypeError(err_msg)
 
     return None
@@ -606,6 +674,58 @@ def if_pair_of_nonnegative_ints(obj, obj_name):
             raise
     except:
         err_msg = _if_pair_of_nonnegative_ints_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
+
+    return None
+
+
+
+def if_real_numpy_array_1d(obj, obj_name):
+    r"""Check whether input object is a real-valued 1D numpy array.
+
+    If the input object is not a real-valued 1D numpy array, then a `TypeError`
+    is raised with the message::
+
+        The object ``<obj_name>`` must be a 1D numpy array of real numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    if not czekitout.isa.real_numpy_array_1d(obj):
+        err_msg = _if_real_numpy_array_1d_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
+
+    return None
+
+
+
+def if_real_numpy_matrix(obj, obj_name):
+    r"""Check whether input object is a real-valued 2D numpy array.
+
+    If the input object is not a real-valued 2D numpy array, then a `TypeError`
+    is raised with the message::
+
+        The object ``<obj_name>`` must be a 2D numpy array of real numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    if not czekitout.isa.real_numpy_matrix(obj):
+        err_msg = _if_real_numpy_matrix_err_msg_1.format(obj_name)
         raise TypeError(err_msg)
 
     return None
@@ -827,8 +947,14 @@ _if_multi_dim_slice_like_err_msg_1 = \
      "item being a sequence of integers, and the remaining items being `slice` "
      "objects and/or integers.")
 
+_if_float_seq_err_msg_1 = \
+    ("The object ``{}`` must be a sequence of floating-point numbers.")
+
 _if_positive_float_err_msg_1 = \
     ("The object ``{}`` must be a positive `float`.")
+
+_if_positive_float_seq_err_msg_1 = \
+    ("The object ``{}`` must be a sequence of positive floating-point numbers.")
 
 _if_nonnegative_float_err_msg_1 = \
     ("The object ``{}`` must be a nonnegative `float`.")
@@ -845,8 +971,14 @@ _if_pair_of_positive_ints_err_msg_1 = \
 _if_pair_of_nonnegative_ints_err_msg_1 = \
     ("The object ``{}`` must be a pair of nonnegative integers.")
 
+_if_real_numpy_array_1d_err_msg_1 = \
+    ("The object ``{}`` must be a 1D numpy array of real numbers.")
+
+_if_real_numpy_matrix_err_msg_1 = \
+    ("The object ``{}`` must be a 2D numpy array of real numbers.")
+
 _if_real_two_column_numpy_matrix_err_msg_1 = \
-    ("The object ``{}`` must be a two-column matrix of real numbers.")
+    ("The object ``{}`` must be a two-column numpy matrix of real numbers.")
 
 _if_real_numpy_array_3d_err_msg_1 = \
     ("The object ``{}`` must be a 3D numpy array of real numbers.")

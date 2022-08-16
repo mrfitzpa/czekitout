@@ -21,6 +21,7 @@ czekitout.check
       if_callable
       if_dict_like
       if_float
+      if_float_seq
       if_instance_of_any_accepted_types
       if_int
       if_int_seq
@@ -33,8 +34,11 @@ czekitout.check
       if_pair_of_positive_ints
       if_path_like
       if_positive_float
+      if_positive_float_seq
       if_positive_int
+      if_real_numpy_array_1d
       if_real_numpy_array_3d
+      if_real_numpy_matrix
       if_real_two_column_numpy_matrix
       if_str_like
    

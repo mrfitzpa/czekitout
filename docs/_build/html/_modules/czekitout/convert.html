@@ -14,6 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -124,6 +125,10 @@
            <span class="s2">&quot;to_multi_dim_slice&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_list_of_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_tuple_of_ints&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;to_list_of_floats&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;to_tuple_of_floats&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;to_list_of_positive_floats&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;to_tuple_of_positive_floats&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_pair_of_floats&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_pair_of_positive_floats&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_pair_of_positive_ints&quot;</span><span class="p">,</span>
@@ -136,6 +141,7 @@
            <span class="s2">&quot;to_nonnegative_float&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_positive_int&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_numpy_array&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;to_real_numpy_array_1d&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_real_numpy_matrix&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_real_numpy_array_3d&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_bool_numpy_matrix&quot;</span><span class="p">,</span>
@@ -357,6 +363,128 @@
 
 
 
+<div class="viewcode-block" id="to_list_of_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_list_of_floats.html#czekitout.convert.to_list_of_floats">[docs]</a><span class="k">def</span> <span class="nf">to_list_of_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a list of floating-point numbers.</span>
+
+<span class="sd">    If the input object is not a sequence of floating-point numbers, then a</span>
+<span class="sd">    `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a sequence of floating-point numbers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `dict`</span>
+<span class="sd">        The object resulting from the conversion.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_float_seq</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
+<div class="viewcode-block" id="to_tuple_of_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_tuple_of_floats.html#czekitout.convert.to_tuple_of_floats">[docs]</a><span class="k">def</span> <span class="nf">to_tuple_of_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of floating-point numbers.</span>
+
+<span class="sd">    If the input object is not a sequence of floating-point numbers, then a</span>
+<span class="sd">    `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a sequence of floating-point numbers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `dict`</span>
+<span class="sd">        The object resulting from the conversion.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_float_seq</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
+<div class="viewcode-block" id="to_list_of_positive_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_list_of_positive_floats.html#czekitout.convert.to_list_of_positive_floats">[docs]</a><span class="k">def</span> <span class="nf">to_list_of_positive_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a list of positive floating-point numbers.</span>
+
+<span class="sd">    If the input object is not a sequence of positive floating-point numbers,</span>
+<span class="sd">    then a `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a sequence of positive floating-point</span>
+<span class="sd">        numbers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `dict`</span>
+<span class="sd">        The object resulting from the conversion.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_positive_float_seq</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
+<div class="viewcode-block" id="to_tuple_of_positive_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_tuple_of_positive_floats.html#czekitout.convert.to_tuple_of_positive_floats">[docs]</a><span class="k">def</span> <span class="nf">to_tuple_of_positive_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of positive floating-point numbers.</span>
+
+<span class="sd">    If the input object is not a sequence of positive floating-point numbers,</span>
+<span class="sd">    then a `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a sequence of positive floating-point</span>
+<span class="sd">        numbers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `dict`</span>
+<span class="sd">        The object resulting from the conversion.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_positive_float_seq</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
 <div class="viewcode-block" id="to_pair_of_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_pair_of_floats.html#czekitout.convert.to_pair_of_floats">[docs]</a><span class="k">def</span> <span class="nf">to_pair_of_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a two-element tuple of `float` objects.</span>
 
@@ -508,7 +636,7 @@
         <span class="n">result</span> <span class="o">=</span> <span class="n">obj</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
         <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_real_two_column_numpy_matrix</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
@@ -763,6 +891,44 @@
 
 
 
+<div class="viewcode-block" id="to_real_numpy_array_1d"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_real_numpy_array_1d.html#czekitout.convert.to_real_numpy_array_1d">[docs]</a><span class="k">def</span> <span class="nf">to_real_numpy_array_1d</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a real-valued 1D numpy array.</span>
+
+<span class="sd">    If the input object is not a real-valued 1D array, then a `TypeError` is</span>
+<span class="sd">    raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be real-valued 1D array.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `dict`</span>
+<span class="sd">        The object resulting from the conversion.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">czekitout</span><span class="o">.</span><span class="n">isa</span><span class="o">.</span><span class="n">real_numpy_array_1d</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">obj</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_to_real_numpy_array_1d_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+        <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_real_numpy_array_1d</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
 <div class="viewcode-block" id="to_real_numpy_matrix"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_real_numpy_matrix.html#czekitout.convert.to_real_numpy_matrix">[docs]</a><span class="k">def</span> <span class="nf">to_real_numpy_matrix</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a real-valued numpy array.</span>
 
@@ -790,10 +956,12 @@
         <span class="n">result</span> <span class="o">=</span> <span class="n">obj</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_to_real_numpy_matrix_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+        <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_real_numpy_matrix</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">result</span></div>
 
@@ -826,11 +994,12 @@
         <span class="n">result</span> <span class="o">=</span> <span class="n">obj</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_to_real_numpy_array_3d_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
         <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_real_numpy_array_3d</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">result</span></div>
 
@@ -912,6 +1081,9 @@
 <span class="n">_to_numpy_array_err_msg_1</span> <span class="o">=</span> \
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be an array.&quot;</span><span class="p">)</span>
 
+<span class="n">_to_real_numpy_array_1d_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a real-valued 1D array.&quot;</span><span class="p">)</span>
+
 <span class="n">_to_real_numpy_matrix_err_msg_1</span> <span class="o">=</span> \
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a real-valued matrix.&quot;</span><span class="p">)</span>
 
@@ -928,7 +1100,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Jul 26, 2022.
+      <span class="lastupdated">Last updated on Aug 15, 2022.
       </span></p>
   </div>
 

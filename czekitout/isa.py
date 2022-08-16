@@ -34,8 +34,10 @@ __status__     = "Development"
 __all__ = ["numpy_array",
            "real_numpy_array",
            "bool_numpy_array",
+           "numpy_array_1d",
            "numpy_matrix",
            "two_column_numpy_matrix",
+           "real_numpy_array_1d",
            "real_numpy_matrix",
            "numpy_array_3d",
            "real_numpy_array_3d",
@@ -144,6 +146,32 @@ def bool_numpy_array(obj):
 
 
 
+def numpy_array_1d(obj):
+    r"""Returns ``True`` if input object is a 1D numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a 1D numpy array, otherwise 
+        it is set to ``False``.
+
+    """
+    is_numpy_array = numpy_array  # Alias for readability.
+
+    if is_numpy_array(obj):
+        result = (len(obj.shape) == 1)
+    else:
+        result = False
+
+    return result
+
+
+
 def numpy_matrix(obj):
     r"""Returns ``True`` if input object is a 2D numpy array.
 
@@ -191,6 +219,30 @@ def two_column_numpy_matrix(obj):
         result = (obj.shape[1] == 2)
     else:
         result = False
+
+    return result
+
+
+
+def real_numpy_array_1d(obj):
+    r"""Returns ``True`` if input object is a real-valued 1D numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a real-valued 1D numpy 
+        array, otherwise it is set to ``False``.
+
+    """
+    is_numpy_array_1d = numpy_array_1d  # Alias for readability.
+    is_real_numpy_array = real_numpy_array  # Alias for readability.
+
+    result = (is_numpy_array_1d(obj) and is_real_numpy_array(obj))
 
     return result
 

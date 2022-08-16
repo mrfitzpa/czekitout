@@ -51,6 +51,10 @@ __all__ = ["to_dict",
            "to_multi_dim_slice",
            "to_list_of_ints",
            "to_tuple_of_ints",
+           "to_list_of_floats",
+           "to_tuple_of_floats",
+           "to_list_of_positive_floats",
+           "to_tuple_of_positive_floats",
            "to_pair_of_floats",
            "to_pair_of_positive_floats",
            "to_pair_of_positive_ints",
@@ -63,6 +67,7 @@ __all__ = ["to_dict",
            "to_nonnegative_float",
            "to_positive_int",
            "to_numpy_array",
+           "to_real_numpy_array_1d",
            "to_real_numpy_matrix",
            "to_real_numpy_array_3d",
            "to_bool_numpy_matrix",
@@ -284,6 +289,128 @@ def to_tuple_of_ints(obj, obj_name):
 
 
 
+def to_list_of_floats(obj, obj_name):
+    r"""Convert input object to a list of floating-point numbers.
+
+    If the input object is not a sequence of floating-point numbers, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of floating-point numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_float_seq(obj, obj_name)
+    result = list(float(num) for num in obj)
+
+    return result
+
+
+
+def to_tuple_of_floats(obj, obj_name):
+    r"""Convert input object to a tuple of floating-point numbers.
+
+    If the input object is not a sequence of floating-point numbers, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of floating-point numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_float_seq(obj, obj_name)
+    result = tuple(float(num) for num in obj)
+
+    return result
+
+
+
+def to_list_of_positive_floats(obj, obj_name):
+    r"""Convert input object to a list of positive floating-point numbers.
+
+    If the input object is not a sequence of positive floating-point numbers,
+    then a `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of positive floating-point
+        numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_positive_float_seq(obj, obj_name)
+    result = list(float(num) for num in obj)
+
+    return result
+
+
+
+def to_tuple_of_positive_floats(obj, obj_name):
+    r"""Convert input object to a tuple of positive floating-point numbers.
+
+    If the input object is not a sequence of positive floating-point numbers,
+    then a `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of positive floating-point
+        numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_positive_float_seq(obj, obj_name)
+    result = tuple(float(num) for num in obj)
+
+    return result
+
+
+
 def to_pair_of_floats(obj, obj_name):
     r"""Convert input object to a two-element tuple of `float` objects.
 
@@ -435,7 +562,7 @@ def to_real_two_column_numpy_matrix(obj, obj_name):
         result = obj
     else:
         try:
-            result = np.array(obj, dtype=float)
+            result = np.array(obj)
         except:
             raise TypeError(err_msg)
         czekitout.check.if_real_two_column_numpy_matrix(result, obj_name)
@@ -690,6 +817,44 @@ def to_numpy_array(obj, obj_name):
 
 
 
+def to_real_numpy_array_1d(obj, obj_name):
+    r"""Convert input object to a real-valued 1D numpy array.
+
+    If the input object is not a real-valued 1D array, then a `TypeError` is
+    raised with the message::
+
+        The object ``<obj_name>`` must be real-valued 1D array.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    if czekitout.isa.real_numpy_array_1d(obj):
+        result = obj
+    else:
+        try:
+            result = np.array(obj)
+        except:
+            err_msg = _to_real_numpy_array_1d_err_msg_1.format(obj_name)
+            raise TypeError(err_msg)
+        czekitout.check.if_real_numpy_array_1d(result, obj_name)
+        result = np.array(result, dtype=float)
+
+    return result
+
+
+
 def to_real_numpy_matrix(obj, obj_name):
     r"""Convert input object to a real-valued numpy array.
 
@@ -717,10 +882,12 @@ def to_real_numpy_matrix(obj, obj_name):
         result = obj
     else:
         try:
-            result = np.array(obj, dtype=float)
+            result = np.array(obj)
         except:
             err_msg = _to_real_numpy_matrix_err_msg_1.format(obj_name)
             raise TypeError(err_msg)
+        czekitout.check.if_real_numpy_matrix(result, obj_name)
+        result = np.array(result, dtype=float)
 
     return result
 
@@ -753,11 +920,12 @@ def to_real_numpy_array_3d(obj, obj_name):
         result = obj
     else:
         try:
-            result = np.array(obj, dtype=float)
+            result = np.array(obj)
         except:
             err_msg = _to_real_numpy_array_3d_err_msg_1.format(obj_name)
             raise TypeError(err_msg)
         czekitout.check.if_real_numpy_array_3d(result, obj_name)
+        result = np.array(result, dtype=float)
 
     return result
 
@@ -838,6 +1006,9 @@ _to_real_two_column_numpy_matrix_err_msg_1 = \
 
 _to_numpy_array_err_msg_1 = \
     ("The object ``{}`` must be an array.")
+
+_to_real_numpy_array_1d_err_msg_1 = \
+    ("The object ``{}`` must be a real-valued 1D array.")
 
 _to_real_numpy_matrix_err_msg_1 = \
     ("The object ``{}`` must be a real-valued matrix.")
