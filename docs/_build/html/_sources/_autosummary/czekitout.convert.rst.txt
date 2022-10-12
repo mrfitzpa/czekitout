@@ -24,6 +24,7 @@ czekitout.convert
       to_list_of_floats
       to_list_of_ints
       to_list_of_positive_floats
+      to_list_of_positive_ints
       to_multi_dim_slice
       to_nonnegative_float
       to_nonnegative_int
@@ -43,6 +44,7 @@ czekitout.convert
       to_tuple_of_floats
       to_tuple_of_ints
       to_tuple_of_positive_floats
+      to_tuple_of_positive_ints
    
    
 

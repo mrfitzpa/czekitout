@@ -52,6 +52,7 @@ __all__ = ["if_instance_of_any_accepted_types",
            "if_int",
            "if_int_seq",
            "if_positive_int",
+           "if_positive_int_seq",
            "if_nonnegative_int",
            "if_multi_dim_slice_like",
            "if_float",
@@ -300,6 +301,36 @@ def if_positive_int(obj, obj_name):
     except:
         err_msg = _if_positive_int_err_msg_1.format(obj_name)
         raise ValueError(err_msg)
+
+    return None
+
+
+
+def if_positive_int_seq(obj, obj_name):
+    r"""Check whether input object is a sequence of positive integers.
+
+    If the input object is not a sequence of positive integers, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of positive integers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    try:
+        for num in obj:
+            check_if_positive_int = if_positive_int  # Alias for readability.
+            check_if_positive_int(num, "num")
+    except:
+        err_msg = _if_positive_int_seq_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
 
     return None
 
@@ -938,6 +969,9 @@ _if_int_seq_err_msg_1 = \
 
 _if_positive_int_err_msg_1 = \
     ("The object ``{}`` must be a positive `int`.")
+
+_if_positive_int_seq_err_msg_1 = \
+    ("The object ``{}`` must be a sequence of positive integers.")
 
 _if_nonnegative_int_err_msg_1 = \
     ("The object ``{}`` must be a nonnegative `int`.")

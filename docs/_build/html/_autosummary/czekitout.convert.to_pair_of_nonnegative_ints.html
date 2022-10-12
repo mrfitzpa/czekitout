@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2.3.15. czekitout.convert.to_pair_of_nonnegative_ints &mdash; czekitout  documentation</title>
+  <title>2.3.16. czekitout.convert.to_pair_of_nonnegative_ints &mdash; czekitout  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/readthedocs-custom.css" type="text/css" />
@@ -17,11 +16,12 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.3.16. czekitout.convert.to_pair_of_positive_floats" href="czekitout.convert.to_pair_of_positive_floats.html" />
-    <link rel="prev" title="2.3.14. czekitout.convert.to_pair_of_floats" href="czekitout.convert.to_pair_of_floats.html" /> 
+    <link rel="next" title="2.3.17. czekitout.convert.to_pair_of_positive_floats" href="czekitout.convert.to_pair_of_positive_floats.html" />
+    <link rel="prev" title="2.3.15. czekitout.convert.to_pair_of_floats" href="czekitout.convert.to_pair_of_floats.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,25 +55,30 @@
 <li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_list_of_floats.html">2.3.7. czekitout.convert.to_list_of_floats</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_list_of_ints.html">2.3.8. czekitout.convert.to_list_of_ints</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_list_of_positive_floats.html">2.3.9. czekitout.convert.to_list_of_positive_floats</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_multi_dim_slice.html">2.3.10. czekitout.convert.to_multi_dim_slice</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_nonnegative_float.html">2.3.11. czekitout.convert.to_nonnegative_float</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_nonnegative_int.html">2.3.12. czekitout.convert.to_nonnegative_int</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_numpy_array.html">2.3.13. czekitout.convert.to_numpy_array</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_pair_of_floats.html">2.3.14. czekitout.convert.to_pair_of_floats</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">2.3.15. czekitout.convert.to_pair_of_nonnegative_ints</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_pair_of_positive_floats.html">2.3.16. czekitout.convert.to_pair_of_positive_floats</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_pair_of_positive_ints.html">2.3.17. czekitout.convert.to_pair_of_positive_ints</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_positive_float.html">2.3.18. czekitout.convert.to_positive_float</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_positive_int.html">2.3.19. czekitout.convert.to_positive_int</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_real_numpy_array_1d.html">2.3.20. czekitout.convert.to_real_numpy_array_1d</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_real_numpy_array_3d.html">2.3.21. czekitout.convert.to_real_numpy_array_3d</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_real_numpy_matrix.html">2.3.22. czekitout.convert.to_real_numpy_matrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_real_two_column_numpy_matrix.html">2.3.23. czekitout.convert.to_real_two_column_numpy_matrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_str_from_path_like.html">2.3.24. czekitout.convert.to_str_from_path_like</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_str_from_str_like.html">2.3.25. czekitout.convert.to_str_from_str_like</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_tuple_of_floats.html">2.3.26. czekitout.convert.to_tuple_of_floats</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_tuple_of_ints.html">2.3.27. czekitout.convert.to_tuple_of_ints</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_tuple_of_positive_floats.html">2.3.28. czekitout.convert.to_tuple_of_positive_floats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_list_of_positive_ints.html">2.3.10. czekitout.convert.to_list_of_positive_ints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_multi_dim_slice.html">2.3.11. czekitout.convert.to_multi_dim_slice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_nonnegative_float.html">2.3.12. czekitout.convert.to_nonnegative_float</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_nonnegative_int.html">2.3.13. czekitout.convert.to_nonnegative_int</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_numpy_array.html">2.3.14. czekitout.convert.to_numpy_array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_pair_of_floats.html">2.3.15. czekitout.convert.to_pair_of_floats</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.3.16. czekitout.convert.to_pair_of_nonnegative_ints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#czekitout.convert.to_pair_of_nonnegative_ints"><code class="docutils literal notranslate"><span class="pre">to_pair_of_nonnegative_ints()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_pair_of_positive_floats.html">2.3.17. czekitout.convert.to_pair_of_positive_floats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_pair_of_positive_ints.html">2.3.18. czekitout.convert.to_pair_of_positive_ints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_positive_float.html">2.3.19. czekitout.convert.to_positive_float</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_positive_int.html">2.3.20. czekitout.convert.to_positive_int</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_real_numpy_array_1d.html">2.3.21. czekitout.convert.to_real_numpy_array_1d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_real_numpy_array_3d.html">2.3.22. czekitout.convert.to_real_numpy_array_3d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_real_numpy_matrix.html">2.3.23. czekitout.convert.to_real_numpy_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_real_two_column_numpy_matrix.html">2.3.24. czekitout.convert.to_real_two_column_numpy_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_str_from_path_like.html">2.3.25. czekitout.convert.to_str_from_path_like</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_str_from_str_like.html">2.3.26. czekitout.convert.to_str_from_str_like</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_tuple_of_floats.html">2.3.27. czekitout.convert.to_tuple_of_floats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_tuple_of_ints.html">2.3.28. czekitout.convert.to_tuple_of_ints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_tuple_of_positive_floats.html">2.3.29. czekitout.convert.to_tuple_of_positive_floats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.convert.to_tuple_of_positive_ints.html">2.3.30. czekitout.convert.to_tuple_of_positive_ints</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="czekitout.isa.html">2.4. czekitout.isa</a></li>
@@ -103,7 +108,7 @@
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="czekitout.html"><span class="section-number">2. </span>czekitout</a> &raquo;</li>
           <li><a href="czekitout.convert.html"><span class="section-number">2.3. </span>czekitout.convert</a> &raquo;</li>
-      <li><span class="section-number">2.3.15. </span>czekitout.convert.to_pair_of_nonnegative_ints</li>
+      <li><span class="section-number">2.3.16. </span>czekitout.convert.to_pair_of_nonnegative_ints</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -112,8 +117,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="czekitout-convert-to-pair-of-nonnegative-ints">
-<h1><span class="section-number">2.3.15. </span>czekitout.convert.to_pair_of_nonnegative_ints<a class="headerlink" href="#czekitout-convert-to-pair-of-nonnegative-ints" title="Permalink to this heading">¶</a></h1>
+  <div class="section" id="czekitout-convert-to-pair-of-nonnegative-ints">
+<h1><span class="section-number">2.3.16. </span>czekitout.convert.to_pair_of_nonnegative_ints<a class="headerlink" href="#czekitout-convert-to-pair-of-nonnegative-ints" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="czekitout.convert.to_pair_of_nonnegative_ints">
 <span class="sig-name descname"><span class="pre">to_pair_of_nonnegative_ints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/czekitout/convert.html#to_pair_of_nonnegative_ints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#czekitout.convert.to_pair_of_nonnegative_ints" title="Permalink to this definition">¶</a></dt>
@@ -143,21 +148,21 @@ objects.</p>
 </dl>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="czekitout.convert.to_pair_of_floats.html" class="btn btn-neutral float-left" title="2.3.14. czekitout.convert.to_pair_of_floats" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="czekitout.convert.to_pair_of_positive_floats.html" class="btn btn-neutral float-right" title="2.3.16. czekitout.convert.to_pair_of_positive_floats" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="czekitout.convert.to_pair_of_floats.html" class="btn btn-neutral float-left" title="2.3.15. czekitout.convert.to_pair_of_floats" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="czekitout.convert.to_pair_of_positive_floats.html" class="btn btn-neutral float-right" title="2.3.17. czekitout.convert.to_pair_of_positive_floats" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Aug 15, 2022.
+      <span class="lastupdated">Last updated on Oct 12, 2022.
       </span></p>
   </div>
 

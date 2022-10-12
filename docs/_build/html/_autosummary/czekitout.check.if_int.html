@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2.2.9. czekitout.check.if_int &mdash; czekitout  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -17,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -53,7 +53,10 @@
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_float.html">2.2.6. czekitout.check.if_float</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_float_seq.html">2.2.7. czekitout.check.if_float_seq</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_instance_of_any_accepted_types.html">2.2.8. czekitout.check.if_instance_of_any_accepted_types</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">2.2.9. czekitout.check.if_int</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.2.9. czekitout.check.if_int</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#czekitout.check.if_int"><code class="docutils literal notranslate"><span class="pre">if_int()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_int_seq.html">2.2.10. czekitout.check.if_int_seq</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_multi_dim_slice_like.html">2.2.11. czekitout.check.if_multi_dim_slice_like</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_nonnegative_float.html">2.2.12. czekitout.check.if_nonnegative_float</a></li>
@@ -66,11 +69,12 @@
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_positive_float.html">2.2.19. czekitout.check.if_positive_float</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_positive_float_seq.html">2.2.20. czekitout.check.if_positive_float_seq</a></li>
 <li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_positive_int.html">2.2.21. czekitout.check.if_positive_int</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_real_numpy_array_1d.html">2.2.22. czekitout.check.if_real_numpy_array_1d</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_real_numpy_array_3d.html">2.2.23. czekitout.check.if_real_numpy_array_3d</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_real_numpy_matrix.html">2.2.24. czekitout.check.if_real_numpy_matrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_real_two_column_numpy_matrix.html">2.2.25. czekitout.check.if_real_two_column_numpy_matrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_str_like.html">2.2.26. czekitout.check.if_str_like</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_positive_int_seq.html">2.2.22. czekitout.check.if_positive_int_seq</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_real_numpy_array_1d.html">2.2.23. czekitout.check.if_real_numpy_array_1d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_real_numpy_array_3d.html">2.2.24. czekitout.check.if_real_numpy_array_3d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_real_numpy_matrix.html">2.2.25. czekitout.check.if_real_numpy_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_real_two_column_numpy_matrix.html">2.2.26. czekitout.check.if_real_two_column_numpy_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="czekitout.check.if_str_like.html">2.2.27. czekitout.check.if_str_like</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="czekitout.convert.html">2.3. czekitout.convert</a></li>
@@ -110,7 +114,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="czekitout-check-if-int">
+  <div class="section" id="czekitout-check-if-int">
 <h1><span class="section-number">2.2.9. </span>czekitout.check.if_int<a class="headerlink" href="#czekitout-check-if-int" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="czekitout.check.if_int">
@@ -134,7 +138,7 @@ message:</p>
 </dl>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -148,7 +152,7 @@ message:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Aug 15, 2022.
+      <span class="lastupdated">Last updated on Oct 12, 2022.
       </span></p>
   </div>
 

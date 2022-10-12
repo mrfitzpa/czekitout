@@ -36,6 +36,7 @@ czekitout.check
       if_positive_float
       if_positive_float_seq
       if_positive_int
+      if_positive_int_seq
       if_real_numpy_array_1d
       if_real_numpy_array_3d
       if_real_numpy_matrix

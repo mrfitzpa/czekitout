@@ -51,6 +51,8 @@ __all__ = ["to_dict",
            "to_multi_dim_slice",
            "to_list_of_ints",
            "to_tuple_of_ints",
+           "to_list_of_positive_ints",
+           "to_tuple_of_positive_ints",
            "to_list_of_floats",
            "to_tuple_of_floats",
            "to_list_of_positive_floats",
@@ -230,7 +232,7 @@ def to_multi_dim_slice(obj, obj_name):
 
 
 def to_list_of_ints(obj, obj_name):
-    r"""Convert input object to a list of `ints`.
+    r"""Convert input object to a list of `int` objects.
 
     If the input object is not a sequence of integers, then a `TypeError` is
     raised with the message::
@@ -283,6 +285,66 @@ def to_tuple_of_ints(obj, obj_name):
 
     """
     czekitout.check.if_int_seq(obj, obj_name)
+    result = tuple(int(num) for num in obj)
+
+    return result
+
+
+
+def to_list_of_positive_ints(obj, obj_name):
+    r"""Convert input object to a list of positive integers.
+
+    If the input object is not a sequence of positive integers, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of positive integers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_positive_int_seq(obj, obj_name)
+    result = list(int(num) for num in obj)
+
+    return result
+
+
+
+def to_tuple_of_positive_ints(obj, obj_name):
+    r"""Convert input object to a tuple of positive integers.
+
+    If the input object is not a sequence of positive integers, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of positive integers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_positive_int_seq(obj, obj_name)
     result = tuple(int(num) for num in obj)
 
     return result
