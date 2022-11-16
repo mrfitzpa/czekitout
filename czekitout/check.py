@@ -49,6 +49,7 @@ __all__ = ["if_instance_of_any_accepted_types",
            "if_dict_like",
            "if_str_like",
            "if_path_like",
+           "if_path_like_seq",
            "if_int",
            "if_int_seq",
            "if_positive_int",
@@ -131,7 +132,7 @@ def if_instance_of_any_accepted_types(obj, obj_name, accepted_types):
 
 
 def if_dict_like(obj, obj_name):
-    r"""Check whether input object is dictionary-like
+    r"""Check whether input object is dictionary-like.
 
     If the input object is not dictionary-like, then a `TypeError` is raised
     with the message::
@@ -159,7 +160,7 @@ def if_dict_like(obj, obj_name):
 
 
 def if_str_like(obj, obj_name):
-    r"""Check whether input object is string-like
+    r"""Check whether input object is string-like.
 
     If the input object is not string-like, then a `TypeError` is raised with
     the message::
@@ -187,7 +188,7 @@ def if_str_like(obj, obj_name):
 
 
 def if_path_like(obj, obj_name):
-    r"""Check whether input object is path-like
+    r"""Check whether input object is path-like.
 
     If the input object is not path-like, then a `TypeError` is raised with the
     message::
@@ -209,6 +210,36 @@ def if_path_like(obj, obj_name):
     except:
         err_msg = _if_instance_of_any_accepted_types_err_msg_1
         err_msg = err_msg.format(obj_name, "str")
+        raise TypeError(err_msg)
+
+    return None
+
+
+
+def if_path_like_seq(obj, obj_name):
+    r"""Check whether input object is a sequence of path-like objects.
+
+    If the input object is not a sequence of path-like objects, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of strings.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    try:
+        for path_like_obj in obj:
+            check_if_path_like = if_path_like  # Alias for readability.
+            check_if_path_like(path_like_obj, "path_like_obj")
+    except:
+        err_msg = _if_path_like_seq_err_msg_1.format(obj_name)
         raise TypeError(err_msg)
 
     return None
@@ -997,6 +1028,9 @@ _if_instance_of_any_accepted_types_err_msg_2 = \
 
 _if_dict_like_err_msg_1 = \
     ("The object ``{}`` must be dictionary-like.")
+
+_if_path_like_seq_err_msg_1 = \
+    ("The object ``{}`` must be a sequence of strings.")
 
 _if_int_seq_err_msg_1 = \
     ("The object ``{}`` must be a sequence of integers.")
