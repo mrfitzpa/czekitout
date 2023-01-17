@@ -26,11 +26,11 @@ dependencies, run the following command from the root of the repository::
 
   pip install .[<selector>]
 
-where ``<selector>`` can be one of the following::
+where ``<selector>`` can be one of the following:
 
-  - ``doc``: to install the dependencies necessary for documentation generation;
-  - ``all``: to install all additional dependencies, which is simply all the
-    dependencies necessary for documentation generation.
+* ``doc``: to install the dependencies necessary for documentation generation;
+* ``all``: to install all additional dependencies, which is simply all the
+  dependencies necessary for documentation generation.
 
 Update czekitout
 ----------------

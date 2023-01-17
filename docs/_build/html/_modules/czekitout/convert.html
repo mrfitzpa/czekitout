@@ -60,10 +60,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-          <li><a href="../czekitout.html">czekitout</a> &raquo;</li>
-      <li>czekitout.convert</li>
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../czekitout.html">czekitout</a></li>
+      <li class="breadcrumb-item active">czekitout.convert</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -107,7 +107,7 @@
 <span class="c1">############################</span>
 
 <span class="n">__author__</span>     <span class="o">=</span> <span class="s2">&quot;Matthew Fitzpatrick&quot;</span>
-<span class="n">__copyright__</span>  <span class="o">=</span> <span class="s2">&quot;Copyright 2022&quot;</span>
+<span class="n">__copyright__</span>  <span class="o">=</span> <span class="s2">&quot;Copyright 2023&quot;</span>
 <span class="n">__credits__</span>    <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Matthew Fitzpatrick&quot;</span><span class="p">]</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s2">&quot;Matthew Fitzpatrick&quot;</span>
 <span class="n">__email__</span>      <span class="o">=</span> <span class="s2">&quot;mrfitzpa@uvic.ca&quot;</span>
@@ -124,6 +124,8 @@
            <span class="s2">&quot;to_str_from_str_like&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_str_from_path_like&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_multi_dim_slice&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;to_list_of_path_like_objs&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;to_tuple_of_path_like_objs&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_list_of_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_tuple_of_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_list_of_positive_ints&quot;</span><span class="p">,</span>
@@ -155,7 +157,7 @@
 
 
 <div class="viewcode-block" id="to_dict"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_dict.html#czekitout.convert.to_dict">[docs]</a><span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to an instance of the class `dict`.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to an instance of the class `dict`.</span>
 
 <span class="sd">    If the input object is not dictionary-like, then a `TypeError` is raised</span>
 <span class="sd">    with the message::</span>
@@ -188,7 +190,7 @@
 
 
 <div class="viewcode-block" id="to_str_from_str_like"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_str_from_str_like.html#czekitout.convert.to_str_from_str_like">[docs]</a><span class="k">def</span> <span class="nf">to_str_from_str_like</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert string-like input object to an instance of the class `str`.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert string-like input object to an instance of the class `str`.</span>
 
 <span class="sd">    If the input object is not string-like, then a `TypeError` is raised with</span>
 <span class="sd">    the message::</span>
@@ -221,7 +223,7 @@
 
 
 <div class="viewcode-block" id="to_str_from_path_like"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_str_from_path_like.html#czekitout.convert.to_str_from_path_like">[docs]</a><span class="k">def</span> <span class="nf">to_str_from_path_like</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert path-like input object to an instance of the class `str`.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert path-like input object to an instance of the class `str`.</span>
 
 <span class="sd">    If the input object is not path-like, then a `TypeError` is raised with the</span>
 <span class="sd">    message::</span>
@@ -251,7 +253,7 @@
 
 
 <div class="viewcode-block" id="to_multi_dim_slice"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_multi_dim_slice.html#czekitout.convert.to_multi_dim_slice">[docs]</a><span class="k">def</span> <span class="nf">to_multi_dim_slice</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert a multi-dimensional slice-like input object to a </span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert a multi-dimensional slice-like input object to a </span>
 <span class="sd">    multi-dimensional slice object.</span>
 
 <span class="sd">    We define a multi-dimensional slice-like object as a sequence of items which</span>
@@ -308,8 +310,68 @@
 
 
 
+<div class="viewcode-block" id="to_list_of_path_like_objs"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_list_of_path_like_objs.html#czekitout.convert.to_list_of_path_like_objs">[docs]</a><span class="k">def</span> <span class="nf">to_list_of_path_like_objs</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a list of path-like objects.</span>
+
+<span class="sd">    If the input object is not a sequence of path-like objects, then a</span>
+<span class="sd">    `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a sequence of strings.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `dict`</span>
+<span class="sd">        The object resulting from the conversion.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_path_like_seq</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path_like_obj</span><span class="p">)</span> <span class="k">for</span> <span class="n">path_like_obj</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
+<div class="viewcode-block" id="to_tuple_of_path_like_objs"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_tuple_of_path_like_objs.html#czekitout.convert.to_tuple_of_path_like_objs">[docs]</a><span class="k">def</span> <span class="nf">to_tuple_of_path_like_objs</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of path-like objects.</span>
+
+<span class="sd">    If the input object is not a sequence of path-like objects, then a</span>
+<span class="sd">    `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a sequence of strings.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `dict`</span>
+<span class="sd">        The object resulting from the conversion.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_path_like_seq</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path_like_obj</span><span class="p">)</span> <span class="k">for</span> <span class="n">path_like_obj</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
 <div class="viewcode-block" id="to_list_of_ints"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_list_of_ints.html#czekitout.convert.to_list_of_ints">[docs]</a><span class="k">def</span> <span class="nf">to_list_of_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a list of `int` objects.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a list of `int` objects.</span>
 
 <span class="sd">    If the input object is not a sequence of integers, then a `TypeError` is</span>
 <span class="sd">    raised with the message::</span>
@@ -339,7 +401,7 @@
 
 
 <div class="viewcode-block" id="to_tuple_of_ints"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_tuple_of_ints.html#czekitout.convert.to_tuple_of_ints">[docs]</a><span class="k">def</span> <span class="nf">to_tuple_of_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of `int` objects.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of `int` objects.</span>
 
 <span class="sd">    If the input object is not a sequence of integers, then a `TypeError` is</span>
 <span class="sd">    raised with the message::</span>
@@ -369,7 +431,7 @@
 
 
 <div class="viewcode-block" id="to_list_of_positive_ints"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_list_of_positive_ints.html#czekitout.convert.to_list_of_positive_ints">[docs]</a><span class="k">def</span> <span class="nf">to_list_of_positive_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a list of positive integers.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a list of positive integers.</span>
 
 <span class="sd">    If the input object is not a sequence of positive integers, then a</span>
 <span class="sd">    `TypeError` is raised with the message::</span>
@@ -399,7 +461,7 @@
 
 
 <div class="viewcode-block" id="to_tuple_of_positive_ints"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_tuple_of_positive_ints.html#czekitout.convert.to_tuple_of_positive_ints">[docs]</a><span class="k">def</span> <span class="nf">to_tuple_of_positive_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of positive integers.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of positive integers.</span>
 
 <span class="sd">    If the input object is not a sequence of positive integers, then a</span>
 <span class="sd">    `TypeError` is raised with the message::</span>
@@ -429,7 +491,7 @@
 
 
 <div class="viewcode-block" id="to_list_of_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_list_of_floats.html#czekitout.convert.to_list_of_floats">[docs]</a><span class="k">def</span> <span class="nf">to_list_of_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a list of floating-point numbers.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a list of floating-point numbers.</span>
 
 <span class="sd">    If the input object is not a sequence of floating-point numbers, then a</span>
 <span class="sd">    `TypeError` is raised with the message::</span>
@@ -459,7 +521,7 @@
 
 
 <div class="viewcode-block" id="to_tuple_of_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_tuple_of_floats.html#czekitout.convert.to_tuple_of_floats">[docs]</a><span class="k">def</span> <span class="nf">to_tuple_of_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of floating-point numbers.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of floating-point numbers.</span>
 
 <span class="sd">    If the input object is not a sequence of floating-point numbers, then a</span>
 <span class="sd">    `TypeError` is raised with the message::</span>
@@ -489,7 +551,7 @@
 
 
 <div class="viewcode-block" id="to_list_of_positive_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_list_of_positive_floats.html#czekitout.convert.to_list_of_positive_floats">[docs]</a><span class="k">def</span> <span class="nf">to_list_of_positive_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a list of positive floating-point numbers.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a list of positive floating-point numbers.</span>
 
 <span class="sd">    If the input object is not a sequence of positive floating-point numbers,</span>
 <span class="sd">    then a `TypeError` is raised with the message::</span>
@@ -520,7 +582,7 @@
 
 
 <div class="viewcode-block" id="to_tuple_of_positive_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_tuple_of_positive_floats.html#czekitout.convert.to_tuple_of_positive_floats">[docs]</a><span class="k">def</span> <span class="nf">to_tuple_of_positive_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of positive floating-point numbers.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of positive floating-point numbers.</span>
 
 <span class="sd">    If the input object is not a sequence of positive floating-point numbers,</span>
 <span class="sd">    then a `TypeError` is raised with the message::</span>
@@ -551,7 +613,7 @@
 
 
 <div class="viewcode-block" id="to_list_of_nonnegative_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_list_of_nonnegative_floats.html#czekitout.convert.to_list_of_nonnegative_floats">[docs]</a><span class="k">def</span> <span class="nf">to_list_of_nonnegative_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a list of nonnegative floating-point numbers.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a list of nonnegative floating-point numbers.</span>
 
 <span class="sd">    If the input object is not a sequence of nonnegative floating-point numbers,</span>
 <span class="sd">    then a `TypeError` is raised with the message::</span>
@@ -582,7 +644,7 @@
 
 
 <div class="viewcode-block" id="to_tuple_of_nonnegative_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_tuple_of_nonnegative_floats.html#czekitout.convert.to_tuple_of_nonnegative_floats">[docs]</a><span class="k">def</span> <span class="nf">to_tuple_of_nonnegative_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of nonnegative floating-point numbers.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of nonnegative floating-point numbers.</span>
 
 <span class="sd">    If the input object is not a sequence of nonnegative floating-point numbers,</span>
 <span class="sd">    then a `TypeError` is raised with the message::</span>
@@ -613,7 +675,7 @@
 
 
 <div class="viewcode-block" id="to_pair_of_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_pair_of_floats.html#czekitout.convert.to_pair_of_floats">[docs]</a><span class="k">def</span> <span class="nf">to_pair_of_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a two-element tuple of `float` objects.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a two-element tuple of `float` objects.</span>
 
 <span class="sd">    If the input object is not a pair of real numbers, then a `TypeError` is</span>
 <span class="sd">    raised with the message::</span>
@@ -643,7 +705,7 @@
 
 
 <div class="viewcode-block" id="to_pair_of_positive_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_pair_of_positive_floats.html#czekitout.convert.to_pair_of_positive_floats">[docs]</a><span class="k">def</span> <span class="nf">to_pair_of_positive_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a two-element tuple of positive `float` objects.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a two-element tuple of positive `float` objects.</span>
 
 <span class="sd">    If the input object is not a pair of positive real numbers, then a</span>
 <span class="sd">    `TypeError` is raised with the message::</span>
@@ -673,7 +735,7 @@
 
 
 <div class="viewcode-block" id="to_pair_of_positive_ints"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_pair_of_positive_ints.html#czekitout.convert.to_pair_of_positive_ints">[docs]</a><span class="k">def</span> <span class="nf">to_pair_of_positive_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a two-element tuple of positive `int` objects.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a two-element tuple of positive `int` objects.</span>
 
 <span class="sd">    If the input object is not a pair of positive integers, then a `TypeError`</span>
 <span class="sd">    is raised with the message::</span>
@@ -703,7 +765,7 @@
 
 
 <div class="viewcode-block" id="to_pair_of_nonnegative_ints"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_pair_of_nonnegative_ints.html#czekitout.convert.to_pair_of_nonnegative_ints">[docs]</a><span class="k">def</span> <span class="nf">to_pair_of_nonnegative_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a two-element tuple of non-negative `int` </span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a two-element tuple of non-negative `int` </span>
 <span class="sd">    objects.</span>
 
 <span class="sd">    If the input object is not a pair of non-negative integers, then a</span>
@@ -734,7 +796,7 @@
 
 
 <div class="viewcode-block" id="to_real_two_column_numpy_matrix"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_real_two_column_numpy_matrix.html#czekitout.convert.to_real_two_column_numpy_matrix">[docs]</a><span class="k">def</span> <span class="nf">to_real_two_column_numpy_matrix</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a real-valued 2D two-column numpy array.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a real-valued 2D two-column numpy array.</span>
 
 <span class="sd">    If the input object is not a real-valued two-column matrix, then a</span>
 <span class="sd">    `TypeError` is raised with the message::</span>
@@ -773,7 +835,7 @@
 
 
 <div class="viewcode-block" id="to_bool"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_bool.html#czekitout.convert.to_bool">[docs]</a><span class="k">def</span> <span class="nf">to_bool</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a `bool`.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a `bool`.</span>
 
 <span class="sd">    If the input object is not a boolean, then a `TypeError` is raised with the</span>
 <span class="sd">    message::</span>
@@ -803,7 +865,7 @@
 
 
 <div class="viewcode-block" id="to_float"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_float.html#czekitout.convert.to_float">[docs]</a><span class="k">def</span> <span class="nf">to_float</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a `float`.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a `float`.</span>
 
 <span class="sd">    If the input object is not a floating-point number, then a `TypeError` is</span>
 <span class="sd">    raised with the message::</span>
@@ -833,7 +895,7 @@
 
 
 <div class="viewcode-block" id="to_int"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_int.html#czekitout.convert.to_int">[docs]</a><span class="k">def</span> <span class="nf">to_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a `int`.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a `int`.</span>
 
 <span class="sd">    If the input object is not an integer, then a `TypeError` is raised with the</span>
 <span class="sd">    message::</span>
@@ -863,7 +925,7 @@
 
 
 <div class="viewcode-block" id="to_positive_float"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_positive_float.html#czekitout.convert.to_positive_float">[docs]</a><span class="k">def</span> <span class="nf">to_positive_float</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a positive `float`.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a positive `float`.</span>
 
 <span class="sd">    If the input object is not a positive floating-point number, then a</span>
 <span class="sd">    `TypeError` is raised with the message::</span>
@@ -893,7 +955,7 @@
 
 
 <div class="viewcode-block" id="to_nonnegative_float"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_nonnegative_float.html#czekitout.convert.to_nonnegative_float">[docs]</a><span class="k">def</span> <span class="nf">to_nonnegative_float</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a nonnegative `float`.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a nonnegative `float`.</span>
 
 <span class="sd">    If the input object is not a nonnegative floating-point number, then a</span>
 <span class="sd">    `TypeError` is raised with the message::</span>
@@ -923,7 +985,7 @@
 
 
 <div class="viewcode-block" id="to_nonnegative_int"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_nonnegative_int.html#czekitout.convert.to_nonnegative_int">[docs]</a><span class="k">def</span> <span class="nf">to_nonnegative_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a nonnegative `int`.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a nonnegative `int`.</span>
 
 <span class="sd">    If the input object is not a nonnegative integer, then a `TypeError` is</span>
 <span class="sd">    raised with the message::</span>
@@ -953,7 +1015,7 @@
 
 
 <div class="viewcode-block" id="to_positive_int"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_positive_int.html#czekitout.convert.to_positive_int">[docs]</a><span class="k">def</span> <span class="nf">to_positive_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a positive `int`.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a positive `int`.</span>
 
 <span class="sd">    If the input object is not a positive integer, then a `TypeError` is raised</span>
 <span class="sd">    with the message::</span>
@@ -983,7 +1045,7 @@
 
 
 <div class="viewcode-block" id="to_numpy_array"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_numpy_array.html#czekitout.convert.to_numpy_array">[docs]</a><span class="k">def</span> <span class="nf">to_numpy_array</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a numpy array.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a numpy array.</span>
 
 <span class="sd">    If the input object is not an array, then a `TypeError` is raised with the</span>
 <span class="sd">    message::</span>
@@ -1019,7 +1081,7 @@
 
 
 <div class="viewcode-block" id="to_real_numpy_array_1d"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_real_numpy_array_1d.html#czekitout.convert.to_real_numpy_array_1d">[docs]</a><span class="k">def</span> <span class="nf">to_real_numpy_array_1d</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a real-valued 1D numpy array.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a real-valued 1D numpy array.</span>
 
 <span class="sd">    If the input object is not a real-valued 1D array, then a `TypeError` is</span>
 <span class="sd">    raised with the message::</span>
@@ -1057,7 +1119,7 @@
 
 
 <div class="viewcode-block" id="to_real_numpy_matrix"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_real_numpy_matrix.html#czekitout.convert.to_real_numpy_matrix">[docs]</a><span class="k">def</span> <span class="nf">to_real_numpy_matrix</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a real-valued numpy array.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a real-valued numpy array.</span>
 
 <span class="sd">    If the input object is not a real-valued matrix, then a `TypeError` is</span>
 <span class="sd">    raised with the message::</span>
@@ -1095,7 +1157,7 @@
 
 
 <div class="viewcode-block" id="to_real_numpy_array_3d"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_real_numpy_array_3d.html#czekitout.convert.to_real_numpy_array_3d">[docs]</a><span class="k">def</span> <span class="nf">to_real_numpy_array_3d</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a real-valued 3D numpy array.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a real-valued 3D numpy array.</span>
 
 <span class="sd">    If the input object is not a real-valued 3D matrix, then a `TypeError` is</span>
 <span class="sd">    raised with the message::</span>
@@ -1133,7 +1195,7 @@
 
 
 <div class="viewcode-block" id="to_bool_numpy_matrix"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_bool_numpy_matrix.html#czekitout.convert.to_bool_numpy_matrix">[docs]</a><span class="k">def</span> <span class="nf">to_bool_numpy_matrix</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a boolean 2D numpy array.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a boolean 2D numpy array.</span>
 
 <span class="sd">    If the input object is not a boolean 2D matrix, then a `TypeError` is raised</span>
 <span class="sd">    with the message::</span>
@@ -1166,7 +1228,7 @@
 
 
 <div class="viewcode-block" id="to_bool_numpy_array_3d"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_bool_numpy_array_3d.html#czekitout.convert.to_bool_numpy_array_3d">[docs]</a><span class="k">def</span> <span class="nf">to_bool_numpy_array_3d</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a boolean 3D numpy array.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a boolean 3D numpy array.</span>
 
 <span class="sd">    If the input object is not a boolean 3D matrix, then a `TypeError` is raised</span>
 <span class="sd">    with the message::</span>
@@ -1227,7 +1289,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Oct 12, 2022.
+      <span class="lastupdated">Last updated on Jan 17, 2023.
       </span></p>
   </div>
 

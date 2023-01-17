@@ -34,7 +34,7 @@ except:
 # -- Project information -----------------------------------------------------
 
 project = 'czekitout'
-copyright = '2022, Matthew Fitzpatrick'
+copyright = '2023, Matthew Fitzpatrick'
 author = 'Matthew Fitzpatrick'
 
 
