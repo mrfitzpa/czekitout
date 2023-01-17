@@ -15,8 +15,22 @@ change into the root of said repository, and run the following command::
 
   pip install .
 
-Note that you must include the period as well. This will install ``czekitout``
-along with all of its dependencies, namely ``numpy`` and ``pytest``.
+Note that you must include the period as well. The above command executes a
+standard installation of ``czekitout``. Upon completing the standard
+installation of ``czekitout``, a set of libraries should be installed including
+``numpy``, and ``pytest``.
+
+Optionally, for additional features in ``czekitout``, one can install additional
+dependencies upon installing ``czekitout``. To install a subset of additional
+dependencies, run the following command from the root of the repository::
+
+  pip install .[<selector>]
+
+where ``<selector>`` can be one of the following::
+
+  - ``doc``: to install the dependencies necessary for documentation generation;
+  - ``all``: to install all additional dependencies, which is simply all the
+    dependencies necessary for documentation generation.
 
 Update czekitout
 ----------------
@@ -26,10 +40,17 @@ by issuing the following command::
   
     pip install .
 
+or the command::
+
+  pip install .[<selector>]
+
+where ``<selector>`` was described in the previous section.
+
 Uninstall czekitout
 -------------------
 
-To uninstall ``czekitout``, all you need to type is::
+To uninstall ``czekitout``, run the following command from the root of the
+repository::
 
   pip uninstall czekitout
 
@@ -40,7 +61,14 @@ To generate documentation in html format from source files, you will also need
 to install several other packages. This can be done by running the following
 command from the root of the repository::
 
-  pip install -r requirements-doc.txt
+  pip install .[doc]
+
+or the command::
+
+  pip install .[all]
+
+Note that the latter command will install all extra dependencies of
+``czekitout``.
 
 Next, assuming that you are in the root of the repository, that you have
 installed all the prerequisite packages, and that ``czekitout`` has been
