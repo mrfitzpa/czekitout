@@ -36,7 +36,7 @@ Update czekitout
 ----------------
 
 If you, or someone else has made changes to this library, you can reinstall it
-by issuing the following command::
+by issuing the following command from the root of the repository::
   
     pip install .
 
