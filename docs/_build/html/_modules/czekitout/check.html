@@ -139,6 +139,7 @@
            <span class="s2">&quot;if_nonnegative_float_seq&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_pair_of_floats&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_pair_of_positive_floats&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_pair_of_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_pair_of_positive_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_pair_of_nonnegative_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_real_numpy_array_1d&quot;</span><span class="p">,</span>
@@ -782,6 +783,40 @@
 
 
 
+<div class="viewcode-block" id="if_pair_of_ints"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_pair_of_ints.html#czekitout.check.if_pair_of_ints">[docs]</a><span class="k">def</span> <span class="nf">if_pair_of_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a pair of integers.</span>
+
+<span class="sd">    If the input object is not a pair of integers, then a `TypeError` is raised </span>
+<span class="sd">    with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a pair of integers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+            <span class="n">check_if_int</span> <span class="o">=</span> <span class="n">if_int</span>  <span class="c1"># Alias for readability.</span>
+            <span class="n">check_if_int</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;num&quot;</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_pair_of_ints_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
 <div class="viewcode-block" id="if_pair_of_positive_ints"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_pair_of_positive_ints.html#czekitout.check.if_pair_of_positive_ints">[docs]</a><span class="k">def</span> <span class="nf">if_pair_of_positive_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a pair of positive integers.</span>
 
@@ -1146,6 +1181,9 @@
 <span class="n">_if_pair_of_positive_floats_err_msg_1</span> <span class="o">=</span> \
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a pair of positive real numbers.&quot;</span><span class="p">)</span>
 
+<span class="n">_if_pair_of_ints_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a pair of integers.&quot;</span><span class="p">)</span>
+
 <span class="n">_if_pair_of_positive_ints_err_msg_1</span> <span class="o">=</span> \
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a pair of positive integers.&quot;</span><span class="p">)</span>
 
@@ -1181,8 +1219,8 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Jan 17, 2023.
+    <p>&#169; Copyright 2023, Matthew Fitzpatrick.
+      <span class="lastupdated">Last updated on Feb 15, 2023.
       </span></p>
   </div>
 

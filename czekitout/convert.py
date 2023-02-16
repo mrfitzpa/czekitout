@@ -63,6 +63,7 @@ __all__ = ["to_dict",
            "to_tuple_of_nonnegative_floats",
            "to_pair_of_floats",
            "to_pair_of_positive_floats",
+           "to_pair_of_ints",
            "to_pair_of_positive_ints",
            "to_pair_of_nonnegative_ints",
            "to_real_two_column_numpy_matrix",
@@ -654,6 +655,36 @@ def to_pair_of_positive_floats(obj, obj_name):
     """
     czekitout.check.if_pair_of_positive_floats(obj, obj_name)
     result = tuple(float(num) for num in obj)
+
+    return result
+
+
+
+def to_pair_of_ints(obj, obj_name):
+    r"""Convert input object to a two-element tuple of `int` objects.
+
+    If the input object is not a pair of integers, then a `TypeError` is raised
+    with the message::
+
+        The object ``<obj_name>`` must be a pair of integers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_pair_of_ints(obj, obj_name)
+    result = tuple(int(num) for num in obj)
 
     return result
 

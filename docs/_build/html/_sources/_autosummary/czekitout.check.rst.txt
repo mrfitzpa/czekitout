@@ -30,6 +30,7 @@ czekitout.check
       if_nonnegative_float_seq
       if_nonnegative_int
       if_pair_of_floats
+      if_pair_of_ints
       if_pair_of_nonnegative_ints
       if_pair_of_positive_floats
       if_pair_of_positive_ints
