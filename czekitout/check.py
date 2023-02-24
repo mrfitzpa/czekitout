@@ -55,6 +55,7 @@ __all__ = ["if_instance_of_any_accepted_types",
            "if_positive_int",
            "if_positive_int_seq",
            "if_nonnegative_int",
+           "if_nonnegative_int_seq",
            "if_multi_dim_slice_like",
            "if_float",
            "if_float_seq",
@@ -396,6 +397,38 @@ def if_nonnegative_int(obj, obj_name):
     except:
         err_msg = _if_nonnegative_int_err_msg_1.format(obj_name)
         raise ValueError(err_msg)
+
+    return None
+
+
+
+def if_nonnegative_int_seq(obj, obj_name):
+    r"""Check whether input object is a sequence of nonnegative integers.
+
+    If the input object is not a sequence of nonnegative integers, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of nonnegative integers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    try:
+        for num in obj:
+            # Alias for readability.
+            check_if_nonnegative_int = if_nonnegative_int
+            
+            check_if_nonnegative_int(num, "num")
+    except:
+        err_msg = _if_nonnegative_int_seq_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
 
     return None
 
@@ -1078,6 +1111,9 @@ _if_positive_int_seq_err_msg_1 = \
 
 _if_nonnegative_int_err_msg_1 = \
     ("The object ``{}`` must be a nonnegative `int`.")
+
+_if_nonnegative_int_seq_err_msg_1 = \
+    ("The object ``{}`` must be a sequence of nonnegative integers.")
 
 _if_multi_dim_slice_like_err_msg_1 = \
     ("The object ``{}`` must be a sequence of items which contains at most one "

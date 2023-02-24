@@ -24,6 +24,7 @@ czekitout.convert
       to_list_of_floats
       to_list_of_ints
       to_list_of_nonnegative_floats
+      to_list_of_nonnegative_ints
       to_list_of_path_like_objs
       to_list_of_positive_floats
       to_list_of_positive_ints
@@ -47,6 +48,7 @@ czekitout.convert
       to_tuple_of_floats
       to_tuple_of_ints
       to_tuple_of_nonnegative_floats
+      to_tuple_of_nonnegative_ints
       to_tuple_of_path_like_objs
       to_tuple_of_positive_floats
       to_tuple_of_positive_ints
