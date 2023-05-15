@@ -48,6 +48,7 @@ __status__     = "Development"
 __all__ = ["if_instance_of_any_accepted_types",
            "if_dict_like",
            "if_str_like",
+           "if_str_like_seq",
            "if_one_of_any_accepted_strings",
            "if_path_like",
            "if_path_like_seq",
@@ -186,6 +187,36 @@ def if_str_like(obj, obj_name):
 
     accepted_types = (str, bytes)
     check_if_instance_of_any_accepted_types(obj, obj_name, accepted_types)
+
+    return None
+
+
+
+def if_str_like_seq(obj, obj_name):
+    r"""Check whether input object is a sequence of string-like objects.
+
+    If the input object is not a sequence of string-like objects, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of strings.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    try:
+        for str_like_obj in obj:
+            check_if_str_like = if_str_like  # Alias for readability.
+            check_if_str_like(str_like_obj, "str_like_obj")
+    except:
+        err_msg = _if_str_like_seq_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
 
     return None
 
@@ -1180,6 +1211,9 @@ _if_instance_of_any_accepted_types_err_msg_2 = \
 _if_dict_like_err_msg_1 = \
     ("The object ``{}`` must be dictionary-like.")
 
+_if_str_like_seq_err_msg_1 = \
+    ("The object ``{}`` must be a sequence of strings.")
+
 _if_one_of_any_accepted_strings_err_msg_1 = \
     ("The object ``{}`` must be set to ``'{}'``.")
 
@@ -1187,7 +1221,7 @@ _if_one_of_any_accepted_strings_err_msg_2 = \
     ("The object ``{}`` must be set to one of the following strings: ``{}``.")
 
 _if_path_like_seq_err_msg_1 = \
-    ("The object ``{}`` must be a sequence of strings.")
+    _if_str_like_seq_err_msg_1
 
 _if_int_seq_err_msg_1 = \
     ("The object ``{}`` must be a sequence of integers.")

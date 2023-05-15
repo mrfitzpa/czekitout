@@ -49,6 +49,8 @@ __all__ = ["to_dict",
            "to_str_from_str_like",
            "to_str_from_path_like",
            "to_multi_dim_slice",
+           "to_list_of_strs",
+           "to_tuple_of_strs",
            "to_list_of_path_like_objs",
            "to_tuple_of_path_like_objs",
            "to_list_of_ints",
@@ -236,6 +238,66 @@ def to_multi_dim_slice(obj, obj_name):
 
     result = tuple(result)
     
+    return result
+
+
+
+def to_list_of_strs(obj, obj_name):
+    r"""Convert input object to a list of strings.
+
+    If the input object is not a sequence of string-like objects, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of strings.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_str_like_seq(obj, obj_name)
+    result = list(str(str_like_obj) for str_like_obj in obj)
+
+    return result
+
+
+
+def to_tuple_of_strs(obj, obj_name):
+    r"""Convert input object to a tuple of strings.
+
+    If the input object is not a sequence of string-like objects, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of strings.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_str_like_seq(obj, obj_name)
+    result = tuple(str(str_like_obj) for str_like_obj in obj)
+
     return result
 
 
