@@ -405,7 +405,7 @@ def if_positive_int(obj, obj_name):
 
     """
     check_if_int = if_int  # Alias for readability.
-    check_if_int(obj, "obj")
+    check_if_int(obj, obj_name)
     
     try:
         if int(obj) < 1:
@@ -467,7 +467,7 @@ def if_nonnegative_int(obj, obj_name):
 
     """
     check_if_int = if_int  # Alias for readability.
-    check_if_int(obj, "obj")
+    check_if_int(obj, obj_name)
     
     try:
         if int(obj) < 0:
