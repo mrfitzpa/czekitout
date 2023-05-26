@@ -32,13 +32,16 @@ __status__     = "Development"
 
 # List of public objects in objects.
 __all__ = ["numpy_array",
+           "scalar_numpy_array",
            "real_numpy_array",
+           "complex_numpy_array",
            "bool_numpy_array",
            "numpy_array_1d",
            "numpy_matrix",
            "two_column_numpy_matrix",
            "real_numpy_array_1d",
            "real_numpy_matrix",
+           "complex_numpy_matrix",
            "numpy_array_3d",
            "real_numpy_array_3d",
            "real_two_column_numpy_matrix",
@@ -68,6 +71,36 @@ def numpy_array(obj):
 
 
 
+def scalar_numpy_array(obj):
+    r"""Returns ``True`` if input object is a numpy array of scalars.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a numpy array of scalars, 
+        otherwise it is set to ``False``.
+
+    """
+    is_numpy_array = numpy_array  # Alias for readability.
+    
+    if is_numpy_array(obj):
+        try:
+            obj.astype(complex)
+            result = True
+        except:
+            result = False
+    else:
+        result = False
+
+    return result
+
+
+
 def real_numpy_array(obj):
     r"""Returns ``True`` if input object is a real-valued numpy array.
 
@@ -83,9 +116,9 @@ def real_numpy_array(obj):
         otherwise it is set to ``False``.
 
     """
-    is_numpy_array = numpy_array  # Alias for readability.
+    is_scalar_numpy_array = scalar_numpy_array  # Alias for readability.
     
-    if is_numpy_array(obj):
+    if is_scalar_numpy_array(obj):
         result = np.isrealobj(obj)
     else:
         result = False
@@ -109,9 +142,9 @@ def complex_numpy_array(obj):
         array, otherwise it is set to ``False``.
 
     """
-    is_numpy_array = numpy_array  # Alias for readability.
+    is_scalar_numpy_array = scalar_numpy_array  # Alias for readability.
     
-    if is_numpy_array(obj):
+    if is_scalar_numpy_array(obj):
         result = np.iscomplexobj(obj)
     else:
         result = False
@@ -135,9 +168,9 @@ def bool_numpy_array(obj):
         otherwise it is set to ``False``.
 
     """
-    is_numpy_array = numpy_array  # Alias for readability.
+    is_scalar_numpy_array = scalar_numpy_array  # Alias for readability.
     
-    if is_numpy_array(obj):
+    if is_scalar_numpy_array(obj):
         result = (obj.dtype == bool)
     else:
         result = False
