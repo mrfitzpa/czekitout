@@ -71,6 +71,8 @@ __all__ = ["if_instance_of_any_accepted_types",
            "if_pair_of_ints",
            "if_pair_of_positive_ints",
            "if_pair_of_nonnegative_ints",
+           "if_pairs_of_floats",
+           "if_real_numpy_array",
            "if_real_numpy_array_1d",
            "if_real_numpy_matrix",
            "if_real_two_column_numpy_matrix",
@@ -958,6 +960,65 @@ def if_pair_of_nonnegative_ints(obj, obj_name):
 
 
 
+def if_pairs_of_floats(obj, obj_name):
+    r"""Check whether input object is a sequence of pairs of floating-point 
+    numbers.
+
+    If the input object is not a sequence of pairs of floating-point numbers,
+    then a `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of pairs of real numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    try:
+        for pair in obj:
+            # Alias for readability.
+            check_if_pair_of_floats = if_pair_of_floats
+            
+            check_if_pair_of_floats(pair, "pair")
+    except:
+        err_msg = _if_pairs_of_floats_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
+
+    return None
+
+
+
+def if_real_numpy_array(obj, obj_name):
+    r"""Check whether input object is a real-valued numpy array.
+
+    If the input object is not a real-valued numpy array, then a `TypeError` is
+    raised with the message::
+
+        The object ``<obj_name>`` must be a numpy array of real numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    if not czekitout.isa.real_numpy_array(obj):
+        err_msg = _if_real_numpy_array_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
+
+    return None
+
+
+
 def if_real_numpy_array_1d(obj, obj_name):
     r"""Check whether input object is a real-valued 1D numpy array.
 
@@ -1276,6 +1337,12 @@ _if_pair_of_positive_ints_err_msg_1 = \
 
 _if_pair_of_nonnegative_ints_err_msg_1 = \
     ("The object ``{}`` must be a pair of nonnegative integers.")
+
+_if_pairs_of_floats_err_msg_1 = \
+    ("The object ``{}`` must be a sequence of pairs of real numbers.")
+
+_if_real_numpy_array_err_msg_1 = \
+    ("The object ``{}`` must be a numpy array of real numbers.")
 
 _if_real_numpy_array_1d_err_msg_1 = \
     ("The object ``{}`` must be a 1D numpy array of real numbers.")
