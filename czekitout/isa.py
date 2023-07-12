@@ -34,6 +34,7 @@ __status__     = "Development"
 __all__ = ["numpy_array",
            "scalar_numpy_array",
            "real_numpy_array",
+           "nonnegative_numpy_array",
            "complex_numpy_array",
            "bool_numpy_array",
            "numpy_array_1d",
@@ -120,6 +121,32 @@ def real_numpy_array(obj):
     
     if is_scalar_numpy_array(obj):
         result = np.isrealobj(obj)
+    else:
+        result = False
+
+    return result
+
+
+
+def nonnegative_numpy_array(obj):
+    r"""Returns ``True`` if input object is a nonnegative numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a nonnegative numpy array, 
+        otherwise it is set to ``False``.
+
+    """
+    is_real_numpy_array = real_numpy_array  # Alias for readability.
+    
+    if is_real_numpy_array(obj):
+        result = np.all(obj >= 0)
     else:
         result = False
 

@@ -81,9 +81,11 @@ __all__ = ["to_dict",
            "to_nonnegative_int",
            "to_positive_int",
            "to_numpy_array",
+           "to_real_numpy_array"
            "to_real_numpy_array_1d",
            "to_real_numpy_matrix",
            "to_real_numpy_array_3d",
+           "to_nonnegative_numpy_array",
            "to_bool_numpy_matrix",
            "to_bool_numpy_array_3d"]
 
@@ -1376,6 +1378,44 @@ def to_real_numpy_array_3d(obj, obj_name):
 
 
 
+def to_nonnegative_numpy_array(obj, obj_name):
+    r"""Convert input object to a nonnegative numpy array.
+
+    If the input object is not a nonnegative array, then a `TypeError` is raised
+    with the message::
+
+        The object ``<obj_name>`` must be nonnegative array.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    if czekitout.isa.nonnegative_numpy_array(obj):
+        result = obj
+    else:
+        try:
+            result = np.array(obj)
+        except:
+            err_msg = _to_nonnegative_numpy_array_err_msg_1.format(obj_name)
+            raise TypeError(err_msg)
+        czekitout.check.if_nonnegative_numpy_array(result, obj_name)
+        result = np.array(result, dtype=float)
+
+    return result
+
+
+
 def to_bool_numpy_matrix(obj, obj_name):
     r"""Convert input object to a boolean 2D numpy array.
 
@@ -1464,3 +1504,5 @@ _to_real_numpy_matrix_err_msg_1 = \
 _to_real_numpy_array_3d_err_msg_1 = \
     ("The object ``{}`` must be a real-valued 3D array.")
 
+_to_nonnegative_numpy_array_err_msg_1 = \
+    ("The object ``{}`` must be a nonnegative array.")

@@ -77,6 +77,7 @@ __all__ = ["if_instance_of_any_accepted_types",
            "if_real_numpy_matrix",
            "if_real_two_column_numpy_matrix",
            "if_real_numpy_array_3d",
+           "if_nonnegative_numpy_array",
            "if_bool",
            "if_bool_matrix",
            "if_bool_array_3d",
@@ -1124,6 +1125,32 @@ def if_real_numpy_array_3d(obj, obj_name):
 
 
 
+def if_nonnegative_numpy_array(obj, obj_name):
+    r"""Check whether input object is a nonnegative numpy array.
+
+    If the input object is not a nonnegative numpy array, then a `TypeError` is
+    raised with the message::
+
+        The object ``<obj_name>`` must be a numpy array of nonnegative numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    if not czekitout.isa.nonnegative_numpy_array(obj):
+        err_msg = _if_nonnegative_numpy_array_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
+
+    return None
+
+
+
 def if_bool(obj, obj_name):
     r"""Check whether input object is boolean.
 
@@ -1355,6 +1382,9 @@ _if_real_two_column_numpy_matrix_err_msg_1 = \
 
 _if_real_numpy_array_3d_err_msg_1 = \
     ("The object ``{}`` must be a 3D numpy array of real numbers.")
+
+_if_nonnegative_numpy_array_err_msg_1 = \
+    ("The object ``{}`` must be a numpy array of nonnegative numbers.")
 
 _if_bool_matrix_err_msg_1 = \
     ("The object ``{}`` must be a boolean matrix.")
