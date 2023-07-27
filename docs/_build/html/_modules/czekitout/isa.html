@@ -6,7 +6,7 @@
   <title>czekitout.isa &mdash; czekitout  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/readthedocs-custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/readthedocs_custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> czekitout
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            czekitout
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -60,7 +64,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
           <li class="breadcrumb-item"><a href="../czekitout.html">czekitout</a></li>
       <li class="breadcrumb-item active">czekitout.isa</li>
@@ -107,13 +111,17 @@
 
 <span class="c1"># List of public objects in objects.</span>
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;numpy_array&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;scalar_numpy_array&quot;</span><span class="p">,</span>
            <span class="s2">&quot;real_numpy_array&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;nonnegative_numpy_array&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;complex_numpy_array&quot;</span><span class="p">,</span>
            <span class="s2">&quot;bool_numpy_array&quot;</span><span class="p">,</span>
            <span class="s2">&quot;numpy_array_1d&quot;</span><span class="p">,</span>
            <span class="s2">&quot;numpy_matrix&quot;</span><span class="p">,</span>
            <span class="s2">&quot;two_column_numpy_matrix&quot;</span><span class="p">,</span>
            <span class="s2">&quot;real_numpy_array_1d&quot;</span><span class="p">,</span>
            <span class="s2">&quot;real_numpy_matrix&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;complex_numpy_matrix&quot;</span><span class="p">,</span>
            <span class="s2">&quot;numpy_array_3d&quot;</span><span class="p">,</span>
            <span class="s2">&quot;real_numpy_array_3d&quot;</span><span class="p">,</span>
            <span class="s2">&quot;real_two_column_numpy_matrix&quot;</span><span class="p">,</span>
@@ -143,6 +151,36 @@
 
 
 
+<div class="viewcode-block" id="scalar_numpy_array"><a class="viewcode-back" href="../../_autosummary/czekitout.isa.scalar_numpy_array.html#czekitout.isa.scalar_numpy_array">[docs]</a><span class="k">def</span> <span class="nf">scalar_numpy_array</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns ``True`` if input object is a numpy array of scalars.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `bool`</span>
+<span class="sd">        ``result`` is set to ``True`` if ``obj`` is a numpy array of scalars, </span>
+<span class="sd">        otherwise it is set to ``False``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">is_numpy_array</span> <span class="o">=</span> <span class="n">numpy_array</span>  <span class="c1"># Alias for readability.</span>
+    
+    <span class="k">if</span> <span class="n">is_numpy_array</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">complex</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
 <div class="viewcode-block" id="real_numpy_array"><a class="viewcode-back" href="../../_autosummary/czekitout.isa.real_numpy_array.html#czekitout.isa.real_numpy_array">[docs]</a><span class="k">def</span> <span class="nf">real_numpy_array</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns ``True`` if input object is a real-valued numpy array.</span>
 
@@ -158,10 +196,36 @@
 <span class="sd">        otherwise it is set to ``False``.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">is_numpy_array</span> <span class="o">=</span> <span class="n">numpy_array</span>  <span class="c1"># Alias for readability.</span>
+    <span class="n">is_scalar_numpy_array</span> <span class="o">=</span> <span class="n">scalar_numpy_array</span>  <span class="c1"># Alias for readability.</span>
     
-    <span class="k">if</span> <span class="n">is_numpy_array</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">is_scalar_numpy_array</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isrealobj</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
+<div class="viewcode-block" id="nonnegative_numpy_array"><a class="viewcode-back" href="../../_autosummary/czekitout.isa.nonnegative_numpy_array.html#czekitout.isa.nonnegative_numpy_array">[docs]</a><span class="k">def</span> <span class="nf">nonnegative_numpy_array</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns ``True`` if input object is a nonnegative numpy array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `bool`</span>
+<span class="sd">        ``result`` is set to ``True`` if ``obj`` is a nonnegative numpy array, </span>
+<span class="sd">        otherwise it is set to ``False``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">is_real_numpy_array</span> <span class="o">=</span> <span class="n">real_numpy_array</span>  <span class="c1"># Alias for readability.</span>
+    
+    <span class="k">if</span> <span class="n">is_real_numpy_array</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">obj</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
 
@@ -184,9 +248,9 @@
 <span class="sd">        array, otherwise it is set to ``False``.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">is_numpy_array</span> <span class="o">=</span> <span class="n">numpy_array</span>  <span class="c1"># Alias for readability.</span>
+    <span class="n">is_scalar_numpy_array</span> <span class="o">=</span> <span class="n">scalar_numpy_array</span>  <span class="c1"># Alias for readability.</span>
     
-    <span class="k">if</span> <span class="n">is_numpy_array</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">is_scalar_numpy_array</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">iscomplexobj</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
@@ -210,9 +274,9 @@
 <span class="sd">        otherwise it is set to ``False``.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">is_numpy_array</span> <span class="o">=</span> <span class="n">numpy_array</span>  <span class="c1"># Alias for readability.</span>
+    <span class="n">is_scalar_numpy_array</span> <span class="o">=</span> <span class="n">scalar_numpy_array</span>  <span class="c1"># Alias for readability.</span>
     
-    <span class="k">if</span> <span class="n">is_numpy_array</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">is_scalar_numpy_array</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
         <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
@@ -508,7 +572,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Feb 24, 2023.
+      <span class="lastupdated">Last updated on Jul 27, 2023.
       </span></p>
   </div>
 

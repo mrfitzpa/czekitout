@@ -20,6 +20,7 @@ czekitout.isa
       bool_numpy_matrix
       complex_numpy_array
       complex_numpy_matrix
+      nonnegative_numpy_array
       numpy_array
       numpy_array_1d
       numpy_array_3d
@@ -29,6 +30,7 @@ czekitout.isa
       real_numpy_array_3d
       real_numpy_matrix
       real_two_column_numpy_matrix
+      scalar_numpy_array
       two_column_numpy_matrix
    
    
