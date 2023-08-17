@@ -28,17 +28,22 @@ czekitout.convert
       to_list_of_path_like_objs
       to_list_of_positive_floats
       to_list_of_positive_ints
+      to_list_of_strs
       to_multi_dim_slice
       to_nonnegative_float
       to_nonnegative_int
+      to_nonnegative_numpy_array
       to_numpy_array
       to_pair_of_floats
       to_pair_of_ints
+      to_pair_of_nonnegative_floats
       to_pair_of_nonnegative_ints
       to_pair_of_positive_floats
       to_pair_of_positive_ints
+      to_pairs_of_floats
       to_positive_float
       to_positive_int
+      to_real_numpy_array
       to_real_numpy_array_1d
       to_real_numpy_array_3d
       to_real_numpy_matrix
@@ -52,6 +57,7 @@ czekitout.convert
       to_tuple_of_path_like_objs
       to_tuple_of_positive_floats
       to_tuple_of_positive_ints
+      to_tuple_of_strs
    
    
 
