@@ -92,7 +92,7 @@ def scalar_numpy_array(obj):
     if is_numpy_array(obj):
         try:
             obj.astype(complex)
-            result = True
+            result = not np.any(np.isnan(obj))
         except:
             result = False
     else:
