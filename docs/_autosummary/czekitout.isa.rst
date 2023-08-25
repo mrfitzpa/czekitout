@@ -21,6 +21,7 @@ czekitout.isa
       complex_numpy_array
       complex_numpy_matrix
       nonnegative_numpy_array
+      nonnegative_numpy_matrix
       numpy_array
       numpy_array_1d
       numpy_array_3d

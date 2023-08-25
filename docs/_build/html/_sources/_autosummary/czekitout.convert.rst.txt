@@ -33,6 +33,7 @@ czekitout.convert
       to_nonnegative_float
       to_nonnegative_int
       to_nonnegative_numpy_array
+      to_nonnegative_numpy_matrix
       to_numpy_array
       to_pair_of_floats
       to_pair_of_ints

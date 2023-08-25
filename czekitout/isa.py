@@ -42,6 +42,7 @@ __all__ = ["numpy_array",
            "two_column_numpy_matrix",
            "real_numpy_array_1d",
            "real_numpy_matrix",
+           "nonnegative_numpy_matrix",
            "complex_numpy_matrix",
            "numpy_array_3d",
            "real_numpy_array_3d",
@@ -327,6 +328,32 @@ def real_numpy_matrix(obj):
     is_real_numpy_array = real_numpy_array  # Alias for readability.
 
     result = (is_numpy_matrix(obj) and is_real_numpy_array(obj))
+
+    return result
+
+
+
+def nonnegative_numpy_matrix(obj):
+    r"""Returns ``True`` if input object is a nonnegative 2D numpy array.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+
+    Returns
+    -------
+    result : `bool`
+        ``result`` is set to ``True`` if ``obj`` is a nonnegative 2D numpy 
+        array, otherwise it is set to ``False``.
+
+    """
+    is_numpy_matrix = \
+        numpy_matrix  # Alias for readability.
+    is_nonnegative_numpy_array = \
+        nonnegative_numpy_array  # Alias for readability.
+
+    result = (is_numpy_matrix(obj) and is_nonnegative_numpy_array(obj))
 
     return result
 

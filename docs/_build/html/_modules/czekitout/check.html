@@ -157,6 +157,7 @@
            <span class="s2">&quot;if_real_two_column_numpy_matrix&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_real_numpy_array_3d&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_nonnegative_numpy_array&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_nonnegative_numpy_matrix&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_bool&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_bool_matrix&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_bool_array_3d&quot;</span><span class="p">,</span>
@@ -1230,6 +1231,32 @@
 
 
 
+<div class="viewcode-block" id="if_nonnegative_numpy_matrix"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_nonnegative_numpy_matrix.html#czekitout.check.if_nonnegative_numpy_matrix">[docs]</a><span class="k">def</span> <span class="nf">if_nonnegative_numpy_matrix</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a nonnegative numpy matrix.</span>
+
+<span class="sd">    If the input object is not a nonnegative numpy matrix, then a `TypeError` is</span>
+<span class="sd">    raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a numpy matrix of nonnegative numbers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">czekitout</span><span class="o">.</span><span class="n">isa</span><span class="o">.</span><span class="n">nonnegative_numpy_matrix</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_nonnegative_numpy_matrix_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
 <div class="viewcode-block" id="if_bool"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_bool.html#czekitout.check.if_bool">[docs]</a><span class="k">def</span> <span class="nf">if_bool</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is boolean.</span>
 
@@ -1465,6 +1492,9 @@
 <span class="n">_if_nonnegative_numpy_array_err_msg_1</span> <span class="o">=</span> \
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a numpy array of nonnegative numbers.&quot;</span><span class="p">)</span>
 
+<span class="n">_if_nonnegative_numpy_matrix_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a numpy matrix of nonnegative numbers.&quot;</span><span class="p">)</span>
+
 <span class="n">_if_bool_matrix_err_msg_1</span> <span class="o">=</span> \
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a boolean matrix.&quot;</span><span class="p">)</span>
 
@@ -1483,7 +1513,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Jul 27, 2023.
+      <span class="lastupdated">Last updated on Aug 25, 2023.
       </span></p>
   </div>
 

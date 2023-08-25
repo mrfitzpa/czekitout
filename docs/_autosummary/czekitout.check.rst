@@ -31,6 +31,7 @@ czekitout.check
       if_nonnegative_int
       if_nonnegative_int_seq
       if_nonnegative_numpy_array
+      if_nonnegative_numpy_matrix
       if_one_of_any_accepted_strings
       if_pair_of_floats
       if_pair_of_ints

@@ -86,6 +86,7 @@ __all__ = ["to_dict",
            "to_real_numpy_matrix",
            "to_real_numpy_array_3d",
            "to_nonnegative_numpy_array",
+           "to_nonnegative_numpy_matrix",
            "to_bool_numpy_matrix",
            "to_bool_numpy_array_3d"]
 
@@ -972,9 +973,9 @@ def to_real_two_column_numpy_matrix(obj, obj_name):
     else:
         try:
             result = np.array(obj)
+            czekitout.check.if_real_two_column_numpy_matrix(result, obj_name)
         except:
             raise TypeError(err_msg)
-        czekitout.check.if_real_two_column_numpy_matrix(result, obj_name)
 
     return result
 
@@ -1254,11 +1255,11 @@ def to_real_numpy_array(obj, obj_name):
     else:
         try:
             result = np.array(obj)
+            czekitout.check.if_real_numpy_array(result, obj_name)
+            result = np.array(result, dtype=float)
         except:
             err_msg = _to_real_numpy_array_err_msg_1.format(obj_name)
             raise TypeError(err_msg)
-        czekitout.check.if_real_numpy_array(result, obj_name)
-        result = np.array(result, dtype=float)
 
     return result
 
@@ -1292,11 +1293,11 @@ def to_real_numpy_array_1d(obj, obj_name):
     else:
         try:
             result = np.array(obj)
+            czekitout.check.if_real_numpy_array_1d(result, obj_name)
+            result = np.array(result, dtype=float)
         except:
             err_msg = _to_real_numpy_array_1d_err_msg_1.format(obj_name)
             raise TypeError(err_msg)
-        czekitout.check.if_real_numpy_array_1d(result, obj_name)
-        result = np.array(result, dtype=float)
 
     return result
 
@@ -1330,11 +1331,11 @@ def to_real_numpy_matrix(obj, obj_name):
     else:
         try:
             result = np.array(obj)
+            czekitout.check.if_real_numpy_matrix(result, obj_name)
+            result = np.array(result, dtype=float)
         except:
             err_msg = _to_real_numpy_matrix_err_msg_1.format(obj_name)
             raise TypeError(err_msg)
-        czekitout.check.if_real_numpy_matrix(result, obj_name)
-        result = np.array(result, dtype=float)
 
     return result
 
@@ -1368,11 +1369,11 @@ def to_real_numpy_array_3d(obj, obj_name):
     else:
         try:
             result = np.array(obj)
+            czekitout.check.if_real_numpy_array_3d(result, obj_name)
+            result = np.array(result, dtype=float)
         except:
             err_msg = _to_real_numpy_array_3d_err_msg_1.format(obj_name)
             raise TypeError(err_msg)
-        czekitout.check.if_real_numpy_array_3d(result, obj_name)
-        result = np.array(result, dtype=float)
 
     return result
 
@@ -1406,11 +1407,49 @@ def to_nonnegative_numpy_array(obj, obj_name):
     else:
         try:
             result = np.array(obj)
+            czekitout.check.if_nonnegative_numpy_array(result, obj_name)
+            result = np.array(result, dtype=float)
         except:
             err_msg = _to_nonnegative_numpy_array_err_msg_1.format(obj_name)
             raise TypeError(err_msg)
-        czekitout.check.if_nonnegative_numpy_array(result, obj_name)
-        result = np.array(result, dtype=float)
+
+    return result
+
+
+
+def to_nonnegative_numpy_matrix(obj, obj_name):
+    r"""Convert input object to a nonnegative numpy matrix.
+
+    If the input object is not a nonnegative matrix, then a `TypeError` is
+    raised with the message::
+
+        The object ``<obj_name>`` must be nonnegative matrix.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    if czekitout.isa.nonnegative_numpy_matrix(obj):
+        result = obj
+    else:
+        try:
+            result = np.array(obj)
+            czekitout.check.if_nonnegative_numpy_matrix(result, obj_name)
+            result = np.array(result, dtype=float)
+        except:
+            err_msg = _to_nonnegative_numpy_matrix_err_msg_1.format(obj_name)
+            raise TypeError(err_msg)
 
     return result
 
@@ -1506,3 +1545,6 @@ _to_real_numpy_array_3d_err_msg_1 = \
 
 _to_nonnegative_numpy_array_err_msg_1 = \
     ("The object ``{}`` must be a nonnegative array.")
+
+_to_nonnegative_numpy_matrix_err_msg_1 = \
+    ("The object ``{}`` must be a nonnegative matrix.")
