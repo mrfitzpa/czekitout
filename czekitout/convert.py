@@ -71,6 +71,7 @@ __all__ = ["to_dict",
            "to_pair_of_ints",
            "to_pair_of_positive_ints",
            "to_pair_of_nonnegative_ints",
+           "to_quadruplet_of_nonnegative_ints",
            "to_pairs_of_floats",
            "to_real_two_column_numpy_matrix",
            "to_bool",
@@ -906,6 +907,37 @@ def to_pair_of_nonnegative_ints(obj, obj_name):
 
     """
     czekitout.check.if_pair_of_nonnegative_ints(obj, obj_name)
+    result = tuple(int(num) for num in obj)
+
+    return result
+
+
+
+def to_quadruplet_of_nonnegative_ints(obj, obj_name):
+    r"""Convert input object to a four-element tuple of non-negative `int` 
+    objects.
+
+    If the input object is not a quadruplet of non-negative integers, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a quadruplet of non-negative integers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `dict`
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_quadruplet_of_nonnegative_ints(obj, obj_name)
     result = tuple(int(num) for num in obj)
 
     return result

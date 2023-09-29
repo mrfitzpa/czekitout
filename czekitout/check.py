@@ -71,6 +71,7 @@ __all__ = ["if_instance_of_any_accepted_types",
            "if_pair_of_ints",
            "if_pair_of_positive_ints",
            "if_pair_of_nonnegative_ints",
+           "if_quadruplet_of_nonnegative_ints",
            "if_pairs_of_floats",
            "if_real_numpy_array",
            "if_real_numpy_array_1d",
@@ -962,6 +963,41 @@ def if_pair_of_nonnegative_ints(obj, obj_name):
 
 
 
+def if_quadruplet_of_nonnegative_ints(obj, obj_name):
+    r"""Check whether input object is a quadruplet of nonnegative integers.
+
+    If the input object is not a quadruplet of nonnegative integers, then a
+    `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a quadruplet of nonnegative integers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    try:
+        count = 0
+        for num in obj:
+            # Alias for readability.
+            check_if_nonnegative_int = if_nonnegative_int
+            check_if_nonnegative_int(num, "num")
+            count += 1
+        if count != 4:
+            raise
+    except:
+        err_msg = _if_quadruplet_of_nonnegative_ints_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
+
+    return None
+
+
+
 def if_pairs_of_floats(obj, obj_name):
     r"""Check whether input object is a sequence of pairs of floating-point 
     numbers.
@@ -1391,6 +1427,9 @@ _if_pair_of_positive_ints_err_msg_1 = \
 
 _if_pair_of_nonnegative_ints_err_msg_1 = \
     ("The object ``{}`` must be a pair of nonnegative integers.")
+
+_if_quadruplet_of_nonnegative_ints_err_msg_1 = \
+    ("The object ``{}`` must be a quadruplet of nonnegative integers.")
 
 _if_pairs_of_floats_err_msg_1 = \
     ("The object ``{}`` must be a sequence of pairs of real numbers.")
