@@ -50,6 +50,7 @@ def fully_qualified_class_name(obj_or_cls):
     if isinstance(obj_or_cls, type):
         cls = obj_or_cls
     else:
+        obj = obj_or_cls
         cls = obj.__class__
 
     module = cls.__module__

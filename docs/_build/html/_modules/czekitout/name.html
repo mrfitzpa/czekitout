@@ -129,6 +129,7 @@
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj_or_cls</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
         <span class="bp">cls</span> <span class="o">=</span> <span class="n">obj_or_cls</span>
     <span class="k">else</span><span class="p">:</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">obj_or_cls</span>
         <span class="bp">cls</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span>
 
     <span class="n">module</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__module__</span>
@@ -155,7 +156,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Aug 25, 2023.
+      <span class="lastupdated">Last updated on Dec 06, 2023.
       </span></p>
   </div>
 

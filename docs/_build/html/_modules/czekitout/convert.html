@@ -150,7 +150,9 @@
            <span class="s2">&quot;to_pair_of_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_pair_of_positive_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_pair_of_nonnegative_ints&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;to_quadruplet_of_nonnegative_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_pairs_of_floats&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;to_pairs_of_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_real_two_column_numpy_matrix&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_bool&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_float&quot;</span><span class="p">,</span>
@@ -991,6 +993,37 @@
 
 
 
+<div class="viewcode-block" id="to_quadruplet_of_nonnegative_ints"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_quadruplet_of_nonnegative_ints.html#czekitout.convert.to_quadruplet_of_nonnegative_ints">[docs]</a><span class="k">def</span> <span class="nf">to_quadruplet_of_nonnegative_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a four-element tuple of non-negative `int` </span>
+<span class="sd">    objects.</span>
+
+<span class="sd">    If the input object is not a quadruplet of non-negative integers, then a</span>
+<span class="sd">    `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a quadruplet of non-negative integers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `dict`</span>
+<span class="sd">        The object resulting from the conversion.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_quadruplet_of_nonnegative_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
 <div class="viewcode-block" id="to_pairs_of_floats"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_pairs_of_floats.html#czekitout.convert.to_pairs_of_floats">[docs]</a><span class="k">def</span> <span class="nf">to_pairs_of_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of two-element tuple of `float` objects.</span>
 
@@ -1016,6 +1049,36 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_pairs_of_floats</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">pair</span><span class="p">)</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
+<div class="viewcode-block" id="to_pairs_of_ints"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_pairs_of_ints.html#czekitout.convert.to_pairs_of_ints">[docs]</a><span class="k">def</span> <span class="nf">to_pairs_of_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert input object to a tuple of two-element tuple of `int` objects.</span>
+
+<span class="sd">    If the input object is not a sequence of pairs of integers, then a</span>
+<span class="sd">    `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a sequence of pairs of integers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `dict`</span>
+<span class="sd">        The object resulting from the conversion.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_pairs_of_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">pair</span><span class="p">)</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">result</span></div>
 
@@ -1637,7 +1700,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Aug 25, 2023.
+      <span class="lastupdated">Last updated on Dec 06, 2023.
       </span></p>
   </div>
 
