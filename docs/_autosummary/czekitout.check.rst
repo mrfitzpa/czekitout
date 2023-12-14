@@ -53,6 +53,7 @@ czekitout.check
       if_real_numpy_array_3d
       if_real_numpy_matrix
       if_real_two_column_numpy_matrix
+      if_single_dim_slice_like
       if_str_like
       if_str_like_seq
    

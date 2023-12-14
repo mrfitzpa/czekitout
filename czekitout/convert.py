@@ -48,6 +48,7 @@ __status__     = "Development"
 __all__ = ["to_dict",
            "to_str_from_str_like",
            "to_str_from_path_like",
+           "to_single_dim_slice",
            "to_multi_dim_slice",
            "to_list_of_strs",
            "to_tuple_of_strs",
@@ -190,6 +191,53 @@ def to_str_from_path_like(obj, obj_name):
 
 
 
+def to_single_dim_slice(obj, obj_name):
+    r"""Convert a one-dimensional slice-like input object to a one-dimensional 
+    slice object.
+
+    We define a one-dimensional slice-like object as any object that is an 
+    integer, a sequence of integers, or a `slice` object.
+
+    We define a one-dimensional slice object as any object that is an integer, a
+    `list` of integers, or a `slice` object.
+
+    If the input object is not one-dimensional slice-like, then a `TypeError` is
+    raised with the message::
+
+        The object ``<obj_name>`` must be an integer, a sequence of integers, or
+        a `slice` object.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `str`
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_single_dim_slice_like(obj, obj_name)
+
+    if isinstance(obj, slice):
+        result = copy.deepcopy(obj)
+    else:
+        try:
+            convert_to_list_of_ints = to_list_of_ints  # Alias for readability.
+            result = convert_to_list_of_ints(obj, obj_name)
+        except:
+            convert_to_int = to_int  # Alias for readability.
+            result = convert_to_int(obj, obj_name)
+    
+    return result
+
+
+
 def to_multi_dim_slice(obj, obj_name):
     r"""Convert a multi-dimensional slice-like input object to a 
     multi-dimensional slice object.
@@ -227,20 +275,12 @@ def to_multi_dim_slice(obj, obj_name):
     czekitout.check.if_multi_dim_slice_like(obj, obj_name)
     result = list(obj)
 
-    for idx_1, single_dim_slice in enumerate(obj):
-        if isinstance(single_dim_slice, slice):
-            result[idx_1] = copy.deepcopy(single_dim_slice)
-            continue
+    for idx, single_dim_slice in enumerate(obj):
+        # Alias for readability.
+        convert_to_single_dim_slice = to_single_dim_slice
 
-        try:
-            result[idx_1] = [0]*len(single_dim_slice)
-            for idx_2, num in enumerate(single_dim_slice):
-                result[idx_1][idx_2] = int(num)
-            continue
-        except:
-            pass
-
-        result[idx_1] = int(obj[idx_1])
+        result[idx] = convert_to_single_dim_slice(single_dim_slice,
+                                                  "single_dim_slice")
 
     result = tuple(result)
     

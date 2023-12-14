@@ -51,6 +51,7 @@ czekitout.convert
       to_real_numpy_array_3d
       to_real_numpy_matrix
       to_real_two_column_numpy_matrix
+      to_single_dim_slice
       to_str_from_path_like
       to_str_from_str_like
       to_tuple_of_floats

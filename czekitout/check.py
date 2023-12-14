@@ -58,6 +58,7 @@ __all__ = ["if_instance_of_any_accepted_types",
            "if_positive_int_seq",
            "if_nonnegative_int",
            "if_nonnegative_int_seq",
+           "if_single_dim_slice_like",
            "if_multi_dim_slice_like",
            "if_float",
            "if_float_seq",
@@ -518,6 +519,44 @@ def if_nonnegative_int_seq(obj, obj_name):
 
 
 
+def if_single_dim_slice_like(obj, obj_name):
+    r"""Check whether input object is a one-dimensional slice-like object.
+
+    We define a one-dimensional slice-like object as any object that is an 
+    integer, a sequence of integers, or a `slice` object.
+
+    If the input object is not one-dimensional slice-like, then a `TypeError` is
+    raised with the message::
+
+        The object ``<obj_name>`` must be an integer, a sequence of integers, or
+        a `slice` object.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    try:    
+        try:
+            check_if_int_seq = if_int_seq  # Alias for readability.
+            check_if_int_seq(obj, obj_name)
+        except:
+            if not isinstance(obj, slice):
+                check_if_int = if_int  # Alias for readability.
+                check_if_int(obj, obj_name)
+    except:
+        err_msg = _if_single_dim_slice_like_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
+
+    return None
+
+
+
 def if_multi_dim_slice_like(obj, obj_name):
     r"""Check whether input object is a multi-dimensional slice-like object.
 
@@ -546,20 +585,17 @@ def if_multi_dim_slice_like(obj, obj_name):
     
     try:
         for single_dim_slice in obj:
-            if isinstance(single_dim_slice, slice):
-                continue
+            # Alias for readability.
+            check_if_single_dim_slice_like = if_single_dim_slice_like
 
-            check_if_int = if_int  # Alias for readability.
-            
+            check_if_single_dim_slice_like(single_dim_slice, "single_dim_slice")
+
             try:
-                for num in single_dim_slice:
-                    check_if_int(num, "num")
+                check_if_int_seq = if_int_seq  # Alias for readability.
+                check_if_int_seq(single_dim_slice, "single_dim_slice")
                 num_single_dim_slices_as_lists += 1
-                continue
             except:
                 pass
-
-            check_if_int(single_dim_slice, "single_dim_slice")
 
         if num_single_dim_slices_as_lists > 1:
             raise
@@ -1421,6 +1457,10 @@ _if_nonnegative_int_err_msg_1 = \
 
 _if_nonnegative_int_seq_err_msg_1 = \
     ("The object ``{}`` must be a sequence of nonnegative integers.")
+
+_if_single_dim_slice_like_err_msg_1 = \
+    ("The object ``{}`` must be an integer, a sequence of integers, or a "
+     "`slice` object.")
 
 _if_multi_dim_slice_like_err_msg_1 = \
     ("The object ``{}`` must be a sequence of items which contains at most one "

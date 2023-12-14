@@ -137,6 +137,7 @@
            <span class="s2">&quot;if_positive_int_seq&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_nonnegative_int&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_nonnegative_int_seq&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_single_dim_slice_like&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_multi_dim_slice_like&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_float&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_float_seq&quot;</span><span class="p">,</span>
@@ -597,6 +598,44 @@
 
 
 
+<div class="viewcode-block" id="if_single_dim_slice_like"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_single_dim_slice_like.html#czekitout.check.if_single_dim_slice_like">[docs]</a><span class="k">def</span> <span class="nf">if_single_dim_slice_like</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a one-dimensional slice-like object.</span>
+
+<span class="sd">    We define a one-dimensional slice-like object as any object that is an </span>
+<span class="sd">    integer, a sequence of integers, or a `slice` object.</span>
+
+<span class="sd">    If the input object is not one-dimensional slice-like, then a `TypeError` is</span>
+<span class="sd">    raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be an integer, a sequence of integers, or</span>
+<span class="sd">        a `slice` object.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>    
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">check_if_int_seq</span> <span class="o">=</span> <span class="n">if_int_seq</span>  <span class="c1"># Alias for readability.</span>
+            <span class="n">check_if_int_seq</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+                <span class="n">check_if_int</span> <span class="o">=</span> <span class="n">if_int</span>  <span class="c1"># Alias for readability.</span>
+                <span class="n">check_if_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_single_dim_slice_like_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
 <div class="viewcode-block" id="if_multi_dim_slice_like"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_multi_dim_slice_like.html#czekitout.check.if_multi_dim_slice_like">[docs]</a><span class="k">def</span> <span class="nf">if_multi_dim_slice_like</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a multi-dimensional slice-like object.</span>
 
@@ -625,20 +664,17 @@
     
     <span class="k">try</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">single_dim_slice</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">single_dim_slice</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
-                <span class="k">continue</span>
+            <span class="c1"># Alias for readability.</span>
+            <span class="n">check_if_single_dim_slice_like</span> <span class="o">=</span> <span class="n">if_single_dim_slice_like</span>
 
-            <span class="n">check_if_int</span> <span class="o">=</span> <span class="n">if_int</span>  <span class="c1"># Alias for readability.</span>
-            
+            <span class="n">check_if_single_dim_slice_like</span><span class="p">(</span><span class="n">single_dim_slice</span><span class="p">,</span> <span class="s2">&quot;single_dim_slice&quot;</span><span class="p">)</span>
+
             <span class="k">try</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">single_dim_slice</span><span class="p">:</span>
-                    <span class="n">check_if_int</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;num&quot;</span><span class="p">)</span>
+                <span class="n">check_if_int_seq</span> <span class="o">=</span> <span class="n">if_int_seq</span>  <span class="c1"># Alias for readability.</span>
+                <span class="n">check_if_int_seq</span><span class="p">(</span><span class="n">single_dim_slice</span><span class="p">,</span> <span class="s2">&quot;single_dim_slice&quot;</span><span class="p">)</span>
                 <span class="n">num_single_dim_slices_as_lists</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="k">continue</span>
             <span class="k">except</span><span class="p">:</span>
                 <span class="k">pass</span>
-
-            <span class="n">check_if_int</span><span class="p">(</span><span class="n">single_dim_slice</span><span class="p">,</span> <span class="s2">&quot;single_dim_slice&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">num_single_dim_slices_as_lists</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">raise</span>
@@ -1501,6 +1537,10 @@
 <span class="n">_if_nonnegative_int_seq_err_msg_1</span> <span class="o">=</span> \
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a sequence of nonnegative integers.&quot;</span><span class="p">)</span>
 
+<span class="n">_if_single_dim_slice_like_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be an integer, a sequence of integers, or a &quot;</span>
+     <span class="s2">&quot;`slice` object.&quot;</span><span class="p">)</span>
+
 <span class="n">_if_multi_dim_slice_like_err_msg_1</span> <span class="o">=</span> \
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a sequence of items which contains at most one &quot;</span>
      <span class="s2">&quot;item being a sequence of integers, and the remaining items being `slice` &quot;</span>
@@ -1588,7 +1628,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Dec 06, 2023.
+      <span class="lastupdated">Last updated on Dec 14, 2023.
       </span></p>
   </div>
 

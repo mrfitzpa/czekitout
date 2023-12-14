@@ -127,6 +127,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;to_dict&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_str_from_str_like&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_str_from_path_like&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;to_single_dim_slice&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_multi_dim_slice&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_list_of_strs&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_tuple_of_strs&quot;</span><span class="p">,</span>
@@ -269,6 +270,53 @@
 
 
 
+<div class="viewcode-block" id="to_single_dim_slice"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_single_dim_slice.html#czekitout.convert.to_single_dim_slice">[docs]</a><span class="k">def</span> <span class="nf">to_single_dim_slice</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert a one-dimensional slice-like input object to a one-dimensional </span>
+<span class="sd">    slice object.</span>
+
+<span class="sd">    We define a one-dimensional slice-like object as any object that is an </span>
+<span class="sd">    integer, a sequence of integers, or a `slice` object.</span>
+
+<span class="sd">    We define a one-dimensional slice object as any object that is an integer, a</span>
+<span class="sd">    `list` of integers, or a `slice` object.</span>
+
+<span class="sd">    If the input object is not one-dimensional slice-like, then a `TypeError` is</span>
+<span class="sd">    raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be an integer, a sequence of integers, or</span>
+<span class="sd">        a `slice` object.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result : `str`</span>
+<span class="sd">        The object resulting from the conversion.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_single_dim_slice_like</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">convert_to_list_of_ints</span> <span class="o">=</span> <span class="n">to_list_of_ints</span>  <span class="c1"># Alias for readability.</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">convert_to_list_of_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">convert_to_int</span> <span class="o">=</span> <span class="n">to_int</span>  <span class="c1"># Alias for readability.</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">convert_to_int</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
 <div class="viewcode-block" id="to_multi_dim_slice"><a class="viewcode-back" href="../../_autosummary/czekitout.convert.to_multi_dim_slice.html#czekitout.convert.to_multi_dim_slice">[docs]</a><span class="k">def</span> <span class="nf">to_multi_dim_slice</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert a multi-dimensional slice-like input object to a </span>
 <span class="sd">    multi-dimensional slice object.</span>
@@ -306,20 +354,12 @@
     <span class="n">czekitout</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="n">if_multi_dim_slice_like</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">single_dim_slice</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">single_dim_slice</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
-            <span class="n">result</span><span class="p">[</span><span class="n">idx_1</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">single_dim_slice</span><span class="p">)</span>
-            <span class="k">continue</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">single_dim_slice</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="c1"># Alias for readability.</span>
+        <span class="n">convert_to_single_dim_slice</span> <span class="o">=</span> <span class="n">to_single_dim_slice</span>
 
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">result</span><span class="p">[</span><span class="n">idx_1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">single_dim_slice</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">idx_2</span><span class="p">,</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">single_dim_slice</span><span class="p">):</span>
-                <span class="n">result</span><span class="p">[</span><span class="n">idx_1</span><span class="p">][</span><span class="n">idx_2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
-            <span class="k">continue</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="k">pass</span>
-
-        <span class="n">result</span><span class="p">[</span><span class="n">idx_1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">idx_1</span><span class="p">])</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">convert_to_single_dim_slice</span><span class="p">(</span><span class="n">single_dim_slice</span><span class="p">,</span>
+                                                  <span class="s2">&quot;single_dim_slice&quot;</span><span class="p">)</span>
 
     <span class="n">result</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
     
@@ -1700,7 +1740,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Dec 06, 2023.
+      <span class="lastupdated">Last updated on Dec 14, 2023.
       </span></p>
   </div>
 
