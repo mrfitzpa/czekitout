@@ -75,6 +75,7 @@ __all__ = ["if_instance_of_any_accepted_types",
            "if_quadruplet_of_nonnegative_ints",
            "if_pairs_of_floats",
            "if_pairs_of_ints",
+           "if_pairs_of_nonnegative_ints",
            "if_real_numpy_array",
            "if_real_numpy_array_1d",
            "if_real_numpy_matrix",
@@ -1100,6 +1101,40 @@ def if_pairs_of_ints(obj, obj_name):
 
 
 
+def if_pairs_of_nonnegative_ints(obj, obj_name):
+    r"""Check whether input object is a sequence of pairs of nonnegative 
+    integers.
+
+    If the input object is not a sequence of pairs of nonnegative integers, then
+    a `TypeError` is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of pairs of nonnegative
+        integers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    try:
+        for pair in obj:
+            # Alias for readability.
+            check_if_pair_of_nonnegative_ints = if_pair_of_nonnegative_ints
+            
+            check_if_pair_of_nonnegative_ints(pair, "pair")
+    except:
+        err_msg = _if_pairs_of_nonnegative_ints_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
+
+    return None
+
+
+
 def if_real_numpy_array(obj, obj_name):
     r"""Check whether input object is a real-valued numpy array.
 
@@ -1509,6 +1544,9 @@ _if_pairs_of_floats_err_msg_1 = \
 
 _if_pairs_of_ints_err_msg_1 = \
     ("The object ``{}`` must be a sequence of pairs of integers.")
+
+_if_pairs_of_nonnegative_ints_err_msg_1 = \
+    ("The object ``{}`` must be a sequence of pairs of nonnegative integers.")
 
 _if_real_numpy_array_err_msg_1 = \
     ("The object ``{}`` must be a numpy array of real numbers.")
