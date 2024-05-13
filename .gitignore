@@ -6,6 +6,7 @@ __pycache__/
 .ipynb_checkpoints/
 
 # Ignore select files.
+.coverage
 
 # Ignore .pyc files.
 *.pyc

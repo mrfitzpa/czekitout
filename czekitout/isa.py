@@ -18,7 +18,7 @@ import numpy as np
 ############################
 
 __author__     = "Matthew Fitzpatrick"
-__copyright__  = "Copyright 2023"
+__copyright__  = "Copyright 2024"
 __credits__    = ["Matthew Fitzpatrick"]
 __maintainer__ = "Matthew Fitzpatrick"
 __email__      = "mrfitzpa@uvic.ca"

@@ -24,7 +24,7 @@ import czekitout.version
 ############################
 
 __author__       = "Matthew Fitzpatrick"
-__copyright__    = "Copyright 2023"
+__copyright__    = "Copyright 2024"
 __credits__      = ["Matthew Fitzpatrick"]
 __version__      = czekitout.version.version
 __full_version__ = czekitout.version.full_version
