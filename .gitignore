@@ -1,12 +1,15 @@
-# Ignore backups.
-*~
-
 # Ignore select directories.
 __pycache__/
 .ipynb_checkpoints/
+.tox/
+htmlcov/
+dist/
+docs/_autosummary/
+docs/_build/
 
 # Ignore select files.
 .coverage
+.python-version
 
 # Ignore .pyc files.
 *.pyc
@@ -14,6 +17,7 @@ __pycache__/
 # Ignore backup files.
 \#*#
 *.bak
+*~
 
 # Ignore pip install build files.
 build/
@@ -22,3 +26,10 @@ build/
 
 # Ignore SLURM output files.
 slurm-*.out
+
+# Ignore most .ipynb files.
+*.ipynb
+!using_name_module.ipynb
+!using_isa_module.ipynb
+!using_check_module.ipynb
+!using_convert_module.ipynb

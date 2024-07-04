@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+# Copyright 2024 Matthew Fitzpatrick.
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, version 3.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
 r"""Contains tests for the module :mod:`czekitout.name`.
 
 """
@@ -15,19 +28,6 @@ import numpy as np
 
 # For getting fully qualified class names.
 import czekitout.name
-
-
-
-############################
-## Authorship information ##
-############################
-
-__author__     = "Matthew Fitzpatrick"
-__copyright__  = "Copyright 2024"
-__credits__    = ["Matthew Fitzpatrick"]
-__maintainer__ = "Matthew Fitzpatrick"
-__email__      = "mrfitzpa@uvic.ca"
-__status__     = "Development"
 
 
 
@@ -58,6 +58,8 @@ def test_1_of_fully_qualified_class_name():
     zip_obj = zip(cls_set, expected_result_set)
     for cls, expected_result in zip_obj:
         assert func_alias(cls) == expected_result
+
+    return None
 
 
 

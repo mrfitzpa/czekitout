@@ -21,7 +21,7 @@ import sys
 
 # Check to see whether czekitout can be imported.
 try:
-    import czekitout.version
+    import czekitout
 except:
     print("ERROR: can't import czekitout.")
     sys.exit(1)
@@ -34,7 +34,7 @@ except:
 # -- Project information -----------------------------------------------------
 
 project = "czekitout"
-copyright = "2023, Matthew Fitzpatrick"
+copyright = "2024, Matthew Fitzpatrick"
 author = "Matthew Fitzpatrick"
 
 

@@ -3,88 +3,72 @@
 Installation instructions
 =========================
 
-Install czekitout
------------------
+Installing czekitout
+--------------------
 
-First, open up the appropriate command line interface. On Unix-based systems,
-you would open a terminal. On Windows systems you would open an Anaconda Prompt
-as an administrator.
+For all installation scenarios, first open up the appropriate command line
+interface. On Unix-based systems, you would open a terminal. On Windows systems
+you would open an Anaconda Prompt as an administrator.
 
-Next, assuming that you have downloaded/cloned the ``czekitout`` git repository,
-change into the root of said repository, and run the following command::
+Installing czekitout using pip
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The easiest way to install ``czekitout`` using ``pip`` is to run the following
+command::
+
+  pip install czekitout
+
+The above command will install the latest stable version of ``czekitout``.
+
+To install the latest development version from the main branch of the `czekitout
+GitHub repository <https://github.com/mrfitzpa/czekitout>`_, one must first
+clone the repository by running the following command::
+
+  git clone https://github.com/mrfitzpa/czekitout.git
+
+Next, change into the root of the cloned repository, and then run the following
+command::
 
   pip install .
 
 Note that you must include the period as well. The above command executes a
-standard installation of ``czekitout``. Upon completing the standard
-installation of ``czekitout``, a set of libraries should be installed including
-``numpy``, and ``pytest``.
+standard installation of ``czekitout``.
 
 Optionally, for additional features in ``czekitout``, one can install additional
 dependencies upon installing ``czekitout``. To install a subset of additional
-dependencies, run the following command from the root of the repository::
+dependencies (along with the standard installation), run the following command
+from the root of the repository::
 
   pip install .[<selector>]
 
 where ``<selector>`` can be one of the following:
 
-* ``doc``: to install the dependencies necessary for documentation generation;
-* ``all``: to install all additional dependencies, which is simply all the
-  dependencies necessary for documentation generation.
+* ``tests``: to install the dependencies necessary for running unit tests;
+* ``examples``: to install the dependencies necessary for running the jupyter
+  notebooks stored in ``<root>/examples``, where ``<root>`` is the root of the
+  repository;
+* ``docs``: to install the dependencies necessary for documentation generation;
+* ``all``: to install all of the above optional dependencies.
 
-Update czekitout
-----------------
+Installing czekitout using conda
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you, or someone else has made changes to this library, you can reinstall it
-by issuing the following command from the root of the repository::
-  
-  pip install .
+To install ``czekitout`` using the ``conda`` package manager, run the following
+command::
 
-or the command::
+  conda install -c conda-forge czekitout
 
-  pip install .[<selector>]
+The above command will install the latest stable version of ``czekitout``.
 
-where ``<selector>`` was described in the previous section.
+Uninstalling czekitout
+----------------------
 
-Uninstall czekitout
--------------------
-
-To uninstall ``czekitout``, run the following command from the root of the
-repository::
+If ``czekitout`` was installed using ``pip``, then to uninstall, run the
+following command from the root of the repository::
 
   pip uninstall czekitout
 
-Generating documention files
-----------------------------
+If ``czekitout`` was installed using ``conda``, then to uninstall, run the
+following command from the root of the repository::
 
-To generate documentation in html format from source files, you will also need
-to install several other packages. This can be done by running the following
-command from the root of the repository::
-
-  pip install .[doc]
-
-or the command::
-
-  pip install .[all]
-
-Note that the latter command will install all extra dependencies of
-``czekitout``.
-
-Next, assuming that you are in the root of the repository, that you have
-installed all the prerequisite packages, and that ``czekitout`` has been
-installed, you can generate the ``czekitout`` documentation html files by
-issuing the following commands within your virtual environment::
-
-  cd docs
-  make html
-
-This will generate a set of html files in ``./_build/html`` containing the
-documentation of ``czekitout``. You can then open any of the files using your
-favorite web browser.
-
-If ``czekitout`` has been updated, the documentation has most likely changed as
-well. To update the documentation simply run::
-
-  make html
-
-again to generate the new documentation.
+  conda remove czekitout

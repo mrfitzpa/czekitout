@@ -1,0 +1,14 @@
+[paths]
+source =
+    ../czekitout
+    */site-packages/czekitout
+
+[run]
+branch = true
+source =
+    czekitout
+    .
+
+[report]
+show_missing = true
+precision = 2

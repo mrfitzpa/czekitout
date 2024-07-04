@@ -1,6 +1,19 @@
-"""``czekitout`` is a Python library that contains a collection of functions
-that facilitate type-checking, validation, and type-conversions, with useful
-error messages when exceptions are thrown.
+# -*- coding: utf-8 -*-
+# Copyright 2024 Matthew Fitzpatrick.
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, version 3.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
+r"""``czekitout`` is a Python library that contains a collection of functions
+that facilitate validation, and type-conversions, with useful error messages
+when exceptions are thrown.
 
 """
 
@@ -15,31 +28,6 @@ import czekitout.name
 import czekitout.isa
 import czekitout.check
 import czekitout.convert
-import czekitout.version
-
-
-
-############################
-## Authorship information ##
-############################
-
-__author__       = "Matthew Fitzpatrick"
-__copyright__    = "Copyright 2024"
-__credits__      = ["Matthew Fitzpatrick"]
-__version__      = czekitout.version.version
-__full_version__ = czekitout.version.full_version
-__maintainer__   = "Matthew Fitzpatrick"
-__email__        = "mrfitzpa@uvic.ca"
-__status__       = "Development"
-
-
-
-###################################
-## Useful background information ##
-###################################
-
-# See e.g. ``https://docs.python.org/3/reference/import.html#regular-packages``
-# for a brief discussion of ``__init__.py`` files.
 
 
 
@@ -48,18 +36,7 @@ __status__       = "Development"
 ##################################
 
 # List of public objects in package.
-__all__ = ["show_config"]
-
-
-
-def show_config():
-    """Print information about the version of ``czekitout`` and libraries it 
-    uses.
-
-    """
-    print(version.version_summary)
-
-    return None
+__all__ = []
 
 
 
