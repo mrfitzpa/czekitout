@@ -1,6 +1,6 @@
 # czekitout
 
-[![Testing](https://github.com/mrfitzpa/czekitout/workflows/test_library/badge.svg)](https://github.com/mrfitzpa/czekitout/actions)
+[![Test library](https://github.com/mrfitzpa/czekitout/actions/workflows/test_library.yml/badge.svg)](https://github.com/mrfitzpa/czekitout/actions/workflows/test_library.yml)
 [![Code Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mrfitzpa/03df7baa137bcac859f4cb8927a62a23/raw/czekitout_coverage_badge.json)](https://github.com/mrfitzpa/czekitout/actions/workflows/measure_code_coverage.yml)
 [![Documentation](https://img.shields.io/badge/docs-read-brightgreen)](https://mrfitzpa.github.io/czekitout/_build/html/index.html)
 [![PyPi Version](https://img.shields.io/pypi/v/czekitout.svg)](https://pypi.org/project/czekitout)

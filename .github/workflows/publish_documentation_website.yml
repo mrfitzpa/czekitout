@@ -34,16 +34,16 @@ jobs:
     - name: Commit html files to a new repository
       run: |
         cd docs/_build/html
-	git init
-	git add -A
-	git config --local user.email "action@github.com"
-	git config --local user.name "GitHub Action"
-	git commit -m "deploy"
+        git init
+        git add -A
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "deploy"
     
     - name: Force push html files to the gh-pages branch
       uses: ad-m/github-push-action@v0.8.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-	branch: gh-pages
-	force: true
-	directory: ./docs/_build/html
+        branch: gh-pages
+        force: true
+        directory: ./docs/_build/html

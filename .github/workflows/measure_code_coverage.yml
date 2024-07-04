@@ -38,7 +38,7 @@ jobs:
     - name: Set environment variable for badge
       run: |
         echo "COV_PERCENT=$(jq .totals.percent_covered tests/coverage.json \
-	  | xargs printf "%.0f")" >> $GITHUB_ENV
+          | xargs printf "%.0f")" >> $GITHUB_ENV
     
     - name: Archive code coverage results
       uses: actions/upload-artifact@v4
