@@ -16,6 +16,7 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 import os
 import sys
+import yaml
 
 
 
@@ -126,3 +127,37 @@ html_static_path = ["_static"]
 # If not "", a "Last updated on:" timestamp is inserted at every page bottom,
 # using the given strftime format.
 html_last_updated_fmt = "%b %d, %Y"
+
+
+
+# Adapted from
+# ``https://github.com/ThoSe1990/SphinxExample/blob/main/docs/conf.py``.
+build_all_docs = os.environ.get("build_all_docs")
+pages_root = os.environ.get("pages_root", "")
+
+if build_all_docs is not None:
+    current_language = os.environ.get("current_language")
+    current_version = os.environ.get("current_version")
+
+    html_context = {"current_language" : current_language,
+                    "languages" : [],
+                    "current_version" : current_version,
+                    "versions" : []}
+
+    if (current_version == "latest"):
+        html_context["languages"].append(["en", pages_root])
+
+    if (current_language == "en"):
+        html_context["versions"].append(["latest", pages_root])
+
+    with open("versions.yaml", "r") as yaml_file:
+        docs = yaml.safe_load(yaml_file)
+
+    if (current_version != "latest"):
+        for language in docs[current_version].get("languages", []):
+            path = pages_root+"/"+current_version+"/"+language
+            html_context["languages"].append([language, path])
+
+    for version, details in docs.items():
+        path = pages_root+"/"+version+"/"+current_language
+        html_context["versions"].append([version, path])
