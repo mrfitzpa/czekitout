@@ -33,7 +33,7 @@ jobs:
         python -m pip install tox
         
     - name: Measure code coverage via tox
-      run: python -m tox -e py312
+      run: python -m tox -e py312,report
     
     - name: Set environment variable for badge
       run: |
