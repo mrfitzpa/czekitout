@@ -10,6 +10,8 @@ docs/_build/
 # Ignore select files.
 .coverage
 .python-version
+czekitout/version.py
+tests/coverage.json
 
 # Ignore .pyc files.
 *.pyc

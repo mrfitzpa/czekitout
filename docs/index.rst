@@ -30,8 +30,6 @@ Contents
    INSTALL
    Reference <_autosummary/czekitout>
    examples
-   todo
-   changelog
    license
 
 Indices and tables

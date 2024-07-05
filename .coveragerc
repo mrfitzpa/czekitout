@@ -8,6 +8,8 @@ branch = true
 source =
     czekitout
     .
+omit =
+    */czekitout/version.py
 
 [report]
 show_missing = true

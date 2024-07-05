@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools", "wheel", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "czekitout"
-version = "0.0.1"
+dynamic = ["version"]
 description = """
 Contains a collection of functions that facilitate validation, and \
 type-conversions, with useful error messages when exceptions are thrown.\
@@ -15,7 +15,7 @@ authors = [
 ]
 classifiers = [
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
@@ -24,8 +24,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "Operating System :: Unix",
-    "Operating System :: Microsoft :: Windows",
+    "Operating System :: OS Independent",
     "Natural Language :: English"
 ]
 keywords = [
@@ -59,3 +58,7 @@ all = [
 [project.urls]
 Homepage = "https://mrfitzpa.github.io/czekitout"
 Repository = "https://github.com/mrfitzpa/czekitout"
+
+[tool.setuptools_scm]
+write_to = "czekitout/version.py"
+version_scheme = "post-release"

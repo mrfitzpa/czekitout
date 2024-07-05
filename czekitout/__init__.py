@@ -28,6 +28,7 @@ import czekitout.name
 import czekitout.isa
 import czekitout.check
 import czekitout.convert
+import czekitout.version
 
 
 
