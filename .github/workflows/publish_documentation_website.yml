@@ -6,13 +6,9 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
   build:
-    if: github.event.pull_request.draft == false
-    
     runs-on: ubuntu-latest
     permissions:
       id-token: write
