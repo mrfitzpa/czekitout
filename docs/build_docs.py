@@ -66,10 +66,7 @@ def _build_doc(version, language, tag):
     os.environ["SPHINXOPTS"] = "-D language='{}'".format(language)
     subprocess.run("make html", shell=True)
 
-    subprocess.run("git restore --staged conf.py", shell=True)
-    subprocess.run("git restore conf.py", shell=True)
-    subprocess.run("git restore --staged _templates/versions.html", shell=True)
-    subprocess.run("git restore _templates/versions.html", shell=True)
+    subprocess.run("git checkout -f main", shell=True)
 
     return None
 
@@ -109,5 +106,3 @@ for tag in release_tags:
     language = "en"
     _build_doc(version, language, tag)
     _mvdir("./_build/html/", "../pages/"+version+"/"+language+"/")
-
-subprocess.run("git checkout main", shell=True)
