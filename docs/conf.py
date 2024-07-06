@@ -11,9 +11,6 @@
 
 # -- Path setup --------------------------------------------------------------
 
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
 import os
 import sys
 import yaml
@@ -48,19 +45,17 @@ author = "Matthew Fitzpatrick"
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named "sphinx.ext.*") or your custom
 # ones.
-extensions = [
-    "sphinx.ext.autodoc",
-    "sphinx.ext.autosummary",
-    "sphinx.ext.extlinks",
-    "sphinx.ext.intersphinx",
-    "sphinx.ext.todo",
-    "sphinx.ext.coverage",
-    "sphinx.ext.mathjax",
-    "sphinx.ext.viewcode",
-    "sphinx_autodoc_typehints",
-    "sphinx.ext.githubpages",
-    "numpydoc",
-]
+extensions = ["sphinx.ext.autodoc",
+              "sphinx.ext.autosummary",
+              "sphinx.ext.extlinks",
+              "sphinx.ext.intersphinx",
+              "sphinx.ext.todo",
+              "sphinx.ext.coverage",
+              "sphinx.ext.mathjax",
+              "sphinx.ext.viewcode",
+              "sphinx_autodoc_typehints",
+              "sphinx.ext.githubpages",
+              "numpydoc"]
 
 
 
@@ -93,10 +88,9 @@ numfig_secnum_depth = 6
 
 
 
-# cross links to other sphinx documentations
-intersphinx_mapping = {
-    "python": ("https://docs.python.org/3", None),
-    "numpy": ("https://docs.scipy.org/doc/numpy", None)}
+# Cross links to other sphinx documentations.
+intersphinx_mapping = {"python": ("https://docs.python.org/3", None),
+                       "numpy": ("https://docs.scipy.org/doc/numpy", None)}
 
 
 
@@ -107,13 +101,8 @@ extlinks = {}
 
 # -- Options for HTML output -------------------------------------------------
 
-# Choose the "read-the-docs" theme if available.
-on_rtd = os.environ.get("READTHEDOCS", None) == "True"
-if not on_rtd:
-    import sphinx_rtd_theme
-    html_theme = "sphinx_rtd_theme"
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-html_css_files = ["readthedocs_custom.css"] # Override some CSS settings.
+html_theme = "sphinx_rtd_theme"
+html_theme_options = {"display_version": False}
 
 
 
