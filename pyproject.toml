@@ -49,8 +49,7 @@ docs = [
     "sphinx_rtd_theme",
     "sphinx-autodoc-typehints",
     "numpydoc",
-    "docutils",
-    "pyyaml"
+    "docutils"
 ]
 all = [
     "czekitout[tests, examples, docs]"

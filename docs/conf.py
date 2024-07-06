@@ -1,23 +1,57 @@
-# Configuration file for the Sphinx documentation builder.
+# -*- coding: utf-8 -*-
+# Copyright 2024 Matthew Fitzpatrick.
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, version 3.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
+r"""Configuration file for the Sphinx documentation builder.
 
-# This file only contains a selection of the most common options. For a full
-# list see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+"""
 
 
 
+#####################################
+## Load libraries/packages/modules ##
+#####################################
 
-
-
-# -- Path setup --------------------------------------------------------------
-
-import os
+# For aborting the python script with a specific error code.
 import sys
-import yaml
+
+# For accessing terminal environment variables.
+import os
+
+# For running terminal commands.
+import subprocess
+
+# For pattern matching.
+import re
 
 
 
-# Check to see whether czekitout can be imported.
+##################################
+## Define classes and functions ##
+##################################
+
+
+
+###########################
+## Define error messages ##
+###########################
+
+
+
+#########################
+## Main body of script ##
+#########################
+
+## Check to see whether czekitout can be imported.
 try:
     import czekitout
 except:
@@ -29,7 +63,7 @@ except:
 
 
 
-# -- Project information -----------------------------------------------------
+## Project information.
 
 project = "czekitout"
 copyright = "2024, Matthew Fitzpatrick"
@@ -40,7 +74,7 @@ author = "Matthew Fitzpatrick"
 
 
 
-# -- General configuration ---------------------------------------------------
+## General configuration.
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named "sphinx.ext.*") or your custom
@@ -88,18 +122,18 @@ numfig_secnum_depth = 6
 
 
 
-# Cross links to other sphinx documentations.
+# Cross links to other sphinx documentation websites.
 intersphinx_mapping = {"python": ("https://docs.python.org/3", None),
                        "numpy": ("https://docs.scipy.org/doc/numpy", None)}
 
 
 
-# extlinks
+# External links.
 extlinks = {}
 
 
 
-# -- Options for HTML output -------------------------------------------------
+## Options for HTML output.
 
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {"display_version": False}
@@ -121,7 +155,7 @@ html_last_updated_fmt = "%b %d, %Y"
 
 # Adapted from
 # ``https://github.com/ThoSe1990/SphinxExample/blob/main/docs/conf.py``.
-build_all_docs = os.environ.get("build_all_docs")
+build_all_docs = os.environ.get("build_all_docs", None)
 pages_root = os.environ.get("pages_root", "")
 
 if build_all_docs is not None:
@@ -139,14 +173,19 @@ if build_all_docs is not None:
     if (current_language == "en"):
         html_context["versions"].append(["latest", pages_root])
 
-    with open("versions.yaml", "r") as yaml_file:
-        docs = yaml.safe_load(yaml_file)
+    cmd_output_as_bytes = subprocess.check_output("git tag", shell=True)
+    cmd_output = cmd_output_as_bytes.decode("utf-8")
+    tags = cmd_output.rstrip("\n").split("\n")
+
+    pattern = r"v[0-9]+\.[0.9]+\.[0-9]+"
+    release_tags = tuple(tag for tag in tags if re.fullmatch(pattern, tag))
 
     if (current_version != "latest"):
-        for language in docs[current_version].get("languages", []):
-            path = pages_root+"/"+current_version+"/"+language
-            html_context["languages"].append([language, path])
+        language = "en"
+        path = pages_root+"/"+current_version+"/"+language
+        html_context["languages"].append([language, path])
 
-    for version, details in docs.items():
+    for tag in release_tags:
+        version = tag[1:]
         path = pages_root+"/"+version+"/"+current_language
         html_context["versions"].append([version, path])
