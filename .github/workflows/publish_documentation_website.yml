@@ -30,24 +30,21 @@ jobs:
         
     - name: Generate documentation
       run: |
+        git fetch --tags
         cd docs
         python build_docs.py
         cd ../
-    
-    - name: Commit html files to a new repository
-      run: |
-        cd pages
-        git init
-        git add -A
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git commit -m "deploy"
-        cd ../
-    
-    - name: Force push html files to the gh-pages branch
-      uses: ad-m/github-push-action@v0.8.0
+
+    - name: Setup pages
+      uses: actions/configure-pages@v5
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: gh-pages
-        force: true
-        directory: ./pages
+        path: './pages'
+
+     - name: Deploy to GitHub pages
+       id: deployment
+       uses: actions/deploy-pages@v4
+       with:
+         github_token: ${{ secrets.GITHUB_TOKEN }}
