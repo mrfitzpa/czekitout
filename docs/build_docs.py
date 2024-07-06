@@ -65,6 +65,9 @@ def _build_doc(version, language, tag):
     os.environ["SPHINXOPTS"] = "-D language='{}'".format(language)
     subprocess.run("make html", shell=True)
 
+    subprocess.run("git restore --staged conf.py", shell=True)
+    subprocess.run("git restore conf.py", shell=True)
+
     return None
 
 def _mvdir(src, dst):
