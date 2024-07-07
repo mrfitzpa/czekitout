@@ -28,7 +28,9 @@ import czekitout.name
 import czekitout.isa
 import czekitout.check
 import czekitout.convert
-import czekitout.version
+
+# Get version of current package.
+from czekitout.version import __version__
 
 
 
