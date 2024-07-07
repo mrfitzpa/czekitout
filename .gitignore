@@ -6,6 +6,7 @@ htmlcov/
 dist/
 docs/_autosummary/
 docs/_build/
+pages/
 
 # Ignore select files.
 .coverage
