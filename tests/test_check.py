@@ -130,8 +130,9 @@ def test_1_of_if_one_of_any_accepted_strings():
             assert func_to_test(**kwargs) == None
         else:
             args = format_arg_sets[obj_idx-2]
+            expected_exception = (TypeError if (obj_idx <= 3) else ValueError)
             err_msg = unformatted_err_msgs[obj_idx-2].format(*args)
-            with pytest.raises(TypeError) as err_info:
+            with pytest.raises(expected_exception) as err_info:
                 func_to_test(**kwargs)
             assert str(err_info.value) == err_msg
             

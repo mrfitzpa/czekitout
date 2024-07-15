@@ -289,18 +289,21 @@ def if_str_like_seq(obj, obj_name):
 def if_one_of_any_accepted_strings(obj, obj_name, accepted_strings):
     r"""Check whether input object is one of any given accepted strings.
 
-    If the input object is not one of any given accepted string, and
-    ``len(accepted_strings)=1``, then a `TypeError` exception is raised with the
-    message::
+    If the input object is not string-like, then a `TypeError` exception is
+    raised with the message::
+
+        The object ``<obj_name>`` must be string-like.
+
+    If ``len(accepted_strings)=1``, and the input object is not the given
+    accepted string, then a `ValueError` exception is raised with the message::
 
         The object ``<obj_name>`` must be set to ``<accepted_string>``.
 
     where <obj_name> is replaced by the contents of the string ``obj_name``, and
     <accepted_string> by the accepted string.
 
-    If the input object is not one of any given accepted string, and
-    ``len(accepted_strings)>1``, then a `TypeError` exception is raised with the
-    message::
+    If ``len(accepted_strings)>1``, and the input object is not one of any given
+    accepted string, then a `ValueError` exception is raised with the message::
 
         The object ``<obj_name>`` must be set to one of the following strings: 
         ``<accepted_strings>``.
@@ -350,7 +353,7 @@ def if_one_of_any_accepted_strings(obj, obj_name, accepted_strings):
             args = (obj_name, str(accepted_strings_converted_to_std_types))
             
         err_msg = unformatted_err_msg.format(*args)            
-        raise TypeError(err_msg)
+        raise ValueError(err_msg)
 
     return None
 
