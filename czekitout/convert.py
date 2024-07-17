@@ -192,7 +192,7 @@ def to_single_dim_slice(obj, obj_name):
 
     Returns
     -------
-    result : `str`
+    result : `int` | `list` (`int`) | `slice`
         The object resulting from the conversion.
 
     """
@@ -242,7 +242,7 @@ def to_multi_dim_slice(obj, obj_name):
 
     Returns
     -------
-    result : `str`
+    result : `tuple` (`int` | `list` (`int`) | `slice`)
         The object resulting from the conversion.
 
     """
@@ -282,7 +282,7 @@ def to_list_of_strs(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `list` (`str`)
         The object resulting from the conversion.
 
     """
@@ -319,7 +319,7 @@ def to_tuple_of_strs(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`str`)
         The object resulting from the conversion.
 
     """
@@ -349,7 +349,7 @@ def to_float(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `float`
         The object resulting from the conversion.
 
     """
@@ -408,7 +408,7 @@ def to_int(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `int`
         The object resulting from the conversion.
 
     """
@@ -450,7 +450,7 @@ def to_bool(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `bool`
         The object resulting from the conversion.
 
     """
@@ -495,7 +495,7 @@ def to_positive_float(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `float`
         The object resulting from the conversion.
 
     """
@@ -540,7 +540,7 @@ def to_nonnegative_float(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `float`
         The object resulting from the conversion.
 
     """
@@ -585,7 +585,7 @@ def to_nonnegative_int(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `int`
         The object resulting from the conversion.
 
     """
@@ -630,7 +630,7 @@ def to_positive_int(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `int`
         The object resulting from the conversion.
 
     """
@@ -672,7 +672,7 @@ def to_list_of_ints(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `list` (`int`)
         The object resulting from the conversion.
 
     """
@@ -707,7 +707,7 @@ def to_tuple_of_ints(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`int`)
         The object resulting from the conversion.
 
     """
@@ -741,7 +741,7 @@ def to_list_of_positive_ints(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `list` (`int`)
         The object resulting from the conversion.
 
     """
@@ -779,7 +779,7 @@ def to_tuple_of_positive_ints(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`int`)
         The object resulting from the conversion.
 
     """
@@ -814,7 +814,7 @@ def to_list_of_nonnegative_ints(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `list` (`int`)
         The object resulting from the conversion.
 
     """
@@ -852,7 +852,7 @@ def to_tuple_of_nonnegative_ints(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`int`)
         The object resulting from the conversion.
 
     """
@@ -887,7 +887,7 @@ def to_list_of_floats(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `list` (`float`)
         The object resulting from the conversion.
 
     """
@@ -922,7 +922,7 @@ def to_tuple_of_floats(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`float`)
         The object resulting from the conversion.
 
     """
@@ -955,7 +955,7 @@ def to_list_of_positive_floats(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `list` (`float`)
         The object resulting from the conversion.
 
     """
@@ -993,7 +993,7 @@ def to_tuple_of_positive_floats(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`float`)
         The object resulting from the conversion.
 
     """
@@ -1029,7 +1029,7 @@ def to_list_of_nonnegative_floats(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `list` (`float`)
         The object resulting from the conversion.
 
     """
@@ -1068,7 +1068,7 @@ def to_tuple_of_nonnegative_floats(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`float`)
         The object resulting from the conversion.
 
     """
@@ -1100,7 +1100,7 @@ def to_pair_of_floats(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`float`)
         The object resulting from the conversion.
 
     """
@@ -1135,7 +1135,7 @@ def to_pair_of_positive_floats(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`float`)
         The object resulting from the conversion.
 
     """
@@ -1171,7 +1171,7 @@ def to_pair_of_nonnegative_floats(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`float`)
         The object resulting from the conversion.
 
     """
@@ -1203,7 +1203,7 @@ def to_pair_of_ints(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`int`)
         The object resulting from the conversion.
 
     """
@@ -1238,7 +1238,7 @@ def to_pair_of_positive_ints(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`int`)
         The object resulting from the conversion.
 
     """
@@ -1274,7 +1274,7 @@ def to_pair_of_nonnegative_ints(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`int`)
         The object resulting from the conversion.
 
     """
@@ -1310,7 +1310,7 @@ def to_quadruplet_of_nonnegative_ints(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`int`)
         The object resulting from the conversion.
 
     """
@@ -1343,7 +1343,7 @@ def to_pairs_of_floats(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`tuple` (`float`))
         The object resulting from the conversion.
 
     """
@@ -1377,7 +1377,7 @@ def to_pairs_of_ints(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`tuple` (`int`))
         The object resulting from the conversion.
 
     """
@@ -1416,7 +1416,7 @@ def to_pairs_of_nonnegative_ints(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : `tuple` (`tuple` (`int`))
         The object resulting from the conversion.
 
     """
@@ -1451,7 +1451,7 @@ def to_real_two_column_numpy_matrix(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : :class:`numpy.ndarray`
         The object resulting from the conversion.
 
     """
@@ -1490,7 +1490,7 @@ def to_numpy_array(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : :class:`numpy.ndarray`
         The object resulting from the conversion.
 
     """
@@ -1526,7 +1526,7 @@ def to_real_numpy_array(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : :class:`numpy.ndarray`
         The object resulting from the conversion.
 
     """
@@ -1566,7 +1566,7 @@ def to_real_numpy_array_1d(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : :class:`numpy.ndarray`
         The object resulting from the conversion.
 
     """
@@ -1606,7 +1606,7 @@ def to_real_numpy_matrix(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : :class:`numpy.ndarray`
         The object resulting from the conversion.
 
     """
@@ -1646,7 +1646,7 @@ def to_real_numpy_array_3d(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : :class:`numpy.ndarray`
         The object resulting from the conversion.
 
     """
@@ -1689,7 +1689,7 @@ def to_nonnegative_numpy_array(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : :class:`numpy.ndarray`
         The object resulting from the conversion.
 
     """
@@ -1739,7 +1739,7 @@ def to_nonnegative_numpy_matrix(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : :class:`numpy.ndarray`
         The object resulting from the conversion.
 
     """
@@ -1786,7 +1786,7 @@ def to_bool_numpy_matrix(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : :class:`numpy.ndarray`
         The object resulting from the conversion.
 
     """
@@ -1819,7 +1819,7 @@ def to_bool_numpy_array_3d(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : :class:`numpy.ndarray`
         The object resulting from the conversion.
 
     """
@@ -1852,7 +1852,7 @@ def to_complex_numpy_array(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : :class:`numpy.ndarray`
         The object resulting from the conversion.
 
     """
@@ -1890,7 +1890,7 @@ def to_complex_numpy_matrix(obj, obj_name):
 
     Returns
     -------
-    result : `dict`
+    result : :class:`numpy.ndarray`
         The object resulting from the conversion.
 
     """
