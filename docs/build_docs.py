@@ -107,7 +107,7 @@ for tag in release_tags:
     version = tag[1:]
     language = "en"
     _build_doc(version, language, tag)
-    _mvdir("./_build/html/", "../pages/"+version+"/"+language+"/")
+    _mvdir("./_build/html/", "./pages/"+version+"/"+language+"/")
 
 subprocess.run("cd ..; pip install .; cd docs", shell=True)
 _mvdir("./pages/", "../pages/")
