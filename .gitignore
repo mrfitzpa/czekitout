@@ -4,9 +4,13 @@
 # Ignore select directories.
 __pycache__/
 .ipynb_checkpoints/
+tests/
+_autosummary/
+_build/
 
 # Ignore select files.
 .coverage
+.python-version
 
 # Ignore .pyc files.
 *.pyc

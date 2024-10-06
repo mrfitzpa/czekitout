@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>czekitout.check &mdash; czekitout  documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/readthedocs_custom.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/readthedocs_custom.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -111,7 +113,7 @@
 <span class="c1">############################</span>
 
 <span class="n">__author__</span>     <span class="o">=</span> <span class="s2">&quot;Matthew Fitzpatrick&quot;</span>
-<span class="n">__copyright__</span>  <span class="o">=</span> <span class="s2">&quot;Copyright 2023&quot;</span>
+<span class="n">__copyright__</span>  <span class="o">=</span> <span class="s2">&quot;Copyright 2024&quot;</span>
 <span class="n">__credits__</span>    <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Matthew Fitzpatrick&quot;</span><span class="p">]</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s2">&quot;Matthew Fitzpatrick&quot;</span>
 <span class="n">__email__</span>      <span class="o">=</span> <span class="s2">&quot;mrfitzpa@uvic.ca&quot;</span>
@@ -154,6 +156,7 @@
            <span class="s2">&quot;if_quadruplet_of_nonnegative_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_pairs_of_floats&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_pairs_of_ints&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;if_pairs_of_nonnegative_ints&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_real_numpy_array&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_real_numpy_array_1d&quot;</span><span class="p">,</span>
            <span class="s2">&quot;if_real_numpy_matrix&quot;</span><span class="p">,</span>
@@ -1179,6 +1182,40 @@
 
 
 
+<div class="viewcode-block" id="if_pairs_of_nonnegative_ints"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_pairs_of_nonnegative_ints.html#czekitout.check.if_pairs_of_nonnegative_ints">[docs]</a><span class="k">def</span> <span class="nf">if_pairs_of_nonnegative_ints</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a sequence of pairs of nonnegative </span>
+<span class="sd">    integers.</span>
+
+<span class="sd">    If the input object is not a sequence of pairs of nonnegative integers, then</span>
+<span class="sd">    a `TypeError` is raised with the message::</span>
+
+<span class="sd">        The object ``&lt;obj_name&gt;`` must be a sequence of pairs of nonnegative</span>
+<span class="sd">        integers.</span>
+
+<span class="sd">    where &lt;obj_name&gt; is replaced by the contents of the string ``obj_name``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : any type</span>
+<span class="sd">        Input object.</span>
+<span class="sd">    obj_name : `str`</span>
+<span class="sd">        Name of the input object.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+            <span class="c1"># Alias for readability.</span>
+            <span class="n">check_if_pair_of_nonnegative_ints</span> <span class="o">=</span> <span class="n">if_pair_of_nonnegative_ints</span>
+            
+            <span class="n">check_if_pair_of_nonnegative_ints</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="s2">&quot;pair&quot;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">err_msg</span> <span class="o">=</span> <span class="n">_if_pairs_of_nonnegative_ints_err_msg_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
 <div class="viewcode-block" id="if_real_numpy_array"><a class="viewcode-back" href="../../_autosummary/czekitout.check.if_real_numpy_array.html#czekitout.check.if_real_numpy_array">[docs]</a><span class="k">def</span> <span class="nf">if_real_numpy_array</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether input object is a real-valued numpy array.</span>
 
@@ -1589,6 +1626,9 @@
 <span class="n">_if_pairs_of_ints_err_msg_1</span> <span class="o">=</span> \
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a sequence of pairs of integers.&quot;</span><span class="p">)</span>
 
+<span class="n">_if_pairs_of_nonnegative_ints_err_msg_1</span> <span class="o">=</span> \
+    <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a sequence of pairs of nonnegative integers.&quot;</span><span class="p">)</span>
+
 <span class="n">_if_real_numpy_array_err_msg_1</span> <span class="o">=</span> \
     <span class="p">(</span><span class="s2">&quot;The object ``</span><span class="si">{}</span><span class="s2">`` must be a numpy array of real numbers.&quot;</span><span class="p">)</span>
 
@@ -1628,7 +1668,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023, Matthew Fitzpatrick.
-      <span class="lastupdated">Last updated on Dec 14, 2023.
+      <span class="lastupdated">Last updated on Oct 04, 2024.
       </span></p>
   </div>
 

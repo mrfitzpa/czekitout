@@ -41,6 +41,7 @@ czekitout.check
       if_pair_of_positive_ints
       if_pairs_of_floats
       if_pairs_of_ints
+      if_pairs_of_nonnegative_ints
       if_path_like
       if_path_like_seq
       if_positive_float

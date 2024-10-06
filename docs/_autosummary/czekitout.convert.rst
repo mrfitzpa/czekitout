@@ -43,6 +43,7 @@ czekitout.convert
       to_pair_of_positive_ints
       to_pairs_of_floats
       to_pairs_of_ints
+      to_pairs_of_nonnegative_ints
       to_positive_float
       to_positive_int
       to_quadruplet_of_nonnegative_ints
