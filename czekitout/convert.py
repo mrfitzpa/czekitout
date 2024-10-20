@@ -64,6 +64,8 @@ __all__ = ["to_dict",
            "to_tuple_of_positive_ints",
            "to_list_of_nonnegative_ints",
            "to_tuple_of_nonnegative_ints",
+           "to_list_of_bools",
+           "to_tuple_of_bools",
            "to_list_of_floats",
            "to_tuple_of_floats",
            "to_list_of_positive_floats",
@@ -74,12 +76,14 @@ __all__ = ["to_dict",
            "to_pair_of_positive_floats",
            "to_pair_of_nonnegative_floats",
            "to_pair_of_ints",
+           "to_pair_of_bools",
            "to_pair_of_positive_ints",
            "to_pair_of_nonnegative_ints",
            "to_quadruplet_of_nonnegative_ints",
            "to_pairs_of_floats",
            "to_pairs_of_ints",
            "to_pairs_of_nonnegative_ints",
+           "to_pairs_of_bools",
            "to_real_two_column_numpy_matrix",
            "to_numpy_array",
            "to_real_numpy_array",
@@ -860,6 +864,71 @@ def to_tuple_of_nonnegative_ints(obj, obj_name):
         to_list_of_nonnegative_ints  # Alias for readability.
     result = \
         tuple(convert_to_list_of_nonnegative_ints(obj, obj_name))
+
+    return result
+
+
+
+def to_list_of_bools(obj, obj_name):
+    r"""Convert input object to a list of booleans.
+
+    If the input object is not a sequence of booleans, then a `TypeError`
+    exception is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of booleans.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `list` (`int`)
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_bool_seq(obj, obj_name)
+
+    convert_to_bool = to_bool  # Alias for readability.
+
+    result = list(convert_to_bool(elem_of_obj, "elem_of_obj")
+                  for elem_of_obj
+                  in obj)
+
+    return result
+
+
+
+def to_tuple_of_bools(obj, obj_name):
+    r"""Convert input object to a tuple of booleans.
+
+    If the input object is not a sequence of booleans, then a `TypeError`
+    exception is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of booleans.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `tuple` (`int`)
+        The object resulting from the conversion.
+
+    """
+    convert_to_list_of_bools = to_list_of_bools  # Alias for readability.
+    result = tuple(convert_to_list_of_bools(obj, obj_name))
 
     return result
 

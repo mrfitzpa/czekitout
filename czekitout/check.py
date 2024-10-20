@@ -83,6 +83,7 @@ __all__ = ["if_instance_of_any_accepted_types",
            "if_nonnegative_numpy_array",
            "if_nonnegative_numpy_matrix",
            "if_bool",
+           "if_bool_seq",
            "if_bool_matrix",
            "if_bool_array_3d",
            "if_complex_numpy_array",
@@ -1615,6 +1616,38 @@ def if_bool(obj, obj_name):
 
 
 
+def if_bool_seq(obj, obj_name):
+    r"""Check whether input object is a sequence of booleans.
+
+    If the input object is not a sequence of booleans, then a `TypeError`
+    exception is raised with the message::
+
+        The object ``<obj_name>`` must be a sequence of booleans.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    _check_obj_name(obj_name)
+    
+    try:
+        for elem_of_obj in obj:
+            check_if_bool = if_bool  # Alias for readability.
+            check_if_bool(elem_of_obj, "elem_of_obj")
+    except:
+        err_msg = _if_bool_seq_err_msg_1.format(obj_name)
+        raise TypeError(err_msg)
+
+    return None
+
+
+
 def if_bool_matrix(obj, obj_name):
     r"""Check whether input object is a 2D boolean array.
 
@@ -1901,6 +1934,9 @@ _if_nonnegative_numpy_matrix_err_msg_1 = \
 
 _if_bool_err_msg_1 = \
     ("The object ``{}`` must be boolean.")
+
+_if_bool_seq_err_msg_1 = \
+    ("The object ``{}`` must be a sequence of booleans.")
 
 _if_bool_matrix_err_msg_1 = \
     ("The object ``{}`` must be a boolean matrix.")

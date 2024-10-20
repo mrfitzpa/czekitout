@@ -148,13 +148,17 @@ def dict_1_of_objs_for_which_to_test_conversions_to_seqs_of_scalars():
          "quadruplet_of_negative_ints_1": [-1, -2, -3, -4],
          "quadruplet_of_nonnegative_ints_1": [3, 2, 1, 0],
          "quadruplet_of_positive_ints_1": [3, 2, 1, 4],
+         "quadruplet_of_boolean_floats_1": [1.0, 0.0, 0.0, 1.0],
+         "quadruplet_of_bools_1": [True, False, True, False],
          "pair_of_negative_floats_1": [-1.5, -11.5],
          "pair_of_nonnegative_floats_1": [5.5, 0.0],
          "pair_of_positive_floats_1": [1.0, 5.0],
          "pair_of_mixed_types_1": [1.5, 5],
          "pair_of_negative_ints_1": [-1, -11],
          "pair_of_nonnegative_ints_1": [5, 0],
-         "pair_of_positive_ints_1": [1, 5]}
+         "pair_of_positive_ints_1": [1, 5],
+         "pair_of_boolean_floats_1": [0.0, 1.0],
+         "pair_of_bools_1": [True, False]}
 
     fixture_output_key_subset_1 = tuple(fixture_output.keys())
 
@@ -182,7 +186,9 @@ def dict_1_of_objs_for_which_to_test_conversions_to_seqs_of_scalar_pairs():
          "pairs_of_mixed_types_1": [[5.5, 1.5], (3, 4)],
          "pairs_of_negative_ints_1": [[-5, -1], (-3, -4)],
          "pairs_of_nonnegative_ints_1": [[5, 1], (0, 4)],
-         "pairs_of_positive_ints_1": [[5, 1], (3, 4)]}
+         "pairs_of_positive_ints_1": [[5, 1], (3, 4)],
+         "pairs_of_boolean_floats_1": [[1.0, 0.0], (1.0, 1.0)],
+         "pairs_of_bools_1": [[True, False], (True, True)]}
 
     return fixture_output
 
@@ -631,7 +637,7 @@ def expected_result_map_of_test_1_of_to_list_of_ints(
         if "ints" in key:
             seq_of_ints = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = list(seq_of_ints)
-        elif "positive_floats" in key:
+        elif ("positive_floats" in key) or ("bool" in key):
             seq_of_floats = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = [int(elem)
                                         for elem
@@ -647,7 +653,7 @@ def expected_exception_map_of_test_1_of_to_list_of_ints(
         dict_of_objs_for_which_to_test_conversions):
     expected_exception_map = dict()
     for key in dict_of_objs_for_which_to_test_conversions:
-        if ("ints" in key) or ("positive_floats" in key):
+        if ("ints" in key) or ("positive_floats" in key) or ("bool" in key):
             expected_exception_map[key] = None
         else:
             expected_exception_map[key] = TypeError
@@ -675,7 +681,7 @@ def expected_result_map_of_test_1_of_to_tuple_of_ints(
         if "ints" in key:
             seq_of_ints = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = tuple(seq_of_ints)
-        elif "positive_floats" in key:
+        elif ("positive_floats" in key) or ("bool" in key):
             seq_of_floats = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = tuple(int(elem)
                                              for elem
@@ -691,7 +697,7 @@ def expected_exception_map_of_test_1_of_to_tuple_of_ints(
         dict_of_objs_for_which_to_test_conversions):
     expected_exception_map = dict()
     for key in dict_of_objs_for_which_to_test_conversions:
-        if ("ints" in key) or ("positive_floats" in key):
+        if ("ints" in key) or ("positive_floats" in key) or ("bool" in key):
             expected_exception_map[key] = None
         else:
             expected_exception_map[key] = TypeError
@@ -719,7 +725,7 @@ def expected_result_map_of_test_1_of_to_list_of_positive_ints(
         if "positive_ints" in key:
             seq_of_ints = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = list(seq_of_ints)
-        elif "positive_floats" in key:
+        elif ("positive_floats" in key):
             seq_of_floats = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = [int(elem)
                                         for elem
@@ -738,7 +744,7 @@ def expected_exception_map_of_test_1_of_to_list_of_positive_ints(
         if ("positive_ints" in key) or ("positive_floats" in key):
             expected_exception_map[key] = None
         else:
-            if "ints" in key:
+            if ("ints" in key) or ("bool" in key):
                 expected_exception_map[key] = ValueError
             else:
                 expected_exception_map[key] = TypeError
@@ -785,7 +791,7 @@ def expected_exception_map_of_test_1_of_to_tuple_of_positive_ints(
         if ("positive_ints" in key) or ("positive_floats" in key):
             expected_exception_map[key] = None
         else:
-            if "ints" in key:
+            if ("ints" in key) or ("bool" in key):
                 expected_exception_map[key] = ValueError
             else:
                 expected_exception_map[key] = TypeError
@@ -813,7 +819,7 @@ def expected_result_map_of_test_1_of_to_list_of_nonnegative_ints(
         if ("positive_ints" in key) or ("nonnegative_ints" in key):
             seq_of_ints = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = list(seq_of_ints)
-        elif "positive_floats" in key:
+        elif ("positive_floats" in key) or ("bool" in key):
             seq_of_floats = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = [int(elem)
                                         for elem
@@ -831,7 +837,8 @@ def expected_exception_map_of_test_1_of_to_list_of_nonnegative_ints(
     for key in dict_of_objs_for_which_to_test_conversions:
         if (("positive_ints" in key)
             or ("nonnegative_ints" in key)
-            or ("positive_floats" in key)):
+            or ("positive_floats" in key)
+            or ("bool" in key)):
             expected_exception_map[key] = None
         else:
             if "_negative_ints" in key:
@@ -862,7 +869,7 @@ def expected_result_map_of_test_1_of_to_tuple_of_nonnegative_ints(
         if ("positive_ints" in key) or ("nonnegative_ints" in key):
             seq_of_ints = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = tuple(seq_of_ints)
-        elif "positive_floats" in key:
+        elif ("positive_floats" in key) or ("bool" in key):
             seq_of_floats = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = tuple(int(elem)
                                              for elem
@@ -880,13 +887,102 @@ def expected_exception_map_of_test_1_of_to_tuple_of_nonnegative_ints(
     for key in dict_of_objs_for_which_to_test_conversions:
         if (("positive_ints" in key)
             or ("nonnegative_ints" in key)
-            or ("positive_floats" in key)):
+            or ("positive_floats" in key)
+            or ("bool" in key)):
             expected_exception_map[key] = None
         else:
             if "_negative_ints" in key:
                 expected_exception_map[key] = ValueError
             else:
                 expected_exception_map[key] = TypeError
+
+    return expected_exception_map
+
+
+
+def test_1_of_to_list_of_bools(
+        dict_1_of_objs_for_which_to_test_conversions_to_seqs_of_scalars):
+    kwargs = {"dict_of_objs_for_which_to_test_conversions": \
+              random.choice(list(locals().values())),
+              "name_of_test": \
+              inspect.stack()[0][3],}
+    run_generic_test(**kwargs)
+
+    return None
+
+
+
+def expected_result_map_of_test_1_of_to_list_of_bools(
+        dict_of_objs_for_which_to_test_conversions):
+    expected_result_map = dict()
+    for key in dict_of_objs_for_which_to_test_conversions:
+        if "bools" in key:
+            seq_of_bools = dict_of_objs_for_which_to_test_conversions[key]
+            expected_result_map[key] = list(seq_of_bools)
+        elif "boolean_floats" in key:
+            seq_of_floats = dict_of_objs_for_which_to_test_conversions[key]
+            expected_result_map[key] = [bool(elem)
+                                        for elem
+                                        in seq_of_floats]
+        else:
+            expected_result_map[key] = None
+
+    return expected_result_map
+
+
+
+def expected_exception_map_of_test_1_of_to_list_of_bools(
+        dict_of_objs_for_which_to_test_conversions):
+    expected_exception_map = dict()
+    for key in dict_of_objs_for_which_to_test_conversions:
+        if "bool" in key:
+            expected_exception_map[key] = None
+        else:
+            expected_exception_map[key] = TypeError
+
+    return expected_exception_map
+
+
+
+def test_1_of_to_tuple_of_bools(
+        dict_1_of_objs_for_which_to_test_conversions_to_seqs_of_scalars):
+    kwargs = {"dict_of_objs_for_which_to_test_conversions": \
+              random.choice(list(locals().values())),
+              "name_of_test": \
+              inspect.stack()[0][3],}
+    run_generic_test(**kwargs)
+
+    return None
+
+
+
+def expected_result_map_of_test_1_of_to_tuple_of_bools(
+        dict_of_objs_for_which_to_test_conversions):
+    expected_result_map = dict()
+    for key in dict_of_objs_for_which_to_test_conversions:
+        if "bools" in key:
+            seq_of_bools = dict_of_objs_for_which_to_test_conversions[key]
+            expected_result_map[key] = tuple(seq_of_bools)
+        elif "boolean_floats" in key:
+            seq_of_floats = dict_of_objs_for_which_to_test_conversions[key]
+            expected_result_map[key] = tuple(bool(elem)
+                                             for elem
+                                             in seq_of_floats)
+        else:
+            expected_result_map[key] = None
+
+    return expected_result_map
+
+
+
+def expected_exception_map_of_test_1_of_to_tuple_of_bools(
+        dict_of_objs_for_which_to_test_conversions):
+    expected_exception_map = dict()
+    for key in dict_of_objs_for_which_to_test_conversions:
+        if "bool" in key:
+            expected_exception_map[key] = None
+        else:
+            expected_exception_map[key] = TypeError
 
     return expected_exception_map
 
@@ -1203,7 +1299,7 @@ def expected_result_map_of_test_1_of_to_pair_of_positive_floats(
         dict_of_objs_for_which_to_test_conversions):
     expected_result_map = dict()
     for key in dict_of_objs_for_which_to_test_conversions:
-        if ("pair" in key) and ("negative" not in key):
+        if ("pair" in key) and ("negative" not in key) and ("bool" not in key):
             seq_of_scalars = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = tuple(float(elem)
                                              for elem
@@ -1219,10 +1315,10 @@ def expected_exception_map_of_test_1_of_to_pair_of_positive_floats(
         dict_of_objs_for_which_to_test_conversions):
     expected_exception_map = dict()
     for key in dict_of_objs_for_which_to_test_conversions:
-        if ("pair" in key) and ("negative" not in key):
+        if ("pair" in key) and ("negative" not in key) and ("bool" not in key):
             expected_exception_map[key] = None
         else:
-            if ("pair" in key) and ("negative" in key):
+            if ("pair" in key) and (("negative" in key) or ("bool" in key)):
                 expected_exception_map[key] = ValueError
             else:
                 expected_exception_map[key] = TypeError
@@ -1291,7 +1387,10 @@ def expected_result_map_of_test_1_of_to_pair_of_ints(
         dict_of_objs_for_which_to_test_conversions):
     expected_result_map = dict()
     for key in dict_of_objs_for_which_to_test_conversions:
-        if ("pair" in key) and (("ints" in key) or ("positive_floats" in key)):
+        if (("pair" in key)
+            and (("ints" in key)
+                 or ("positive_floats" in key)
+                 or ("bool" in key))):
             seq_of_scalars = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = tuple(int(elem)
                                              for elem
@@ -1307,7 +1406,10 @@ def expected_exception_map_of_test_1_of_to_pair_of_ints(
         dict_of_objs_for_which_to_test_conversions):
     expected_exception_map = dict()
     for key in dict_of_objs_for_which_to_test_conversions:
-        if ("pair" in key) and (("ints" in key) or ("positive_floats" in key)):
+        if (("pair" in key)
+            and (("ints" in key)
+                 or ("positive_floats" in key)
+                 or ("bool" in key))):
             expected_exception_map[key] = None
         else:
             expected_exception_map[key] = TypeError
@@ -1351,7 +1453,8 @@ def expected_exception_map_of_test_1_of_to_pair_of_positive_ints(
         if ("pair" in key) and ("positive" in key):
             expected_exception_map[key] = None
         else:
-            if ("pair" in key) and ("negative_ints" in key):
+            if (("pair" in key)
+                and (("negative_ints" in key) or ("bool" in key))):
                 expected_exception_map[key] = ValueError
             else:
                 expected_exception_map[key] = TypeError
@@ -1376,7 +1479,9 @@ def expected_result_map_of_test_1_of_to_pair_of_nonnegative_ints(
         dict_of_objs_for_which_to_test_conversions):
     expected_result_map = dict()
     for key in dict_of_objs_for_which_to_test_conversions:
-        if ("pair_of_positive" in key) or ("pair_of_nonnegative_ints" in key):
+        if (("pair_of_positive" in key)
+            or ("pair_of_nonnegative_ints" in key)
+            or ("pair_of_bool" in key)):
             seq_of_scalars = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = tuple(int(elem)
                                              for elem
@@ -1392,7 +1497,9 @@ def expected_exception_map_of_test_1_of_to_pair_of_nonnegative_ints(
         dict_of_objs_for_which_to_test_conversions):
     expected_exception_map = dict()
     for key in dict_of_objs_for_which_to_test_conversions:
-        if ("pair_of_positive" in key) or ("pair_of_nonnegative_ints" in key):
+        if (("pair_of_positive" in key)
+            or ("pair_of_nonnegative_ints" in key)
+            or ("pair_of_bool" in key)):
             expected_exception_map[key] = None
         else:
             if ("pair" in key) and ("_negative_ints" in key):
@@ -1422,7 +1529,8 @@ def expected_result_map_of_test_1_of_to_quadruplet_of_nonnegative_ints(
     for key in dict_of_objs_for_which_to_test_conversions:
         if (("quadruplet_of_positive_ints" in key)
             or ("quadruplet_of_nonnegative_ints" in key)
-            or ("quadruplet_of_positive_floats" in key)):
+            or ("quadruplet_of_positive_floats" in key)
+            or ("quadruplet_of_bool" in key)):
             seq_of_scalars = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = tuple(int(elem)
                                              for elem
@@ -1440,7 +1548,8 @@ def expected_exception_map_of_test_1_of_to_quadruplet_of_nonnegative_ints(
     for key in dict_of_objs_for_which_to_test_conversions:
         if (("quadruplet_of_positive_ints" in key)
             or ("quadruplet_of_nonnegative_ints" in key)
-            or ("quadruplet_of_positive_floats" in key)):
+            or ("quadruplet_of_positive_floats" in key)
+            or ("quadruplet_of_bool" in key)):
             expected_exception_map[key] = None
         else:
             if ("quadruplet" in key) and ("_negative_ints" in key):
@@ -1508,7 +1617,8 @@ def expected_result_map_of_test_1_of_to_pairs_of_ints(
         dict_of_objs_for_which_to_test_conversions):
     expected_result_map = dict()
     for key in dict_of_objs_for_which_to_test_conversions:
-        if (("pairs" in key) and (("ints" in key) or ("positive" in key))):
+        if (("pairs" in key)
+            and (("ints" in key) or ("positive" in key) or ("bool" in key))):
             pairs_of_scalars = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = tuple(tuple(float(num) for num in pair)
                                              for pair in pairs_of_scalars)
@@ -1523,7 +1633,8 @@ def expected_exception_map_of_test_1_of_to_pairs_of_ints(
         dict_of_objs_for_which_to_test_conversions):
     expected_exception_map = dict()
     for key in dict_of_objs_for_which_to_test_conversions:
-        if (("pairs" in key) and (("ints" in key) or ("positive" in key))):
+        if (("pairs" in key)
+            and (("ints" in key) or ("positive" in key) or ("bool" in key))):
             expected_exception_map[key] = None
         else:
             expected_exception_map[key] = TypeError
@@ -1550,7 +1661,8 @@ def expected_result_map_of_test_1_of_to_pairs_of_nonnegative_ints(
     for key in dict_of_objs_for_which_to_test_conversions:
         if (("pairs_of_positive_floats" in key)
             or ("pairs_of_nonnegative_ints" in key)
-            or ("pairs_of_positive_ints" in key)):
+            or ("pairs_of_positive_ints" in key)
+            or ("pairs_of_bool" in key)):
             pairs_of_scalars = dict_of_objs_for_which_to_test_conversions[key]
             expected_result_map[key] = tuple(tuple(float(num) for num in pair)
                                              for pair in pairs_of_scalars)
@@ -1567,7 +1679,8 @@ def expected_exception_map_of_test_1_of_to_pairs_of_nonnegative_ints(
     for key in dict_of_objs_for_which_to_test_conversions:
         if (("pairs_of_positive_floats" in key)
             or ("pairs_of_nonnegative_ints" in key)
-            or ("pairs_of_positive_ints" in key)):
+            or ("pairs_of_positive_ints" in key)
+            or ("pairs_of_bool" in key)):
             expected_exception_map[key] = None
         else:
             if ("pairs" in key) and ("_negative_ints" in key):
