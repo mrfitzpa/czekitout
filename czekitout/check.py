@@ -72,6 +72,7 @@ __all__ = ["if_instance_of_any_accepted_types",
            "if_pair_of_positive_ints",
            "if_pair_of_nonnegative_ints",
            "if_quadruplet_of_nonnegative_ints",
+           "if_quadruplet_of_positive_floats",
            "if_pairs_of_floats",
            "if_pairs_of_ints",
            "if_pairs_of_nonnegative_ints",
@@ -1257,6 +1258,55 @@ def if_quadruplet_of_nonnegative_ints(obj, obj_name):
 
 
 
+def if_quadruplet_of_positive_floats(obj, obj_name):
+    r"""Check whether input object is a quadruplet of positive real numbers.
+
+    If the input object is not a quadruplet of positive real numbers, then an
+    exception is raised with the message::
+
+        The object ``<obj_name>`` must be a quadruplet of positive real numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``. In
+    the case that an exception is raised, said exception is of the type
+    `TypeError` if the input object is not a quadruplet of real numbers,
+    otherwise said exception is of the type `ValueError`.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    """
+    _check_obj_name(obj_name)
+
+    try:
+        err_msg = _if_quadruplet_of_positive_floats_err_msg_1.format(obj_name)
+
+        count = 0
+        for elem_of_obj in obj:
+            count += 1
+        if count != 4:
+            raise
+
+        check_if_float_seq = if_float_seq  # Alias for readability.
+        check_if_float_seq(obj, obj_name)
+        
+        for elem_of_obj in obj:
+            # Alias for readability.
+            check_if_positive_float = if_positive_float
+            check_if_positive_float(elem_of_obj, "elem_of_obj")
+        
+    except ValueError:
+        raise ValueError(err_msg)
+    except BaseException:
+        raise TypeError(err_msg)
+
+    return None
+
+
+
 def if_pairs_of_floats(obj, obj_name):
     r"""Check whether input object is a sequence of pairs of real numbers.
 
@@ -1901,6 +1951,9 @@ _if_pair_of_nonnegative_ints_err_msg_1 = \
 
 _if_quadruplet_of_nonnegative_ints_err_msg_1 = \
     ("The object ``{}`` must be a quadruplet of nonnegative integers.")
+
+_if_quadruplet_of_positive_floats_err_msg_1 = \
+    ("The object ``{}`` must be a quadruplet of positive real numbers.")
 
 _if_pairs_of_floats_err_msg_1 = \
     ("The object ``{}`` must be a sequence of pairs of real numbers.")

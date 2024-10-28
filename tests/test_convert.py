@@ -1561,6 +1561,54 @@ def expected_exception_map_of_test_1_of_to_quadruplet_of_nonnegative_ints(
 
 
 
+def test_1_of_to_quadruplet_of_positive_floats(
+        dict_1_of_objs_for_which_to_test_conversions_to_seqs_of_scalars):
+    kwargs = {"dict_of_objs_for_which_to_test_conversions": \
+              random.choice(list(locals().values())),
+              "name_of_test": \
+              inspect.stack()[0][3],}
+    run_generic_test(**kwargs)
+
+    return None
+
+
+
+def expected_result_map_of_test_1_of_to_quadruplet_of_positive_floats(
+        dict_of_objs_for_which_to_test_conversions):
+    expected_result_map = dict()
+    for key in dict_of_objs_for_which_to_test_conversions:
+        if (("quadruplet_of_positive_ints" in key)
+            or ("quadruplet_of_positive_floats" in key)
+            or ("quadruplet_of_mixed_types" in key)):
+            seq_of_scalars = dict_of_objs_for_which_to_test_conversions[key]
+            expected_result_map[key] = tuple(float(elem)
+                                             for elem
+                                             in seq_of_scalars)
+        else:
+            expected_result_map[key] = None
+
+    return expected_result_map
+
+
+
+def expected_exception_map_of_test_1_of_to_quadruplet_of_positive_floats(
+        dict_of_objs_for_which_to_test_conversions):
+    expected_exception_map = dict()
+    for key in dict_of_objs_for_which_to_test_conversions:
+        if (("quadruplet_of_positive_ints" in key)
+            or ("quadruplet_of_positive_floats" in key)
+            or ("quadruplet_of_mixed_types" in key)):
+            expected_exception_map[key] = None
+        else:
+            if "quadruplet" in key:
+                expected_exception_map[key] = ValueError
+            else:
+                expected_exception_map[key] = TypeError
+
+    return expected_exception_map
+
+
+
 def test_1_of_to_pairs_of_floats(
         dict_1_of_objs_for_which_to_test_conversions_to_seqs_of_scalar_pairs):
     kwargs = {"dict_of_objs_for_which_to_test_conversions": \

@@ -76,14 +76,13 @@ __all__ = ["to_dict",
            "to_pair_of_positive_floats",
            "to_pair_of_nonnegative_floats",
            "to_pair_of_ints",
-           "to_pair_of_bools",
            "to_pair_of_positive_ints",
            "to_pair_of_nonnegative_ints",
            "to_quadruplet_of_nonnegative_ints",
+           "to_quadruplet_of_positive_floats",
            "to_pairs_of_floats",
            "to_pairs_of_ints",
            "to_pairs_of_nonnegative_ints",
-           "to_pairs_of_bools",
            "to_real_two_column_numpy_matrix",
            "to_numpy_array",
            "to_real_numpy_array",
@@ -888,7 +887,7 @@ def to_list_of_bools(obj, obj_name):
 
     Returns
     -------
-    result : `list` (`int`)
+    result : `list` (`bool`)
         The object resulting from the conversion.
 
     """
@@ -923,7 +922,7 @@ def to_tuple_of_bools(obj, obj_name):
 
     Returns
     -------
-    result : `tuple` (`int`)
+    result : `tuple` (`bool`)
         The object resulting from the conversion.
 
     """
@@ -1385,8 +1384,44 @@ def to_quadruplet_of_nonnegative_ints(obj, obj_name):
     """
     czekitout.check.if_quadruplet_of_nonnegative_ints(obj, obj_name)
 
-    convert_to_tuple_of_ints = to_tuple_of_ints  # Alias for readability.    
+    convert_to_tuple_of_ints = to_tuple_of_ints  # Alias for readability.
     result = convert_to_tuple_of_ints(obj, obj_name)
+
+    return result
+
+
+
+def to_quadruplet_of_positive_floats(obj, obj_name):
+    r"""Convert input object to a four-element tuple of positive `float` 
+    objects.
+
+    If the input object is not a quadruplet of positive real numbers, then an
+    exception is raised with the message::
+
+        The object ``<obj_name>`` must be a quadruplet of positive real numbers.
+
+    where <obj_name> is replaced by the contents of the string ``obj_name``. In
+    the case that an exception is raised, said exception is of the type
+    `TypeError` if the input object is not a quadruplet of real numbers,
+    otherwise said exception is of the type `ValueError`.
+
+    Parameters
+    ----------
+    obj : any type
+        Input object.
+    obj_name : `str`
+        Name of the input object.
+
+    Returns
+    -------
+    result : `tuple` (`float`)
+        The object resulting from the conversion.
+
+    """
+    czekitout.check.if_quadruplet_of_positive_floats(obj, obj_name)
+
+    convert_to_tuple_of_floats = to_tuple_of_floats  # Alias for readability.
+    result = convert_to_tuple_of_floats(obj, obj_name)
 
     return result
 
